@@ -1,2 +1,0 @@
-#Ideas
-- Using Watson API
