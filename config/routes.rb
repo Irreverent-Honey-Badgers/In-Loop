@@ -1,5 +1,48 @@
 Rails.application.routes.draw do
+  get 'patients/index'
+
+  get 'patients/show'
+
+  get 'patients/new'
+
+  get 'patients/create'
+
+  get 'doctors/index'
+
+  get 'doctors/show'
+
+  get 'doctors/new'
+
+  get 'doctors/create'
+
+  get 'locations/index'
+
+  get 'locations/show'
+
+  get 'locations/new'
+
+  get 'locations/create'
+
+  get 'doctors_controller/index'
+
+  get 'doctors_controller/show'
+
+  get 'doctors_controller/new'
+
+  get 'doctors_controller/create'
+
+  get 'patients_controller/index'
+
+  get 'patients_controller/show'
+
+  get 'patients_controller/new'
+
+  get 'patients_controller/create'
+
   root "application#index"
+  resources :locations
+  resources :patients
+  resources :doctors
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
