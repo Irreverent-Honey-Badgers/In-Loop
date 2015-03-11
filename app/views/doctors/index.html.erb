@@ -1,8 +1,37 @@
 <h1>Doctors#index</h1>
 <p>Find me in app/views/doctors/index.html.erb</p>
 
-<div class="iframe">
+
+<!-- <div class="iframe">
  <iframe src="https://www.google.com/calendar/embed?src=noel.sagaille@gmail.com&ctz=America/New_York" align="middle" frameborder="0" scrolling="no" width="800" height="800" seamless></iframe>
 </div>
+ -->
+<style type="text/css">
+      #calendar { height: 600px; width: 800px;}
+</style>
+<script type='text/javascript'>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        googleCalendarApiKey: 'AIzaSyCYEvZl6I5vJ6tSVutlF2EF9qsPcOexswA',
+        events: {
+            googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+        },
+        header: { center: 'month, basicWeek, basicDay' }, // buttons for switching between views
 
+        views: {
+            month: { // name of view
+                // titleFormat: 'YYYY, MM, DD'
+                // other view-specific options here
+            },
+            week: {
 
+            },
+            day: {
+
+            }
+        }
+    });
+});
+</script>
+<script type='text/javascript' src='fullcalendar/gcal.js'></script>
+<div id="calendar"></div>
