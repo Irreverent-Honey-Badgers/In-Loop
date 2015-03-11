@@ -10,9 +10,10 @@
       #calendar { height: 600px; width: 800px;}
 </style>
 <script type='text/javascript'>
+debugger;
 $(document).ready(function() {
     $('#calendar').fullCalendar({
-        googleCalendarApiKey: <%= ENV["GOOGLE_CALENDAR_CLIENT_ID"] %>,
+        googleCalendarApiKey: 'GOOGLE_CALENDAR_CLIENT_ID',
         events: {
             googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
         },
