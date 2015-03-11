@@ -29,10 +29,6 @@ gem 'rails-erd'
 # Rename your rails application
 gem 'rails-rename', '~> 1.0.0'
 
-# An asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
-
-# A fast lightweight and minimalist wrapper around the google calendar api.
-gem 'google_calendar'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
