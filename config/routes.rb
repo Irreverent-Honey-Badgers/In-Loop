@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  devise_for :doctors
+  devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "facebook" }
   root "application#index"
   resources :locations
   resources :patients
