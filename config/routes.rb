@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :doctors
-  devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "facebook" }
+  devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
   root "application#index"
   resources :locations
-  resources :patients
+  resources :patients, except: [:new, :create]
   resources :doctors
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

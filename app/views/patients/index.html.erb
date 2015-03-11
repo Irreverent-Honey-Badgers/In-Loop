@@ -1,4 +1,7 @@
-<% if notice %>
+<h1> Hate the Waiting Room? </h1>
+<h2> Tell your Doctor you are on your way </h2>
+
+<!-- <% if notice %>
 <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
@@ -14,9 +17,6 @@
   <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
   <% end %>
-</p>
+</p> -->
 
-<%= link_to "Sign in with Facebook", patient_omniauth_authorize_path(:facebook) %>
-
-<h1> Running Late </h1>
-<h2> Let your Doctor Know </h2>
+<%= link_to "Sign in with Google", patient_omniauth_authorize_path(:google_oauth2) %>
