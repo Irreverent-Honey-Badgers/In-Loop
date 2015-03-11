@@ -1,2 +1,22 @@
-<h1>Patients#index</h1>
-<p>Find me in app/views/patients/index.html.erb</p>
+<% if notice %>
+<p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+<p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<p class="navbar-text pull-right">
+  <% if patient_signed_in? %>
+  Logged in as <strong><%= current_patient.email %></strong>.
+  <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
+  <% else %>
+  <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+  <% end %>
+</p>
+
+<%= link_to "Sign in with Facebook", patient_omniauth_authorize_path(:facebook) %>
+
+<h1> Running Late </h1>
+<h2> Let your Doctor Know </h2>

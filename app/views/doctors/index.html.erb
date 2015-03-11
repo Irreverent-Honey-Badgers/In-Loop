@@ -12,7 +12,7 @@
 <script type='text/javascript'>
 $(document).ready(function() {
     $('#calendar').fullCalendar({
-        googleCalendarApiKey: ENV["GOOGLE_CALENDAR_CLIENT_ID"],
+        googleCalendarApiKey: <%= ENV["GOOGLE_CALENDAR_CLIENT_ID"] %>,
         events: {
             googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
         },
