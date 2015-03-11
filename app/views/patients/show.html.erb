@@ -1,2 +1,55 @@
-<h1>Patients#show</h1>
-<p>Find me in app/views/patients/show.html.erb</p>
+<% if notice %>
+<p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+<p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<p class="navbar-text pull-right">
+  <% if patient_signed_in? %>
+  Logged in as <strong><%= current_patient.email %></strong>.
+  <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
+  <% else %>
+  <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+  <% end %>
+</p>
+
+<%= link_to "Sign in wiih Google", patient_omniauth_authorize_path(:google_oauth2) %>
+
+
+<h1> Running Late </h1>
+<h2> Let your Doctor Know </h2>
+
+<p> Your Doctors </p>
+<%= select_tag current_patient, options_from_collection_for_select(current_patient.locations, "address", "address") %>
+<%= submit_tag "Choose this location & doctor", id: "chosenDoctor" %>
+
+<p id="demo"></p>
+
+
+<script>
+$("#chosenDoctor").on("click",function(){
+  var x = $('select')[0].value;
+  $("<p>").text("You Chose:" + x).attr('id','text').insertAfter('#chosenDoctor');
+  $("<button>").text("Figure out how far you are away").attr("id", "tracking").insertAfter('#text');
+});
+
+$('body').on("click","#tracking", getLocation)
+var y = $('#demo')[0];
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPositionInMap);
+    } else {
+        y.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPositionInMap(position) {
+    y.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+}
+
+</script>
