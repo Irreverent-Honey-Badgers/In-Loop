@@ -1,2 +1,34 @@
 <h1>Doctors#index</h1>
 <p>Find me in app/views/doctors/index.html.erb</p>
+
+
+<style type="text/css">
+      #calendar { height: 600px; width: 800px;}
+</style>
+<script type='text/javascript'>
+debugger;
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        googleCalendarApiKey: 'GOOGLE_CALENDAR_CLIENT_ID',
+        events: {
+            googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+        },
+        header: { center: 'month, basicWeek, basicDay' }, // buttons for switching between views
+
+        views: {
+            month: { // name of view
+                // titleFormat: 'YYYY, MM, DD'
+                // other view-specific options here
+            },
+            week: {
+
+            },
+            day: {
+
+            }
+        }
+    });
+});
+</script>
+<script type='text/javascript' src='fullcalendar/gcal.js'></script>
+<div id="calendar"></div>
