@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2'
+gem 'pry'
 # Use postgresql as the database for Active Record
 gem 'pg'
+# Twitter's Bootstrap, converted to Sass and ready to drop into Rails or Compass
+# gem 'bootstrap-sass', '~> 3.3.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,6 +31,9 @@ gem 'rails-erd'
 
 # Rename your rails application
 gem 'rails-rename', '~> 1.0.0'
+
+# An asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
+gem 'fullcalendar-rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
