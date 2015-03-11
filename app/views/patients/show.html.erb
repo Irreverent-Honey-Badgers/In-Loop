@@ -16,15 +16,34 @@
   <% end %>
 </p>
 
-<%= link_to "Sign in wiih Google", patient_omniauth_authorize_path(:google_oauth2) %>
+<div id="calendar" height: "600" width: "800"></div>
 
+<script>
+$(function() {
+  debugger;
+    $('#calendar').fullCalendar({
+        googleCalendarApiKey: 'GOOGLE__CAL_API',
+        events: {
+            googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+        },
+        header: { center: 'month, basicWeek, basicDay' }, // buttons for switching between views
+        views: {
+            month: { // name of view
+                // titleFormat: 'YYYY, MM, DD'
+                // other view-specific options here
+            },
+            week: {
+            },
+            day: {
+            }
+        }
+    });
+});
+</script>
 
-<h1> Running Late </h1>
-<h2> Let your Doctor Know </h2>
+<%= button_to "Start my Paperwork", '#', method: :get %>
+<%= button_to "Send Message", '#', method: :get %>
 
-<p> Your Doctors </p>
-<%= select_tag current_patient, options_from_collection_for_select(current_patient.locations, "address", "address") %>
-<%= submit_tag "Choose this location & doctor", id: "chosenDoctor" %>
 
 <p id="demo"></p>
 
