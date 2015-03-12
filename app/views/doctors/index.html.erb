@@ -1,10 +1,14 @@
 <h1>Doctors#index</h1>
 <p>Find me in app/views/doctors/index.html.erb</p>
 
-<style type="text/css">
+<%= link_to "Add Event", root_path %>
+
+<div id="calendar"></div>
+
+<!-- <style type="text/css">
   #calendar { height: 600px; width: 800px;}
-</style>
-<script type='text/javascript'>
+</style> -->
+<!-- <script type='text/javascript' src='fullcalendar/gcal.js'>
   $(document).ready(function() {
     $('#calendar').fullCalendar({
       googleCalendarApiKey: 'GOOGLE_CALENDAR_CLIENT_ID',
@@ -43,72 +47,70 @@
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
+        {
+          googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+        }
         // {
-        //   googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
-          // googleCalendarId: 'n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York'
+        //   title: 'All Day Event',
+        //   start: '2015-03-01'
         // },
-        {
-          title: 'All Day Event',
-          start: '2015-03-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2015-03-07',
-          end: '2015-03-10'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2015-03-09T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2015-03-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2015-03-11',
-          end: '2015-03-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2015-03-12T10:30:00',
-          end: '2015-03-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2015-03-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2015-03-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2015-03-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2015-03-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2015-03-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'https://www.google.com/calendar/render?eid=cDdhOG5jNDN2YjRicTNhcHI0dDFzY243cjQgbjgyNWthNTNpb2thNDNybWY4MGI5cGFnbjRAZw&sf=true&output=xml#eventpage_6',
-          start: '2015-03-28'
-        }
-      ],
-      eventClick: function(event) {
-        if (event.url) {
-            window.open(event.url);
-            return false;
-        }
-      }
+        // {
+        //   title: 'Long Event',
+        //   start: '2015-03-07',
+        //   end: '2015-03-10'
+        // },
+        // {
+        //   id: 999,
+        //   title: 'Repeating Event',
+        //   start: '2015-03-09T16:00:00'
+        // },
+        // {
+        //   id: 999,
+        //   title: 'Repeating Event',
+        //   start: '2015-03-16T16:00:00'
+        // },
+        // {
+        //   title: 'Conference',
+        //   start: '2015-03-11',
+        //   end: '2015-03-13'
+        // },
+        // {
+        //   title: 'Meeting',
+        //   start: '2015-03-12T10:30:00',
+        //   end: '2015-03-12T12:30:00'
+        // },
+        // {
+        //   title: 'Lunch',
+        //   start: '2015-03-12T12:00:00'
+        // },
+        // {
+        //   title: 'Meeting',
+        //   start: '2015-03-12T14:30:00'
+        // },
+        // {
+        //   title: 'Happy Hour',
+        //   start: '2015-03-12T17:30:00'
+        // },
+        // {
+        //   title: 'Dinner',
+        //   start: '2015-03-12T20:00:00'
+        // },
+        // {
+        //   title: 'Birthday Party',
+        //   start: '2015-03-13T07:00:00'
+        // },
+        // {
+        //   title: 'Click for Google',
+        //   url: 'https://www.google.com/calendar/render?eid=cDdhOG5jNDN2YjRicTNhcHI0dDFzY243cjQgbjgyNWthNTNpb2thNDNybWY4MGI5cGFnbjRAZw&sf=true&output=xml#eventpage_6',
+        //   start: '2015-03-28'
+        // }
+      ]
+      // eventClick: function(event) {
+      //   if (event.url) {
+      //       window.open(event.url);
+      //       return false;
+      //   }
+      // }
     });
   });
-</script>
-<div id="calendar"></div>
+</script> -->
