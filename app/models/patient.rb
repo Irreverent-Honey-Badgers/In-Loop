@@ -3,7 +3,7 @@ class Patient < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :omniauth_providers => [:google_oauth2]
   has_many :locations
   has_many :doctors, through: :locations
 
