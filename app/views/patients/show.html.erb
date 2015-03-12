@@ -43,6 +43,7 @@ $(function() {
 
 <%= button_to "Start my Paperwork", '#', method: :get %>
 <%= button_to "Send Message", '#', method: :get %>
+<div id="outputDiv"></div>
 
 
 <p id="demo"></p>
@@ -71,4 +72,46 @@ function showPositionInMap(position) {
     "<br>Longitude: " + position.coords.longitude;
 }
 
+// var travelMode = function (){
+//   if ($(‘select#travel_mode’).val() == ‘walking’){
+//     travelMode = google.maps.TravelMode.WALKING;
+//   } else if ($(‘select#travel_mode’).val() == ‘driving’){
+//     travelMode = google.maps.TravelMode.DRIVING;
+//   } else if ($(‘select#travel_mode’).val() == ‘biking’){
+//     travelMode = google.maps.TravelMode.BIKING;
+//   } else if ($(‘select#travel_mode’).val() == ‘transit’){
+//     travelMode = google.maps.TravelMode.TRANSIT;
+//   } 
+// }
+
+
+var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+var destination = new google.maps.LatLng(40.739998,-73.990098);
+
+function calculateDistances() {
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false
+    }, callback);
+}
+
+function callback(response, status) {
+  if (status != google.maps.DistanceMatrixStatus.OK) {
+    alert('Error was: ' + status);
+  } else {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+    var outputDiv = document.getElementById('outputDiv');
+    outputDiv.innerHTML = '';
+    outputDiv.innerHTML += origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
+  }
+}
+
 </script>
+
