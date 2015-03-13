@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310220445) do
+ActiveRecord::Schema.define(version: 20150312221622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150310220445) do
     t.inet     "last_sign_in_ip"
     t.string   "provider"
     t.string   "pid"
+    t.string   "eta"
   end
 
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree

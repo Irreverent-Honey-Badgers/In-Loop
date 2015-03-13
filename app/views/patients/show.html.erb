@@ -20,7 +20,6 @@
 
 <script>
 $(function() {
-  debugger;
     $('#calendar').fullCalendar({
         googleCalendarApiKey: 'GOOGLE__CAL_API',
         events: {
@@ -41,13 +40,14 @@ $(function() {
 });
 </script>
 
-<%= button_to "Start my Paperwork", '#', method: :get %>
+<%= button_to "Start my Paperwork", '#', method: :get, id: "tracking" %>
 <%= button_to "Send Message", '#', method: :get %>
+<div id="outputDiv"></div>
 
 
 <p id="demo"></p>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script>
 $("#chosenDoctor").on("click",function(){
   var x = $('select')[0].value;
@@ -66,9 +66,54 @@ function getLocation() {
     }
 }
 
+
 function showPositionInMap(position) {
+  var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     y.innerHTML = "Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude;
+    var destination = new google.maps.LatLng(40.790058,-73.953860);
+    calculateDistances(origin, destination)
 }
 
+ // var travelMode = function (){
+ //   if ($(‘select#travel_mode’).val() == ‘walking’){
+ //     travelMode = google.maps.TravelMode.WALKING;
+ //   } else if ($(‘select#travel_mode’).val() == ‘driving’){
+ //     travelMode = google.maps.TravelMode.DRIVING;
+ //   } else if ($(‘select#travel_mode’).val() == ‘transit’){
+ //     travelMode = google.maps.TravelMode.TRANSIT;
+ //   } 
+ // }
+
+// var destination = new google.maps.LatLng(40.739998,-73.990098);
+
+function calculateDistances(origin, destination) {
+  debugger;
+
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false
+    }, callback);
+}
+
+function callback(response, status) {
+  if (status != google.maps.DistanceMatrixStatus.OK) {
+    alert('Error was: ' + status);
+  } else {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+    console.log(response.rows[0].elements[0].duration.text)
+    var results = response.rows[0].elements[0];
+    var outputDiv = $('#outputDiv')[0];
+    outputDiv.innerHTML = '';
+    outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
+  }
+}
 </script>
+
