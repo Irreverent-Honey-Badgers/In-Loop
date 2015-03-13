@@ -1,0 +1,57 @@
+$(".doctors.index").ready(function(){
+  console.log('loaded bro');
+  $(document).ready(function() {
+      $('#calendar').fullCalendar({
+          googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
+          events: {
+              googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
+          },
+          eventClick: function(event) {
+            if (event.url) {
+              window.open(event.url);
+              return false;
+            }
+          }
+      });
+  });
+});
+
+
+
+//   $("#calendar").fullCalendar({
+//     googleCalendarApiKey: '',
+//     events: {
+//       googleCalendarID: '',
+//       color: 'yellow',
+//       textColor: 'black'
+//     },
+
+//   })
+
+// add link button
+//   $('#new-event').on('click', function(e){
+//     e.preventDefault();
+//     var displayName = $('#displayName').val();
+//     var patientName = $('#patientName').val();
+//   });
+// });
+
+// function refreshCalendar(){
+//   $("#calendar").fullCalendar( 'refetchEvents' )
+// }
+
+// function errorHandler(error){
+//   console.log("error: ", error);
+// }
+
+// function addEvent(event, refreshCalendar) {
+//   $.ajax({
+//     type: "POST",
+//     url: url,
+//       data: {data},
+//       dataType: "JSON",
+//       success: refreshCalendar,
+//       error: errorHandler,
+//   })
+// }
+
