@@ -1,21 +1,60 @@
+console.log('loaded bro');
 $(".doctors.index").ready(function(){
-  console.log('loaded bro');
-  $(document).ready(function() {
-      $('#calendar').fullCalendar({
-          googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
-          events: {
-              googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-          },
-          eventClick: function(event) {
-            if (event.url) {
-              window.open(event.url);
-              return false;
-            }
-          }
-      });
+  $('#calendar').fullCalendar({
+    googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
+    header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
+    defaultView: 'agendaWeek',
+    views: {
+      agenda: {
+        minTime: "08:00:00",
+        maxTime: "18:00:00"
+        // timeFormat: 'h:mm'
+        // options apply to agendaWeek and agendaDay views
+      },
+      businessHours: {
+        start: '09:00', // a start time (9am in this example)
+        end: '17:00', // an end time (5pm in this example)
+        dow: [ 1, 2, 3, 4, 5]
+        // days of week. an array of zero-based day of week integers (0=Sunday)
+        // (Monday-Thursday in this example)
+      }
+    },
+    editable: true,
+    eventLimit: true, // allow "more" link when too many events
+    events: {
+      googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+    },
+    eventClick: function(event) {
+      if (event.url) {
+        window.open(event.url);
+        return false;
+      }
+    },
+    dayClick: function(date, jsEvent, view) {
+      function refreshCalendar(){
+        $("#calendar").fullCalendar( 'refetchEvents' );
+      }
+      function errorHandler(error){
+        console.log("error: ", error);
+      }
+      function addEvent(event, refreshCalendar) {
+        $.ajax({
+          type: "POST",
+          url: 'https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4@group.calendar.google.com/events',
+          data: data,
+          dataType: "JSON",
+          success: refreshCalendar,
+          error: errorHandler,
+        });
+      }
+      alert('Clicked on: ' + date.format());
+      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+      alert('Current view: ' + view.name);
+      // change the day's background color just for fun
+      $(this).css('background-color', 'red');
+    }
   });
 });
-
 
 
 //   $("#calendar").fullCalendar({
@@ -35,23 +74,4 @@ $(".doctors.index").ready(function(){
 //     var patientName = $('#patientName').val();
 //   });
 // });
-
-// function refreshCalendar(){
-//   $("#calendar").fullCalendar( 'refetchEvents' )
-// }
-
-// function errorHandler(error){
-//   console.log("error: ", error);
-// }
-
-// function addEvent(event, refreshCalendar) {
-//   $.ajax({
-//     type: "POST",
-//     url: url,
-//       data: {data},
-//       dataType: "JSON",
-//       success: refreshCalendar,
-//       error: errorHandler,
-//   })
-// }
 
