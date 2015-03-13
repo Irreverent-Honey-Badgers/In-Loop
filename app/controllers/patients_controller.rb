@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  
+
     # before_action :authenticate_patient!
   def index
     # redirect_to patient_path(current_patient.id)

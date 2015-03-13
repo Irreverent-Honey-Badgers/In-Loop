@@ -16,29 +16,22 @@
   <% end %>
 </p>
 
-<div id="calendar" height: "600" width: "800"></div>
+<h1> Hate the Waiting Room? </h1>
+<h2> Tell your Doctor you are on your way </h2>
+
+<button id="appointment"> View Appointmnet </button>
+
+
+<div id="calendar" height: "200" width: "200"></div>
 
 <script>
-$(function() {
-  debugger;
-    $('#calendar').fullCalendar({
-        googleCalendarApiKey: 'GOOGLE__CAL_API',
-        events: {
-            googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
-        },
-        header: { center: 'month, basicWeek, basicDay' }, // buttons for switching between views
-        views: {
-            month: { // name of view
-                // titleFormat: 'YYYY, MM, DD'
-                // other view-specific options here
-            },
-            week: {
-            },
-            day: {
-            }
-        }
-    });
-});
+$('#appointment').on('click', showAppointment);
+function showAppointment() {
+
+
+
+
+};
 </script>
 
 <%= button_to "Start my Paperwork", '#', method: :get %>
