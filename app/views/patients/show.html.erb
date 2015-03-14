@@ -1,119 +1,37 @@
 <% if notice %>
-<p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-<p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
 <p class="navbar-text pull-right">
   <% if patient_signed_in? %>
-  Logged in as <strong><%= current_patient.email %></strong>.
-  <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
+    Logged in as <strong><%= current_patient.email %></strong>.
+    <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
   <% else %>
-  <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+    <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
   <% end %>
 </p>
 
 <div id="calendar" height: "600" width: "800"></div>
 
-<script>
-$(function() {
-    $('#calendar').fullCalendar({
-        googleCalendarApiKey: 'GOOGLE__CAL_API',
-        events: {
-            googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
-        },
-        header: { center: 'month, basicWeek, basicDay' }, // buttons for switching between views
-        views: {
-            month: { // name of view
-                // titleFormat: 'YYYY, MM, DD'
-                // other view-specific options here
-            },
-            week: {
-            },
-            day: {
-            }
-        }
-    });
-});
-</script>
 
-<%= button_to "Start my Paperwork", '#', method: :get, id: "tracking" %>
-<%= button_to "Send Message", '#', method: :get %>
+<p>How are you travelling there?</p>
+  <div id="buttonDiv">
+    <input type="radio" name="group1" value="driving">Driving</input><br>
+    <input type="radio" name="group1" value="transit">Transit</input><br>
+    <input type="radio" name="group1" value="walking">Walking</input><br>
+  </div>
+
+<%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
+
+<%= button_to "Send Message", "/messages.html", method: :get %>
 <div id="outputDiv"></div>
 
-
-<p id="demo"></p>
-
+  <p id="demo"></p>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-<script>
-$("#chosenDoctor").on("click",function(){
-  var x = $('select')[0].value;
-  $("<p>").text("You Chose:" + x).attr('id','text').insertAfter('#chosenDoctor');
-  $("<button>").text("Figure out how far you are away").attr("id", "tracking").insertAfter('#text');
-});
-
-$('body').on("click","#tracking", getLocation)
-var y = $('#demo')[0];
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPositionInMap);
-    } else {
-        y.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-
-function showPositionInMap(position) {
-  var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    y.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    var destination = new google.maps.LatLng(40.790058,-73.953860);
-    calculateDistances(origin, destination)
-}
-
- // var travelMode = function (){
- //   if ($(‘select#travel_mode’).val() == ‘walking’){
- //     travelMode = google.maps.TravelMode.WALKING;
- //   } else if ($(‘select#travel_mode’).val() == ‘driving’){
- //     travelMode = google.maps.TravelMode.DRIVING;
- //   } else if ($(‘select#travel_mode’).val() == ‘transit’){
- //     travelMode = google.maps.TravelMode.TRANSIT;
- //   } 
- // }
-
-// var destination = new google.maps.LatLng(40.739998,-73.990098);
-
-function calculateDistances(origin, destination) {
-  debugger;
-
-  var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
-    {
-      origins: [origin],
-      destinations: [destination],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.IMPERIAL,
-      avoidHighways: false,
-      avoidTolls: false
-    }, callback);
-}
-
-function callback(response, status) {
-  if (status != google.maps.DistanceMatrixStatus.OK) {
-    alert('Error was: ' + status);
-  } else {
-    var origins = response.originAddresses;
-    var destinations = response.destinationAddresses;
-    console.log(response.rows[0].elements[0].duration.text)
-    var results = response.rows[0].elements[0];
-    var outputDiv = $('#outputDiv')[0];
-    outputDiv.innerHTML = '';
-    outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
-  }
-}
-</script>
+ <%= javascript_include_tag "patient.js" %>
 
