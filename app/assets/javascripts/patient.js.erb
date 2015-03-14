@@ -1,0 +1,94 @@
+$(function() {
+    $('#calendar').fullCalendar({
+        googleCalendarApiKey: 'GOOGLE__CAL_API',
+        businessHours: {
+          start: '7:00:00',
+          end: '21:00:00'
+        },
+        views:{
+          agenda: {
+            minTime: "07:00:00",
+            maxTime: "21:00:00"
+          }         
+        },
+        height: 400,  
+        events: {
+            googleCalendarId: 'vv4j6mgngkbv81ueqktduokfds@group.calendar.google.com'
+        },
+          defaultView: 'agendaDay'
+    });
+});
+
+$("#chosenDoctor").on("click",function(){
+  var x = $('select')[0].value;
+  $("<p>").text("You Chose:" + x).attr('id','text').insertAfter('#chosenDoctor');
+  $("<button>").text("Figure out how far you are away").attr("id", "tracking").insertAfter('#text');
+});
+
+$('body').on("click","#tracking", buttonSelect)
+
+var transportation;
+function buttonSelect() {
+  // $('#buttonDiv').attr('hidden',false);
+  transportation = $('input[name=group1]:checked', '#buttonDiv').val();
+  // setInterval(getLocation, 10000);
+  getLocation();
+
+}
+
+var y = $('#demo')[0];
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPositionInMap);
+    } else {
+        y.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPositionInMap(position) {
+  var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    y.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    var destination = new google.maps.LatLng(40.790058,-73.953860);
+    calculateDistances(origin, destination)
+}
+
+function determineTravelType(transportation){
+   if (transportation == "walking"){
+     return google.maps.TravelMode.WALKING;
+   } else if (transportation == "driving"){
+     return google.maps.TravelMode.DRIVING;
+   } else if (transportation == "transit"){
+     return google.maps.TravelMode.TRANSIT;
+   } 
+ }
+
+function calculateDistances(origin, destination) {
+
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: determineTravelType(transportation),
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false
+    }, callback);
+}
+
+function callback(response, status) {
+  if (status != google.maps.DistanceMatrixStatus.OK) {
+    alert('Error was: ' + status);
+  } else {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+    var results = response.rows[0].elements[0];
+    console.log("cat")
+    var outputDiv = $('#outputDiv')[0];
+    outputDiv.innerHTML = '';
+    outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
+    $.post('/patients/'+$('body').data("current-patient")+'/eta', {eta: results.duration.text} );
+  }
+}

@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
   root "application#index"
   resources :locations
-  resources :patients, except: [:new, :create]
-  resources :doctors
-  # The priority is based upon order of creation: first created -> highest priority.
+  resources :patients, except: [:new, :create] do
+    member do
+      post '/eta' => 'patients#eta', as: 'eta'
+    end
+  end
+  resources :doctors   
+  # The priority is based upon order of creatio first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
