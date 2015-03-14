@@ -3,7 +3,16 @@ $(".doctors.index").ready(function(){
   $('#calendar').fullCalendar({
     googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
+    businessHours: {
+      start: '09:00', // a start time (9am in this example)
+      end: '17:00', // an end time (5pm in this example)
+      dow: [ 1, 2, 3, 4, 5]
+      // days of week. an array of zero-based day of week integers (0=Sunday)
+      // (Monday-Thursday in this example)
+    },
     defaultView: 'agendaWeek',
+    height: 650,
+    eventLimit: true, // allow "more" link when too many events
     views: {
       agenda: {
         minTime: "08:00:00",
@@ -11,32 +20,27 @@ $(".doctors.index").ready(function(){
         // timeFormat: 'h:mm'
         // options apply to agendaWeek and agendaDay views
       },
-      businessHours: {
-        start: '09:00', // a start time (9am in this example)
-        end: '17:00', // an end time (5pm in this example)
-        dow: [ 1, 2, 3, 4, 5]
-        // days of week. an array of zero-based day of week integers (0=Sunday)
-        // (Monday-Thursday in this example)
-      }
-    },
-    editable: true,
-    eventLimit: true, // allow "more" link when too many events
-    events: {
-      googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
-    },
-    eventClick: function(event) {
-      if (event.url) {
-        window.open(event.url);
-        return false;
-      }
     },
     dayClick: function(date, jsEvent, view) {
-      alert('Clicked on: ' + date.format());
-      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      alert('Current view: ' + view.name);
-      // change the day's background color just for fun
-      $(this).css('background-color', 'red');
+      // .fullCalendar( 'renderEvent', event [, true ] )
+      // alert('HELLO')
+      // alert('Clicked on: ' + date.format());
+      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+      // alert('Current view: ' + view.name);
+      // // change the day's background color just for fun
+      // $(this).css('background-color', 'red');
+
+      var myCalendar = $('#calendar'); 
+      myCalendar.fullCalendar();
+      var myEvent = {
+        title:"my new event",
+        allDay: false,
+        start: new Date(),
+        end: new Date()
+      };
       function refreshCalendar(){
+      myCalendar.fullCalendar( 'renderEvent', myEvent );
+
         $("#calendar").fullCalendar( 'refetchEvents' );
       }
       function errorHandler(error){
@@ -52,10 +56,26 @@ $(".doctors.index").ready(function(){
           error: errorHandler,
         });
       }
-    }
+    },
+    eventClick: function(event) {
+      if (event.url) {
+        window.open(event.url);
+        return false;
+      }
+    },
+    eventMouseover: function( event, jsEvent, view ) {},
+    events: {
+      googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
+      color: 'yellow',
+      textColor: 'black',
+      editable: true,
+      title: '',
+      allDay: false,
+      start: '',
+      end: ''
+    },
   });
 });
-
 
 //   $("#calendar").fullCalendar({
 //     googleCalendarApiKey: '',
@@ -75,3 +95,45 @@ $(".doctors.index").ready(function(){
 //   });
 // });
 
+// $(document).ready(function() {
+//   $('#calendar').fullCalendar({
+//     googleCalendarApiKey: 'GOOGLE_CALENDAR_CLIENT_ID',
+//     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
+//     defaultView: 'agendaWeek',
+//     views: {
+//       month: { // name of view
+//         // titleFormat: 'YYYY, MM, DD'
+//         // other view-specific options here
+//       },
+//       basic: {
+//         // timeFormat: 'h(:mm)t'
+//         // options apply to basicWeek and basicDay views
+//       },
+//       agenda: {
+//         minTime: "08:00:00",
+//         maxTime: "18:00:00"
+//         // timeFormat: 'h:mm'
+//         // options apply to agendaWeek and agendaDay views
+//       },
+//       week: {
+//         // timeFormat: 'h(:mm)t'
+//       },
+//       day: {
+//         // timeFormat: 'h(:mm)t'
+//       }
+//     },
+//     businessHours: {
+//       start: '09:00', // a start time (9am in this example)
+//       end: '17:00', // an end time (5pm in this example)
+
+//       dow: [ 1, 2, 3, 4, 5]
+//       // days of week. an array of zero-based day of week integers (0=Sunday)
+//       // (Monday-Thursday in this example)
+//     },
+//     editable: true,
+//     eventLimit: true, // allow "more" link when too many events
+//     events: {
+//         googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
+//     }
+//   });
+// });
