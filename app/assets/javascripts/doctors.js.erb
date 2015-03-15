@@ -10,37 +10,36 @@ $(".doctors.index").ready(function(){
       // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-    defaultView: 'agendaWeek',
     height: 650,
+    defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
       agenda: {
         minTime: "08:00:00",
-        maxTime: "18:00:00"
+        maxTime: "22:00:00"
         // timeFormat: 'h:mm'
         // options apply to agendaWeek and agendaDay views
       },
     },
     dayClick: function(date, jsEvent, view) {
-      // .fullCalendar( 'renderEvent', event [, true ] )
-      // alert('HELLO')
-      // alert('Clicked on: ' + date.format());
-      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      // alert('Current view: ' + view.name);
-      // // change the day's background color just for fun
-      // $(this).css('background-color', 'red');
 
       var myCalendar = $('#calendar'); 
-      myCalendar.fullCalendar();
+      // myCalendar.fullCalendar();
       var myEvent = {
         title:"my new event",
         allDay: false,
         start: new Date(),
         end: new Date()
       };
-      function refreshCalendar(){
       myCalendar.fullCalendar( 'renderEvent', myEvent );
+      debugger;
 
+      alert('Clicked on: ' + date.format());
+      alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+      alert('Current view: ' + view.name);
+      // change the day's background color just for fun
+      $(this).css('background-color', 'red');
+      function refreshCalendar(){
         $("#calendar").fullCalendar( 'refetchEvents' );
       }
       function errorHandler(error){
@@ -137,3 +136,8 @@ $(".doctors.index").ready(function(){
 //     }
 //   });
 // });
+
+$(".doctors.show").ready(function () {
+  console.log("I can see you!!")
+  // body...
+});
