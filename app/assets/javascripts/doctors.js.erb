@@ -58,7 +58,7 @@ debugger
       function addEvent(event, refreshCalendar, errorHandler) {
         $.ajax({
           type: "POST",
-          url: 'https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4@group.calendar.google.com/events',
+          url: event.url,
           data: myEvent,
           dataType: "JSON",
           success: refreshCalendar,
