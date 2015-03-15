@@ -10,26 +10,19 @@ $(".doctors.index").ready(function(){
       // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-    defaultView: 'agendaWeek',
     height: 650,
+    defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
       agenda: {
         minTime: "08:00:00",
-        maxTime: "18:00:00"
+        maxTime: "22:00:00"
         // timeFormat: 'h:mm'
         // options apply to agendaWeek and agendaDay views
       },
     },
     dayClick: function(date, jsEvent, view) {
-      // .fullCalendar( 'renderEvent', event [, true ] )
-      // alert('HELLO')
-      // alert('Clicked on: ' + date.format());
-      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      // alert('Current view: ' + view.name);
-      // // change the day's background color just for fun
-      // $(this).css('background-color', 'red');
-
+debugger
       var myCalendar = $('#calendar'); 
       myCalendar.fullCalendar();
       var myEvent = {
@@ -38,14 +31,25 @@ $(".doctors.index").ready(function(){
         start: new Date(),
         end: new Date()
       };
-      function refreshCalendar(){
-      myCalendar.fullCalendar( 'renderEvent', myEvent );
+      myCalendar.fullCalendar('renderEvent', myEvent , true );
 
+      // myCalendar.fullCalendar( 'renderEvent', myEvent );
+
+      // alert('Clicked on: ' + date.format());
+      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+      // alert('Current view: ' + view.name);
+debugger
+      // change the day's background color just for fun
+      $(this).css('background-color', 'red');
+
+      function refreshCalendar(){
         $("#calendar").fullCalendar( 'refetchEvents' );
-      }
+      };
+
       function errorHandler(error){
         console.log("error: ", error);
-      }
+      };
+
       function addEvent(event, refreshCalendar) {
         $.ajax({
           type: "POST",
@@ -55,15 +59,18 @@ $(".doctors.index").ready(function(){
           success: refreshCalendar,
           error: errorHandler,
         });
-      }
+      };
     },
+
     eventClick: function(event) {
       if (event.url) {
         window.open(event.url);
         return false;
       }
     },
+
     eventMouseover: function( event, jsEvent, view ) {},
+
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
       color: 'yellow',
@@ -137,3 +144,8 @@ $(".doctors.index").ready(function(){
 //     }
 //   });
 // });
+
+$(".doctors.show").ready(function () {
+  console.log("I can see you!!")
+  // body...
+});
