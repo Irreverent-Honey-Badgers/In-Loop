@@ -24,28 +24,28 @@ $(".doctors.index").ready(function(){
     },
     dayClick: function(date) {
 
-      if (date) {
-        window.open("https://www.google.com/calendar/embed?src=n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
-        return false;
-      };
+      // if (date) {
+      //   window.open("https://www.google.com/calendar/embed?src=n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
+      //   return false;
+      // };
 
       // alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       // alert('Current view: ' + view.name);
-debugger
-      var myCalendar = $('#calendar'); 
-      myCalendar.fullCalendar();
-      var myEvent = {
-        title:"my new event",
-        allDay: false,
-        start: new Date(),
-        end: new Date()
-      };
-      myCalendar.fullCalendar( 'renderEvent', 'addEvent' );
+// debugger
+//       var myCalendar = $('#calendar'); 
+//       myCalendar.fullCalendar();
+//       var myEvent = {
+//         title:"my new event",
+//         allDay: false,
+//         start: new Date(),
+//         end: new Date()
+//       };
+//       myCalendar.fullCalendar( 'renderEvent', 'addEvent' );
 
-debugger
-      // change the day's background color just for fun
-      $(this).css('background-color', 'red');
+// debugger
+//       // change the day's background color just for fun
+//       $(this).css('background-color', 'red');
 
       function refreshCalendar(){
         $("#calendar").fullCalendar( 'refetchEvents' );
@@ -58,13 +58,22 @@ debugger
       function addEvent(event, refreshCalendar, errorHandler) {
         $.ajax({
           type: "POST",
-          url: event.url,
-          data: myEvent,
+          url: "https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com/events?key={<%= GOOGLE_CALENDAR_CLIENT_ID %>}",
+          data: {
+            end: {
+              date: "2015-03-17"
+            },
+            start: {
+              date: "2015-03-17"
+            },
+             summary: "Google is fucked up"
+          },
           dataType: "JSON",
           success: refreshCalendar,
           error: errorHandler,
         });
       };
+      $('#calendar').fullCalendar( 'renderEvent', 'addEvent' );
     },
 
     eventClick: function(event) {
