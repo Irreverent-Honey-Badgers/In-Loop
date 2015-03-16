@@ -35,6 +35,7 @@ gem 'rails-rename', '~> 1.0.0'
 # An asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
 gem 'fullcalendar-rails'
 
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
