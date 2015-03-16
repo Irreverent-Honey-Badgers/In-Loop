@@ -33,10 +33,21 @@ class PatientsController < ApplicationController
     end
   end
 
+  def eta
+    patient = Patient.find(eta_params[:id])
+    patient.update(eta: eta_params[:eta])
+    redirect_to patient_path(current_patient.id)
+  end
+
   private
 
   def patient_params
     params.require(:patient).permit(:first_name, :last_name, :email, :phone)
   end
+
+  def eta_params
+    params.permit(:eta, :id)
+  end
+
 
 end

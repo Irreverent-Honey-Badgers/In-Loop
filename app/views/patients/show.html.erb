@@ -1,25 +1,48 @@
 <% if notice %>
-<p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
-<p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
 <p class="navbar-text pull-right">
   <% if patient_signed_in? %>
-  Logged in as <strong><%= current_patient.email %></strong>.
-  <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
+    Logged in as <strong><%= current_patient.email %></strong>.
+    <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
+    <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
   <% else %>
-  <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+    <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
   <% end %>
 </p>
 
 <h1> Hate the Waiting Room? </h1>
 <h2> Tell your Doctor you are on your way </h2>
 
-<button id="appointment"> View Appointmnet </button>
 
+<button id="appointment"> View Appointmnet </button>
+<%= button_to "Start my Paperwork", '#', method: :get, id: "tracking" %>
+<%= button_to "Send Message", '#', method: :get %>
+<div id="outputDiv"></div>
+
+
+<p id="demo"></p>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<p>How are you travelling there?</p>
+  <div id="buttonDiv">
+    <input type="radio" name="group1" value="driving">Driving</input><br>
+    <input type="radio" name="group1" value="transit">Transit</input><br>
+    <input type="radio" name="group1" value="walking">Walking</input><br>
+  </div>
+
+<%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
+
+<%= button_to "Send Message", "/messages.html", method: :get %>
+<div id="outputDiv"></div>
+
+  <p id="demo"></p>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+ <%= javascript_include_tag "patient.js" %>
 
 <div id="calendar" height: "200" width: "200"></div>
