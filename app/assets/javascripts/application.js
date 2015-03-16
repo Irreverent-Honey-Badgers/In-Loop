@@ -15,5 +15,6 @@
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal
+//= require jquery-readyselector
 //= require turbolinks
 //= require_tree .
