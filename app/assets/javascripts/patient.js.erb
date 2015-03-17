@@ -1,6 +1,8 @@
+var appointment = "";
+
 $(function() {
     $('#calendar').fullCalendar({
-        googleCalendarApiKey: 'GOOGLE__CAL_API',
+        googleCalendarApiKey: 'AIzaSyB2nCL_6SDCvC8RIHC_HLqENabze0FSvMs',
         businessHours: {
           start: '7:00:00',
           end: '21:00:00'
@@ -9,13 +11,17 @@ $(function() {
           agenda: {
             minTime: "07:00:00",
             maxTime: "21:00:00"
-          }         
+          }
         },
-        height: 400,  
+        height: 300,
         events: {
-            googleCalendarId: 'vv4j6mgngkbv81ueqktduokfds@group.calendar.google.com'
+            googleCalendarId: $('body').data("current-patient-email")
         },
-          defaultView: 'agendaDay'
+        defaultView: 'agendaDay',
+        eventClick: function(event) {
+          this.href = "";
+          appointment = event.title;
+        } ,
     });
 });
 
@@ -31,7 +37,6 @@ var transportation;
 function buttonSelect() {
   // $('#buttonDiv').attr('hidden',false);
   transportation = $('input[name=group1]:checked', '#buttonDiv').val();
-  // setInterval(getLocation, 10000);
   getLocation();
 
 }
@@ -48,9 +53,9 @@ function getLocation() {
 
 function showPositionInMap(position) {
   var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    y.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    var destination = new google.maps.LatLng(40.790058,-73.953860);
+    // y.innerHTML = "Latitude: " + position.coords.latitude +
+    // "<br>Longitude: " + position.coords.longitude;
+    var destination = new google.maps.LatLng(40.73941,-73.98957);
     calculateDistances(origin, destination)
 }
 
@@ -61,7 +66,7 @@ function determineTravelType(transportation){
      return google.maps.TravelMode.DRIVING;
    } else if (transportation == "transit"){
      return google.maps.TravelMode.TRANSIT;
-   } 
+   }
  }
 
 function calculateDistances(origin, destination) {
@@ -88,7 +93,7 @@ function callback(response, status) {
     console.log("cat")
     var outputDiv = $('#outputDiv')[0];
     outputDiv.innerHTML = '';
-    outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
+    // outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
     $.post('/patients/'+$('body').data("current-patient")+'/eta', {eta: results.duration.text} );
   }
 }
