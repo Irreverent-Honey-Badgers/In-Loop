@@ -11,7 +11,7 @@ $(function() {
             maxTime: "21:00:00"
           }         
         },
-        height: 400,  
+        height: 300,
         events: {
             googleCalendarId: 'vv4j6mgngkbv81ueqktduokfds@group.calendar.google.com'
         },
@@ -88,7 +88,7 @@ function callback(response, status) {
     console.log("cat")
     var outputDiv = $('#outputDiv')[0];
     outputDiv.innerHTML = '';
-    outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
+    // outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
     $.post('/patients/'+$('body').data("current-patient")+'/eta', {eta: results.duration.text} );
   }
 }
