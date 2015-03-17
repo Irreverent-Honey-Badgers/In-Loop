@@ -15,8 +15,8 @@ class DoctorsController < ApplicationController
   end
 
   def get_patient
-    mypatients = Doctor.find(5).patients
-    @patient = mypatients[1]
+    mypatients = Doctor.find().patients
+    @patient = mypatients.first
     render :json => @patient
 
 
