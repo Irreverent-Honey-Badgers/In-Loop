@@ -36,6 +36,9 @@ gem 'rails-rename', '~> 1.0.0'
 gem 'fullcalendar-rails'
 
 
+gem 'bourbon'
+gem 'neat'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
