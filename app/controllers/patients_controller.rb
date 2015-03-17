@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-  
+
     # before_action :authenticate_patient!
   def index
     # redirect_to patient_path(current_patient.id)
@@ -34,9 +34,14 @@ class PatientsController < ApplicationController
   end
 
   def eta
-    patient = Patient.find(eta_params[:id])
-    patient.update(eta: eta_params[:eta])
-    redirect_to patient_path(current_patient.id)
+    @patient = Patient.find(eta_params[:id])
+    @patient.update(eta: eta_params[:eta])
+    render nothing: true
+    
+    # respond_to do |format|
+    #   format.html { render nothing: true }
+    #   format.json { render :json => @patient }
+    # end
   end
 
   private

@@ -1,2 +1,87 @@
-<h1>Doctors#show</h1>
-<p>Find me in app/views/doctors/show.html.erb</p>
+<h1> Waiting Roomm </h1>
+<table class="tg">
+  <tr>
+    <td class="tg-031e">Appt.</td>
+    <td class="tg-031e">Time In.</td>
+    <td class="tg-031e">Patient Name</td>
+    <td class="tg-031e">Doctor</td>
+    <td class="tg-031e">Purpose</td>
+    <td class="tg-031e">Seen?</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Appt.</td>
+    <td class="tg-031e">Time In.</td>
+    <td class="tg-031e">Patient Name</td>
+    <td class="tg-031e">Doctor</td>
+    <td class="tg-031e">Purpose</td>
+    <td class="tg-031e">Seen?</td>
+  </tr>
+</table>
+
+<h1> ETA </h1>
+<table class="tg">
+  <tr>
+    <td class="tg-031e">Appt.</td>
+    <td class="tg-031e">Time In.</td>
+    <td class="tg-031e">Patient Name</td>
+    <td class="tg-031e">Doctor</td>
+    <td class="tg-031e">Purpose</td>
+    <td class="tg-031e">Seen?</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">18:00</td>
+    <td class="tg-031e eta">Time In.</td>
+    <td class="tg-031e name">Patient Name</td>
+    <td class="tg-031e">Doctor</td>
+    <td class="tg-031e">Purpose</td>
+    <td class="tg-031e">Seen?</td>
+  </tr>
+</table>
+
+<h1> Later Appointments </h1>
+<table class="tg">
+  <tr>
+    <td class="tg-031e">Appt.</td>
+    <td class="tg-031e">Time In.</td>
+    <td class="tg-031e jackson">Patient Name</td>
+    <td class="tg-031e">Doctor</td>
+    <!-- <td class="tg-031e">Purpose</td> -->
+    <td class="tg-031e">Seen?</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">14.00</td>
+    <td class="tg-031e">Time In.</td>
+    <td class="tg-031e">Qasim Naqvi</td>
+    <td class="tg-031e">D.Kaplan</td>
+    <!-- <td class="tg-031e">Purpose</td> -->
+    <td class="tg-031e"><input type="checkbox" name="vehicle" value="seen?"><br></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">15.00</td>
+    <!-- <td class="tg-031e">Time In.</td> -->
+    <td class="tg-031e">Jackson Lee</td>
+    <td class="tg-031e">Dr.Lee</td>
+    <!-- <td class="tg-031e">Purpose</td> -->
+    <td class="tg-031e"><input type="checkbox" name="vehicle" value="seen?"><br></td>
+  </tr>
+</table>
+
+<script>
+$(function(){
+  var m = function(){
+    $.get('/doctors/' + 5 + '/get_patient').done(function(data){
+      console.log("mooo")
+      $('.eta')[0].innerHTML = data.eta;
+      $('.name')[0].innerHTML = data.first_name + " " + data.last_name
+
+    })
+
+  }
+
+  setInterval(m,1000);
+
+
+})
+
+
+</script>

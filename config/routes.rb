@@ -8,7 +8,11 @@ Rails.application.routes.draw do
       post '/eta' => 'patients#eta', as: 'eta'
     end
   end
-  resources :doctors   
+  resources :doctors do
+    member do
+      get '/get_patient' => 'doctors#get_patient', as: 'get_patient'
+    end
+  end
   # The priority is based upon order of creatio first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

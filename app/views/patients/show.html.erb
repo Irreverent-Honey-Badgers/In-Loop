@@ -1,3 +1,5 @@
+ <%= javascript_include_tag "patient.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -18,7 +20,6 @@
   <% end %>
 </p>
 
-
 <div id="calendar" height: "600" width: "800"></div>
 
 
@@ -36,6 +37,3 @@
 <div id="outputDiv"></div>
 
   <p id="demo"></p>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
- <%= javascript_include_tag "patient.js" %>
-
