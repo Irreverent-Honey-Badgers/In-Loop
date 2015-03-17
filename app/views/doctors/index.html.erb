@@ -2,7 +2,14 @@
 <p>Find me in app/views/doctors/index.html.erb</p>
 
 <%= button_to "Add Event", root_path, method: :get %>
-<div id="calendar"></div>
+<div id="calendar">
+  <div id="popover-head" class="hide">some title</div>
+  <div id="popover-content" class="hide">
+      <form>
+            <input type="text" name="asa" value="asa" />
+      </form>
+  </div>
+</div>
 
 <!-- <div id="eventContent" title="Event Details" style="display:none;">
     Start: <span id="startTime"></span><br>
@@ -11,6 +18,7 @@
     <p><strong><a id="eventLink" href="" target="_blank">Read More</a></strong></p>
 </div>
  -->
+
 
 <!-- <style type="text/css">
   .iframe {
