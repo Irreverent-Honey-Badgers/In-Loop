@@ -23,21 +23,19 @@ $(".doctors.index").ready(function(){
     },
     dayClick: function(date, jsEvent, view) {
 debugger
-      var myCalendar = $('#calendar'); 
-      myCalendar.fullCalendar();
-      var myEvent = {
-        title:"my new event",
-        allDay: false,
-        start: new Date("2015-03-16T12:30:00"),
-        end: new Date("2015-03-16T13:30:00")
-      };
-      myCalendar.fullCalendar('renderEvent', myEvent, true );
+      // var myCalendar = $('#calendar'); 
+      // myCalendar.fullCalendar();
+      // var myEvent = {
+      //   title:"my new event",
+      //   allDay: false,
+      //   start: new Date("2015-03-16T12:30:00"),
+      //   end: new Date("2015-03-16T13:30:00")
+      // };
+      // myCalendar.fullCalendar('renderEvent', myEvent, true );
 
-      // myCalendar.fullCalendar( 'renderEvent', myEvent );
-
-      // alert('Clicked on: ' + date.format());
+      alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      // alert('Current view: ' + view.name);
+      alert('Current view: ' + view.name);
 debugger
       // change the day's background color just for fun
       $(this).css('background-color', 'red');
@@ -54,7 +52,7 @@ debugger
         $.ajax({
           type: "POST",
           url: 'https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4@group.calendar.google.com/events',
-          data: data,
+          data: myEvent,
           dataType: "JSON",
           success: refreshCalendar,
           error: errorHandler,
