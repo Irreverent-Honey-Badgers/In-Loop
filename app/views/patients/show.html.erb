@@ -8,11 +8,12 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
+
 <p class="navbar-text pull-right">
   <% if patient_signed_in? %>
-    Logged in as <strong><%= current_patient.email %></strong>.
-    <%= link_to 'Edit profile', edit_patient_registration_path, :class => 'navbar-link' %> |
-    <%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link'  %>
+    Logged in as <strong><%= current_patient.email %></strong><br>
+    <%= link_to 'edit profile', edit_patient_registration_path, :class => 'navbar-link', id: "edit"%> |
+    <%= link_to "logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %>
   <% else %>
     <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
     <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
@@ -21,16 +22,18 @@
 
 <div id="calendar" height: "600" width: "800"></div>
 
-<p>How are you travelling there?</p>
-  <div id="buttonDiv">
-    <input type="radio" name="group1" value="driving">Driving</input><br>
-    <input type="radio" name="group1" value="transit">Transit</input><br>
-    <input type="radio" name="group1" value="walking">Walking</input><br>
-  </div>
 
+<div id="travel">
+  <p>How are you travelling there?</p>
+    <select id="buttonDiv">
+      <option value="driving">Driving</option>
+      <option value="transit">Public transportation</option>
+      <option value="walking">Walking</option>
+    </select>
 <%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
 
 <%= button_to "Send Message", "/messages.html", method: :get %>
+</div>
 <div id="outputDiv"></div>
 
   <p id="demo"></p>
