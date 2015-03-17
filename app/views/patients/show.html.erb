@@ -25,11 +25,11 @@
 
 <div id="travel">
   <p>How are you travelling there?</p>
-    <select id="buttonDiv">
-      <option value="driving">Driving</option>
-      <option value="transit">Public transportation</option>
-      <option value="walking">Walking</option>
-    </select>
+    <div id="buttonDiv">
+      <input type="radio" name="group1" value="driving">Driving</input><br>
+      <input type="radio" name="group1" value="transit">Transit</input><br>
+      <input type="radio" name="group1" value="walking">Walking</input><br>
+    </div>
 <%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
 
 <%= button_to "Send Message", "/messages.html", method: :get %>
