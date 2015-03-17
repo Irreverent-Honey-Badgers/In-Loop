@@ -18,7 +18,10 @@ class DoctorsController < ApplicationController
     mypatients = Doctor.find(1).patients
     @patient = mypatients.first
     render :json => @patient
+  end
 
+  def find_patient
+    mypatient = Location.where(doctor_id: params[:id], patient_id: params[:patient_id])
 
   end
 
