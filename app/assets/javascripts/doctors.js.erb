@@ -10,64 +10,26 @@ $(".doctors.index").ready(function(){
       dow: [ 1, 2, 3, 4, 5] // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-<<<<<<< HEAD
-    height: 'auto',
-=======
     height: 650,
->>>>>>> doctor
     defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
       agenda: {
         minTime: "08:00:00",
-<<<<<<< HEAD
         maxTime: "17:00:00"
-=======
-        maxTime: "22:00:00"
->>>>>>> doctor
         // timeFormat: 'h:mm'
         // options apply to agendaWeek and agendaDay views
       },
     },
-<<<<<<< HEAD
-    dayClick: function(date) {
-
-      // if (date) {
-      //   window.open("https://www.google.com/calendar/embed?src=n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
-      //   return false;
-      // };
-
-      // alert('Clicked on: ' + date.format());
-      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      // alert('Current view: ' + view.name);
-// debugger
-//       var myCalendar = $('#calendar'); 
-//       myCalendar.fullCalendar();
-//       var myEvent = {
-//         title:"my new event",
-//         allDay: false,
-//         start: new Date(),
-//         end: new Date()
-//       };
-//       myCalendar.fullCalendar( 'renderEvent', 'addEvent' );
-
-// debugger
-//       // change the day's background color just for fun
-//       $(this).css('background-color', 'red');
-
-=======
     dayClick: function(date, jsEvent, view) {
-debugger
->>>>>>> doctor
       function refreshCalendar(){
         $("#calendar").fullCalendar( 'refetchEvents' );
       };
 
       function errorHandler(error){
-        console.log("error: ", error);
+        console.log('error: ', error);
       };
 
-<<<<<<< HEAD
       function addEvent(event, refreshCalendar, errorHandler) {
         $.ajax({
           type: "POST",
@@ -75,27 +37,19 @@ debugger
           data: {
             end: {
               date: "2015-03-17"
-            },
+              },
             start: {
-              date: "2015-03-17"
+              date: date.format()
+              },
+            summary: {
+              "Google is fucked up"
+              },
             },
-             summary: "Google is fucked up"
-          },
-=======
-      function addEvent(event, refreshCalendar) {
-        $.ajax({
-          type: "POST",
-          url: 'https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4@group.calendar.google.com/events',
-          data: myEvent,
->>>>>>> doctor
           dataType: "JSON",
           success: refreshCalendar,
           error: errorHandler,
         });
       };
-<<<<<<< HEAD
-      $('#calendar').fullCalendar( 'renderEvent', 'addEvent' );
-=======
 
       // var myCalendar = $('#calendar'); 
       // myCalendar.fullCalendar();
@@ -110,35 +64,27 @@ debugger
       alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       alert('Current view: ' + view.name);
-debugger
       // change the day's background color just for fun
       $(this).css('background-color', 'red');
-
->>>>>>> doctor
     },
 
     eventClick: function(event) {
-
-      // $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-      // $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-      // $("#eventInfo").html(event.description);
-      // $("#eventLink").attr('href', event.url);
-      // $("#eventContent").dialog({ modal: true, title: event.title, width:350});
+        // eventRender: function (event, element) {
+          // element.attr('href', 'javascript:void(0);');
+          // element.click(function() {
+          //   $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
+          //   $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
+          //   $("#eventInfo").html(event.description);
+          //   $("#eventLink").attr('href', event.url);
+          //   $("#eventContent").dialog({ modal: true, title: event.title, width:350});
+          // });
+        // },
 
       if (event.url) {
         window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
         return false;
       };
     },
-
-<<<<<<< HEAD
-    // eventMouseover: function( event, jsEvent, view ) {},
-
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-=======
-    eventMouseover: function( event, jsEvent, view ) {},
->>>>>>> doctor
 
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
@@ -148,8 +94,6 @@ debugger
   });
 });
 
-
-
 // add link button
 //   $('#new-event').on('click', function(e){
 //     e.preventDefault();
@@ -158,52 +102,6 @@ debugger
 //   });
 // });
 
-<<<<<<< HEAD
-=======
-// $(document).ready(function() {
-//   $('#calendar').fullCalendar({
-//     googleCalendarApiKey: 'GOOGLE_CALENDAR_CLIENT_ID',
-//     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
-//     defaultView: 'agendaWeek',
-//     views: {
-//       month: { // name of view
-//         // titleFormat: 'YYYY, MM, DD'
-//         // other view-specific options here
-//       },
-//       basic: {
-//         // timeFormat: 'h(:mm)t'
-//         // options apply to basicWeek and basicDay views
-//       },
-//       agenda: {
-//         minTime: "08:00:00",
-//         maxTime: "18:00:00"
-//         // timeFormat: 'h:mm'
-//         // options apply to agendaWeek and agendaDay views
-//       },
-//       week: {
-//         // timeFormat: 'h(:mm)t'
-//       },
-//       day: {
-//         // timeFormat: 'h(:mm)t'
-//       }
-//     },
-//     businessHours: {
-//       start: '09:00', // a start time (9am in this example)
-//       end: '17:00', // an end time (5pm in this example)
-
-//       dow: [ 1, 2, 3, 4, 5]
-//       // days of week. an array of zero-based day of week integers (0=Sunday)
-//       // (Monday-Thursday in this example)
-//     },
-//     editable: true,
-//     eventLimit: true, // allow "more" link when too many events
-//     events: {
-//         googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com'
-//     }
-//   });
-// });
-
->>>>>>> doctor
 $(".doctors.show").ready(function () {
   console.log("I can see you!!")
   // body...
