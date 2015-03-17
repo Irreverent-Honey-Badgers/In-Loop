@@ -7,7 +7,8 @@ $(".doctors.index").ready(function(){
     businessHours: {
       start: '09:00', // a start time (9am in this example)
       end: '17:00', // an end time (5pm in this example)
-      dow: [ 1, 2, 3, 4, 5] // days of week. an array of zero-based day of week integers (0=Sunday)
+      dow: [ 1, 2, 3, 4, 5]
+      // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
     height: 'auto',
@@ -32,7 +33,7 @@ $(".doctors.index").ready(function(){
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       // alert('Current view: ' + view.name);
 debugger
-      var myCalendar = $('#calendar'); 
+      var myCalendar = $('#calendar');
       myCalendar.fullCalendar();
       var myEvent = {
         title:"my new event",
@@ -92,7 +93,6 @@ debugger
     },
   });
 });
-
 
 
 // add link button
