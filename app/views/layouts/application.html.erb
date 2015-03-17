@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller_name %> <%= action_name %>" data-current-patient="<%= current_patient.try(:id) %>">
+<body class="<%= controller_name %> <%= action_name %>" data-current-patient="<%= current_patient.try(:id) %>" data-current-patient-email="<%= current_patient.try(:email) %>">
 
 <%= yield %>
 

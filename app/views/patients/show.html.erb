@@ -1,3 +1,6 @@
+ <%= javascript_include_tag "patient.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -18,7 +21,6 @@
 
 <div id="calendar" height: "600" width: "800"></div>
 
-
 <p>How are you travelling there?</p>
   <div id="buttonDiv">
     <input type="radio" name="group1" value="driving">Driving</input><br>
@@ -32,6 +34,3 @@
 <div id="outputDiv"></div>
 
   <p id="demo"></p>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
- <%= javascript_include_tag "patient.js" %>
-

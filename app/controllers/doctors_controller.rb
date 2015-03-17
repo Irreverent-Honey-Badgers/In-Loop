@@ -9,22 +9,17 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:id])
   end
 
-  def new
-    @doctor = Doctor.new
-  end
-
-  def create
-    @doctor = Doctor.create(doctor_params)
-  end
-
-  def update
-    @doctor = Doctor.find(params[:id])
-    @doctor.update(doctor_params)
-  end
-
   def destroy
     @doctor = Doctor.find(params[:id])
     @doctor.destroy
+  end
+
+  def get_patient
+    mypatients = Doctor.find(5).patients
+    @patient = mypatients[1]
+    render :json => @patient
+
+
   end
 
   private
