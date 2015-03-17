@@ -69,7 +69,7 @@
 <script>
 $(function(){
   var m = function(){
-    $.get('/doctors/' + 5 + '/get_patient').done(function(data){
+    $.get('/doctors/' + 1 + '/get_patient').done(function(data){
       console.log("mooo")
       $('.eta')[0].innerHTML = data.eta;
       $('.name')[0].innerHTML = data.first_name + " " + data.last_name
