@@ -213,6 +213,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   neat
+  omniauth
   omniauth-facebook
   omniauth-google-oauth2
   pg

@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :doctors
-  devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
+  # devise_scope :doctors
+  # , :controllers => { :omniauth_callbacks => "doctors", :action => "google_oauth2" }
+  # devise_scope :patients do
+  # end
+  # , :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
+
+  devise_scope :patients do
+  end
+
+  get "/auth/:provider/callback" => "sessions#google_oauth2", as: 'google_oauth2'
   root "application#index"
   resources :locations
   resources :patients, except: [:new, :create] do
