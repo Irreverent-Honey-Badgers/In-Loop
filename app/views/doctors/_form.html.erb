@@ -1,73 +1,16 @@
-<% modal ||= false %>
-<% remote = modal ? true : false %>
-<%= form_for(@event, remote: remote, html: {role: :form, 'data-model'}) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% Added Bootstrap classes, and help-block container for error messages %>
-  <div class="form-group">
-    <%= f.label 'summary', class: 'control-label' %>
-    <br>
-    <%= f.text_field 'summary', class: 'form-control' %>
-    <span class="help-block"></span>
-  </div>
-
-  <% Added Bootstrap classes, and help-block container for error messages %>
-  <div class="form-group">
-    <%= f.label 'start', class: 'control-label' %>
-    <br>
-    <%= f.text_field 'start', class: 'form-control' %>
-    <span class="help-block"></span>
-  </div>
-
-  <% Added Bootstrap classes %>
-  <div class="actions">
-    <%= f.submit 'Submit', class: 'btn btn-default' %>
-  </div>
-<% end %>
-
-<!-- <div id="dialog-form" title="Create new event"> -->
-  <!-- <p class="validateTips">All form fields are required.</p> -->
-  <!-- <form> -->
-    <!-- <fieldset> -->
-      <!-- <label for="summary">Summary</label> -->
-      <!-- <input type="text" name="summary" id="summary" placeholder="Title" class="text ui-widget-content ui-corner-all"> -->
-      <!-- <label for="start">Start</label> -->
-      <!-- <input type="text" name="start" id="start" placeholder="date" class="text ui-widget-content ui-corner-all"> -->
-      <!-- <label for="end">End</label> -->
-      <!-- <input type="text" name="end" id="end" placeholder="end" class="text ui-widget-content ui-corner-all"> -->
-      <!-- <label for="password">Password</label> -->
-      <!-- <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all"> -->
+<div id="dialog-form" title="Create new event">
+  <p class="validateTips">All form fields are required.</p>
+  <form>
+    <fieldset>
+      <label for="summary">Summary</label>
+      <input type="text" name="summary" id="summary" placeholder="Summary" class="text ui-widget-content ui-corner-all">
+      <label for="start">Start</label>
+      <input type="text" name="start" id="start" placeholder="Start" class="text ui-widget-content ui-corner-all">
+      <label for="end">End</label>
+      <input type="end" name="end" id="end" placeholder="End" class="text ui-widget-content ui-corner-all">
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <!-- <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"> -->
-    <!-- </fieldset> -->
-  <!-- </form> -->
-<!-- </div> -->
-
-<!-- <div id="dialog-form" title="Create new event" style="display: none" > -->
-  <%#= form_for @doctors do |f| %>
-    <%#= f.label 'Summary' %>
-    <%#= f.text_field 'Summary', id: 'summary', placeholder: 'Summary', class: 'text ui-widget-content ui-corner-all' %>
-    <!-- <br /><br /> -->
-
-    <%#= f.label 'Start Date' %>
-    <%#= f.text_field 'Start Date' ,id: "start" placeholder: "Date" class: "text ui-widget-content ui-corner-all" %>
-    <!-- <br /><br /> -->
-
-    <%#= f.label :status %>
-    <%#= f.check_box :status, value: @doctors.status %>
-    <!-- <br /><br /> -->
-    <%#= f.submit tabindex: '-1' %>
-    <%#= link_to_modal 'New Event', new_user_path, :remote => true %>
-  <%# end %>
-<!-- </div> -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>

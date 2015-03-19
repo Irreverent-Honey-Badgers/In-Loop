@@ -24,9 +24,15 @@ $(".doctors.index").ready(function(){
     },
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-      editable: true,
+      // type: 'POST',
+      // data: ,
       color: 'yellow',
       textColor: 'black',
+      editable: true,
+
+      error: function() {
+          alert('there was an error while fetching events!');
+      },
     },
     dayClick: function(date, jsEvent, view) {
 
@@ -52,77 +58,12 @@ $(".doctors.index").ready(function(){
         }
         return valid;
 
-        dialog = $( "#dialog-form" ).dialog({
-          autoOpen: false,
-          height: 300,
-          width: 350,
-          modal: true,
-          buttons: {
-            "Create an event": addEvent,
-            Cancel: function() {
-              dialog.dialog( "close" );
-            }
-          },
-          close: function() {
-            form[ 0 ].reset();
-            allFields.removeClass( "ui-state-error" );
-          }
-        });
-     
-        form = dialog.find( "form" ).on( "submit", function( event ) {
-          event.preventDefault();
-          addEvent();
-        });
-     
-        $( "#create-event" ).button().on( "click", function() {
-          dialog.dialog( "open" );
-        });
-
-
-      //   $.ajax({
-      //     type: "POST",
-      //     url: "https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com/events?key={<%= GOOGLE_CALENDAR_CLIENT_ID %>}",
-      //     data: {
-      //       end: {
-      //         date: 
-      //         },
-      //       start: {
-      //         date: date.format()
-      //         },
-      //       summary: "Google is fucked up"
-      //       },
-      //     dataType: "JSON",
-      //     success: refreshCalendar,
-      //     error: errorHandler,
-      //   });
-      // };
-
-      // var myCalendar = $('#calendar'); 
-      // myCalendar.fullCalendar();
-      // var myEvent = {
-      //   title:"my new event",
-      //   allDay: false,
-      //   start: new Date("2015-03-16T12:30:00"),
-      //   end: new Date("2015-03-16T13:30:00")
-      // };
-      // myCalendar.fullCalendar('renderEvent', myEvent, true );
-
       alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       alert('Current view: ' + view.name);
       // change the day's background color just for fun
       $(this).css('background-color', 'red');
     },
-    // eventRender: function (event, element) {
-    //   element.attr('href', 'javascript:void(0);');
-    //   element.click(function() {
-    //     $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-    //     $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-    //     $("#eventInfo").html(event.description);
-    //     $("#eventLink").attr('href', event.url);
-    //     $("#eventContent").dialog({ modal: true, title: event.title, width:350});
-    //   });
-    // },
     eventClick: function (event) {
       if (event.url) {
         window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
