@@ -20,7 +20,7 @@ $(".doctors.index").ready(function(){
         maxTime: "17:00:00"
         // timeFormat: 'h:mm'
         // options apply to agendaWeek and agendaDay views
-      },
+      }
     },
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
@@ -32,7 +32,7 @@ $(".doctors.index").ready(function(){
 
       error: function() {
           alert('there was an error while fetching events!');
-      },
+      }
     },
     dayClick: function(date, jsEvent, view) {
 
@@ -51,7 +51,7 @@ $(".doctors.index").ready(function(){
           var newEvent = {
             title: summary.val(),
             allDay: false,
-            start: date.format(),
+            start: date.format()
             // end: new Date(end.val())
           };
           dialog.dialog( "close" );
@@ -63,6 +63,7 @@ $(".doctors.index").ready(function(){
       alert('Current view: ' + view.name);
       // change the day's background color just for fun
       $(this).css('background-color', 'red');
+      };
     },
     eventClick: function (event) {
       if (event.url) {
