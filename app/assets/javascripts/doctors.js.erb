@@ -18,52 +18,19 @@ $(".doctors.index").ready(function(){
       agenda: {
         minTime: "08:00:00",
         maxTime: "17:00:00"
-        // timeFormat: 'h:mm'
-        // options apply to agendaWeek and agendaDay views
       }
     },
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-      // type: 'POST',
-      // data: ,
       color: 'yellow',
       textColor: 'black',
-      editable: true,
-
-      error: function() {
-          alert('there was an error while fetching events!');
-      }
+      editable: true
     },
     dayClick: function(date, jsEvent, view) {
-
-      function refreshCalendar(){
-        $("#calendar").fullCalendar( 'refetchEvents' );
-      };
-
-      function errorHandler(error){
-        console.log('error: ', error);
-      };
-
-      function addEvent(event, refreshCalendar, errorHandler) {
-        var valid = true;
-        allFields.removeClass( "ui-state-error" );
-        if ( valid ) {
-          var newEvent = {
-            title: summary.val(),
-            allDay: false,
-            start: date.format()
-            // end: new Date(end.val())
-          };
-          dialog.dialog( "close" );
-        }
-        return valid;
-
       alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       alert('Current view: ' + view.name);
       // change the day's background color just for fun
-      $(this).css('background-color', 'red');
-      };
     },
     eventClick: function (event) {
       if (event.url) {
@@ -72,15 +39,126 @@ $(".doctors.index").ready(function(){
       };
     }
   });
-});
 
-// add link button
-//   $('#new-event').on('click', function(e){
-//     e.preventDefault();
-//     var displayName = $('#displayName').val();
-//     var patientName = $('#patientName').val();
-//   });
-// });
+  $(function() {
+    var dialog, form,
+ 
+      // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=start%29
+      startRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+      summary = $( "#summary" ),
+      start = $( "#start" ),
+      end = $( "#end" ),
+      allFields = $( [] ).add( summary ).add( start ).add( end ),
+      tips = $( ".validateTips" );
+ 
+    function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+ 
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "Length of " + n + " must be between " +
+          min + " and " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function checkRegexp( o, regexp, n ) {
+      if ( !( regexp.test( o.val() ) ) ) {
+        o.addClass( "ui-state-error" );
+        updateTips( n );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    // function addEvent() {
+    //   var valid = true;
+    //   allFields.removeClass( "ui-state-error" );
+ 
+    //   valid = valid && checkLength( summary, "eventsummary", 3, 16 );
+    //   valid = valid && checkLength( start, "start", 6, 80 );
+    //   valid = valid && checkLength( end, "end", 5, 16 );
+ 
+    //   valid = valid && checkRegexp( summary, /^[a-z]([0-9a-z_\s])+$/i, "Eventsummary may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+    //   valid = valid && checkRegexp( start, startRegex, "eg. ui@jquery.com" );
+    //   valid = valid && checkRegexp( end, /^([0-9a-zA-Z])+$/, "End field only allow : a-z 0-9" );
+ 
+    //   if ( valid ) {
+    //     $( "#events tbody" ).append( "<tr>" +
+    //       "<td>" + summary.val() + "</td>" +
+    //       "<td>" + start.val() + "</td>" +
+    //       "<td>" + end.val() + "</td>" +
+    //     "</tr>" );
+    //     dialog.dialog( "close" );
+    //   }
+    //   return valid;
+    // }
+
+    function refreshCalendar(){
+      $("#calendar").fullCalendar( 'refetchEvents' );
+    };
+
+    function errorHandler(error){
+      console.log("error: ", error);
+    };
+
+    function addEvent(event, refreshCalendar, errorHandler) {
+      $.ajax({
+        type: "POST",
+        url: "https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com/events?fields=summary%2Cstart%2Cend&key={<%= GOOGLE_CALENDAR_CLIENT_ID %>}",
+        data: {
+         start: {
+          dateTime: start.val()
+         },
+         summary: summary.val(),
+         end: {
+          dateTime: end.val()
+         }
+        },
+        dataType: "JSON",
+        success: refreshCalendar,
+        error: errorHandler,
+      });
+      dialog.dialog("close");
+    };
+
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Create an event": addEvent,
+        Cancel: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      addEvent();
+    });
+ 
+    $( "#create-event" ).button().on( "click", function() {
+      dialog.dialog( "open" );
+    });
+  });
+});
 
 $(".doctors.show").ready(function () {
   console.log("I can see you!!")

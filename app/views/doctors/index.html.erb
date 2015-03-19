@@ -1,120 +1,17 @@
 
 <head>
   <meta charset="utf-8">
-  <title>jQuery UI Dialog - Modal form</title>
+  <!-- <title>jQuery UI Dialog - Modal form</title> -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    var dialog, form,
- 
-      // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=start%29
-    //   startRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    //   summary = $( "#summary" ),
-    //   start = $( "#start" ),
-    //   end = $( "#end" ),
-    //   allFields = $( [] ).add( summary ).add( start ).add( end ),
-    //   tips = $( ".validateTips" );
- 
-    // function updateTips( t ) {
-    //   tips
-    //     .text( t )
-    //     .addClass( "ui-state-highlight" );
-    //   setTimeout(function() {
-    //     tips.removeClass( "ui-state-highlight", 1500 );
-    //   }, 500 );
-    // }
- 
-    // function checkLength( o, n, min, max ) {
-    //   if ( o.val().length > max || o.val().length < min ) {
-    //     o.addClass( "ui-state-error" );
-    //     updateTips( "Length of " + n + " must be between " +
-    //       min + " and " + max + "." );
-    //     return false;
-    //   } else {
-    //     return true;
-    //   }
-    // }
- 
-    // function checkRegexp( o, regexp, n ) {
-    //   if ( !( regexp.test( o.val() ) ) ) {
-    //     o.addClass( "ui-state-error" );
-    //     updateTips( n );
-    //     return false;
-    //   } else {
-    //     return true;
-    //   }
-    // }
- 
-    function addEvent() {
-      var valid = true;
-      allFields.removeClass( "ui-state-error" );
- 
-      // valid = valid && checkLength( summary, "eventsummary", 3, 16 );
-      // valid = valid && checkLength( start, "start", 6, 80 );
-      // valid = valid && checkLength( end, "end", 5, 16 );
- 
-      // valid = valid && checkRegexp( summary, /^[a-z]([0-9a-z_\s])+$/i, "Eventsummary may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-      // valid = valid && checkRegexp( start, startRegex, "eg. ui@jquery.com" );
-      // valid = valid && checkRegexp( end, /^([0-9a-zA-Z])+$/, "End field only allow : a-z 0-9" );
- 
-          var newEvent = {
-            title: summary.val(),
-            allDay: false,
-            start: date.format()
-            // end: new Date(end.val())
-          };
-
-
-      if ( valid ) {
-        $( "#events tbody" ).append( "<tr>" +
-          "<td>" + summary.val() + "</td>" +
-          "<td>" + start.val() + "</td>" +
-          "<td>" + end.val() + "</td>" +
-        "</tr>" );
-        dialog.dialog( "close" );
-      }
-      return valid;
-    }
- 
-    dialog = $( "#dialog-form" ).dialog({
-      autoOpen: false,
-      height: 300,
-      width: 350,
-      modal: true,
-      buttons: {
-        "Create an event": addEvent,
-
-
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-    });
- 
-    form = dialog.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      addEvent();
-    });
- 
-    $( "#create-event" ).button().on( "click", function() {
-      dialog.dialog( "open" );
-    });
-  });
-  </script>
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 </head>
 
 <body>
-<%= render 'form' %>
-
-<button id="create-event">Create new event</button>
-
-<div id="calendar"></div>
+  <div id="calendar"></div>
+  <%= render 'form' %>
+  <br>
+  <button id="create-event">Create new event</button>
 </body>
 
