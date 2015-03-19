@@ -9,16 +9,6 @@ class PatientsController < ApplicationController
     :authenticate_patient!
   end
 
-  def update
-    @patient = Patient.find(params[:id])
-    @patient.update(patient_params)
-  end
-
-  def destroy
-    @patient = Patient.find(params[:id])
-    @patient.destroy
-  end
-
   def omniauth
     ::OmniAuth.config.path_prefix = '/patient/auth'
     redirect_to google_oauth2_patient_path("google_oauth2")
@@ -33,6 +23,10 @@ class PatientsController < ApplicationController
     #   format.html { render nothing: true }
     #   format.json { render :json => @patient }
     # end
+  end
+
+  def find_appointments
+    binding.pry
   end
 
   private

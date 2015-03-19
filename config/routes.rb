@@ -7,16 +7,16 @@ Rails.application.routes.draw do
   get "/patient/auth/:provider" => "authentications#google_oauth2", as: 'google_oauth2_patient'
 
   root "application#index"
-  resources :locations
-  resources :patients, except: [:new, :create] do
+  resources :patients, only: [:index, :show] do
     collection do
       get 'patient' => 'patients#omniauth', as: 'p_omniauth'
     end
     member do
       post '/eta' => 'patients#eta', as: 'eta'
+      get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
     end
   end
-  resources :doctors do
+  resources :doctors, only: [:index, :show] do
     collection do
       get 'doctor' => 'doctors#omniauth', as: 'd_omniauth'
     end
