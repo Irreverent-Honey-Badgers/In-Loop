@@ -30,25 +30,64 @@ $(".doctors.index").ready(function(){
     },
     dayClick: function(date, jsEvent, view) {
 
+      function refreshCalendar(){
+        $("#calendar").fullCalendar( 'refetchEvents' );
+      };
 
-      // function refreshCalendar(){
-      //   $("#calendar").fullCalendar( 'refetchEvents' );
-      // };
+      function errorHandler(error){
+        console.log('error: ', error);
+      };
 
-      // function errorHandler(error){
-      //   console.log('error: ', error);
-      // };
+      function addEvent(event, refreshCalendar, errorHandler) {
+        var valid = true;
+        allFields.removeClass( "ui-state-error" );
+        if ( valid ) {
+          var newEvent = {
+            title: summary.val(),
+            allDay: false,
+            start: date.format(),
+            // end: new Date(end.val())
+          };
+          dialog.dialog( "close" );
+        }
+        return valid;
 
-      // function addEvent(event, refreshCalendar, errorHandler) {
+        dialog = $( "#dialog-form" ).dialog({
+          autoOpen: false,
+          height: 300,
+          width: 350,
+          modal: true,
+          buttons: {
+            "Create an event": addEvent,
+            Cancel: function() {
+              dialog.dialog( "close" );
+            }
+          },
+          close: function() {
+            form[ 0 ].reset();
+            allFields.removeClass( "ui-state-error" );
+          }
+        });
+     
+        form = dialog.find( "form" ).on( "submit", function( event ) {
+          event.preventDefault();
+          addEvent();
+        });
+     
+        $( "#create-event" ).button().on( "click", function() {
+          dialog.dialog( "open" );
+        });
+
+
       //   $.ajax({
       //     type: "POST",
       //     url: "https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com/events?key={<%= GOOGLE_CALENDAR_CLIENT_ID %>}",
       //     data: {
       //       end: {
-      //         date: "2015-03-17"
+      //         date: 
       //         },
       //       start: {
-      //         date: ""
+      //         date: date.format()
       //         },
       //       summary: "Google is fucked up"
       //       },

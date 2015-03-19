@@ -1,0 +1,73 @@
+<%# Conditionally set remote: true. Also, passing model name as data attribute %>
+<%# modal ||= false %>
+<%# remote = modal ? true : false %>
+<%#= form_for(@person, remote: remote, html: {role: :form, 'data-model' => 'person'}) do |f| %>
+
+  <%# if @person.errors.any? %>
+    <!-- <div id="error_explanation">
+      <h2><%#= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <%# @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <%# end %>
+      </ul> -->
+    <!-- </div> -->
+  <%# end %>
+
+  <%# Added Bootstrap classes, and help-block container for error messages %>
+  <!-- <div class="form-group"> -->
+    <%#= f.label :first_name, class: 'control-label' %>
+    <!-- <br> -->
+    <%#= f.text_field :first_name, class: 'form-control' %>
+    <!-- <span class="help-block"></span> -->
+  <!-- </div> -->
+
+  <%# Added Bootstrap classes, and help-block container for error messages %>
+  <!-- <div class="form-group"> -->
+    <%#= f.label :last_name, class: 'control-label' %>
+    <!-- <br> -->
+    <%#= f.text_field :last_name, class: 'form-control' %>
+    <!-- <span class="help-block"></span> -->
+  <!-- </div> -->
+
+  <%# Added Bootstrap classes %>
+  <!-- <div class="actions"> -->
+    <%#= f.submit 'Submit', class: 'btn btn-default' %>
+  <!-- </div> -->
+<%# end %>
+
+<div id="dialog-form" title="Create new event">
+  <!-- <p class="validateTips">All form fields are required.</p> -->
+  <form>
+    <fieldset>
+      <label for="summary">Summary</label>
+      <input type="text" name="summary" id="summary" placeholder="Title" class="text ui-widget-content ui-corner-all">
+      <label for="start">Start</label>
+      <input type="text" name="start" id="start" placeholder="date" class="text ui-widget-content ui-corner-all">
+      <!-- <label for="end">End</label> -->
+      <!-- <input type="text" name="end" id="end" placeholder="end" class="text ui-widget-content ui-corner-all"> -->
+      <!-- <label for="password">Password</label> -->
+      <!-- <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all"> -->
+ 
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+<%= form_for @doctors do |f| %>
+  <%= f.label :summary, value: @doctors.summary %>
+  f.text_field
+  <br /><br />
+
+  <%= f.label :author, value: @doctors.author %>
+
+  <br /><br />
+
+  <%= f.label :status %>
+  <%= f.check_box :status, value: @doctors.status %>
+  <br /><br />
+  <%= f.submit %>
+<% end %>
+
