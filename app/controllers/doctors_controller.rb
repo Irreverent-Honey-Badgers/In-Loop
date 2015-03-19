@@ -17,6 +17,12 @@ class DoctorsController < ApplicationController
 
   end
 
+  def omniauth
+    ::OmniAuth.config.path_prefix = '/doctor/auth'
+    redirect_to google_oauth2_doctor_path("google_oauth2")
+  end
+  
+
   private
 
   def doctor_params
