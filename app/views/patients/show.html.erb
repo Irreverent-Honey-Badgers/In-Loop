@@ -11,7 +11,7 @@
 
 <p class="navbar-text pull-right">
   <% if patient_signed_in? %>
-    Logged in as <strong><%= current_patient.email %></strong><br>
+    Logged in as <strong><%= current_patient['email'] %></strong><br>
     <%= link_to 'edit profile', edit_patient_registration_path, :class => 'navbar-link', id: "edit"%> |
     <%= link_to "logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %>
   <% else %>

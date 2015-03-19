@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312221622) do
+ActiveRecord::Schema.define(version: 20150319060919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.integer  "favorite"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "doctor_office"
+    t.string   "eta"
+    t.text     "purpose"
+    t.datetime "appointment_time"
+  end
+
+  add_index "appointments", ["doctor_id"], name: "index_appointments_on_doctor_id", using: :btree
+  add_index "appointments", ["patient_id"], name: "index_appointments_on_patient_id", using: :btree
 
   create_table "doctors", force: :cascade do |t|
     t.string   "first_name"
@@ -31,26 +50,12 @@ ActiveRecord::Schema.define(version: 20150312221622) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "did"
   end
 
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true, using: :btree
   add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true, using: :btree
-
-  create_table "locations", force: :cascade do |t|
-    t.integer  "patient_id"
-    t.integer  "doctor_id"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
-    t.integer  "favorite"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "doctor_office"
-  end
-
-  add_index "locations", ["doctor_id"], name: "index_locations_on_doctor_id", using: :btree
-  add_index "locations", ["patient_id"], name: "index_locations_on_patient_id", using: :btree
 
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
@@ -70,7 +75,6 @@ ActiveRecord::Schema.define(version: 20150312221622) do
     t.inet     "last_sign_in_ip"
     t.string   "provider"
     t.string   "pid"
-    t.string   "eta"
   end
 
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree
