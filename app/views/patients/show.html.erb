@@ -1,5 +1,30 @@
  <%= javascript_include_tag "patient.js" %>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script id="patient-template" type="text/x-handlebars-template">
+  <div class="entry">
+  <h1>{{doctor_id}}</h1>
+  <div class="body">
+  <p> {{address}} {{city}} {{state}} {{zip}} </p>
+  <p> {{eta}} {{purpose}} {{appointment_time}} </p>
+  <p> {{title}} </p>
+  </div>
+  </div>
+</script>
+<script>
+var context;
+// $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
+//   debugger;
+// }) TRY THIS
+var source   = $("#patient-template").html();
+var template = Handlebars.compile(source);
+context;
+
+// NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
+var html    = template(context);
+debugger;
+$('body').append(html);
+
+</script>
 
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -21,6 +46,7 @@
 </p>
 
 <!-- <div id="calendar" height: "600" width: "800"></div> -->
+<div id="events"></div>
 
 
 <div id="travel">

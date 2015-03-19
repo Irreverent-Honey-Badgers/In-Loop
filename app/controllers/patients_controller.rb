@@ -25,6 +25,10 @@ class PatientsController < ApplicationController
     # end
   end
 
+  def find_appointments
+    binding.pry
+  end
+
   private
 
   def patient_params

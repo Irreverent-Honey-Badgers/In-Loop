@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     member do
       post '/eta' => 'patients#eta', as: 'eta'
+      get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
     end
   end
   resources :doctors, only: [:index, :show] do
