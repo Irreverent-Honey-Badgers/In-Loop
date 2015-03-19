@@ -2,10 +2,9 @@ class Patient < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:google_oauth2]
-  has_many :locations
-  has_many :doctors, through: :locations
+         :recoverable, :rememberable, :trackable, :validatable
+  has_many :appointments
+  has_many :doctors, through: :appointments
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, pid: auth.uid).first_or_create do |patient|
