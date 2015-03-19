@@ -2,8 +2,7 @@ class Patient < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable
   has_many :locations
   has_many :doctors, through: :locations
 

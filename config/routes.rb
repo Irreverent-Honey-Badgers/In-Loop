@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
   devise_for :doctors
-  devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
+  devise_for :patients
+  get "/patient/auth/:provider/callback" => "authentications#google_oauth2"
+  get "/doctor/auth/:provider/callback" => "authentications#google_oauth2"
+  get "/doctor/auth/:provider" => "authentications#google_oauth2", as: 'google_oauth2_doctor'
+  get "/patient/auth/:provider" => "authentications#google_oauth2", as: 'google_oauth2_patient'
+
   root "application#index"
   resources :locations
   resources :patients, except: [:new, :create] do
+    collection do
+      get 'patient' => 'patients#omniauth', as: 'p_omniauth'
+    end
     member do
       post '/eta' => 'patients#eta', as: 'eta'
     end
   end
   resources :doctors do
+    collection do
+      get 'doctor' => 'doctors#omniauth', as: 'd_omniauth'
+    end
     member do
       get '/get_patient' => 'doctors#get_patient', as: 'get_patient'
     end
