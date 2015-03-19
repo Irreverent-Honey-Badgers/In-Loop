@@ -1,6 +1,6 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
-<%= form_for(@event, remote: remote, html: {role: :form, 'data-model'}) do |f| %>
+<%= form_for(@event, remote: remote, html: {role: :form, 'data-modle'}) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -15,17 +15,17 @@
 
   <% Added Bootstrap classes, and help-block container for error messages %>
   <div class="form-group">
-    <%= f.label 'summary', class: 'control-label' %>
+    <%= f.label :summary, class: 'control-label' %>
     <br>
-    <%= f.text_field 'summary', class: 'form-control' %>
+    <%= f.text_field :summary, class: 'form-control' %>
     <span class="help-block"></span>
   </div>
 
   <% Added Bootstrap classes, and help-block container for error messages %>
   <div class="form-group">
-    <%= f.label 'start', class: 'control-label' %>
+    <%= f.label :start, class: 'control-label' %>
     <br>
-    <%= f.text_field 'start', class: 'form-control' %>
+    <%= f.text_field :start, class: 'form-control' %>
     <span class="help-block"></span>
   </div>
 

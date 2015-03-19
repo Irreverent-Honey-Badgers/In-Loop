@@ -60,6 +60,8 @@
 
 Rails.application.routes.draw do
 
+  resources :events
+
   devise_for :doctors
   devise_for :patients, :controllers => { :omniauth_callbacks => "patients", :action => "google_oauth2" }
   root "application#index"
