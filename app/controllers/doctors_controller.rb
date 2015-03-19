@@ -9,11 +9,6 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find(params[:id])
   end
 
-  def destroy
-    @doctor = Doctor.find(params[:id])
-    @doctor.destroy
-  end
-
   def get_patient
     mypatients = Doctor.find(1).patients
     @patient = mypatients.first

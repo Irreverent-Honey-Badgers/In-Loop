@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root "application#index"
   resources :locations
-  resources :patients, except: [:new, :create] do
+  resources :patients, only: [:index, :show] do
     collection do
       get 'patient' => 'patients#omniauth', as: 'p_omniauth'
     end
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       post '/eta' => 'patients#eta', as: 'eta'
     end
   end
-  resources :doctors do
+  resources :doctors, only: [:index, :show] do
     collection do
       get 'doctor' => 'doctors#omniauth', as: 'd_omniauth'
     end
