@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     end
     member do
       get '/get_patient' => 'doctors#get_patient', as: 'get_patient'
+      post '/send_appointment' => 'patient#appointment',as: 'send_appointment'
       post '/find_patient/:patient_id' => 'doctors#find_patient', as: 'find_patient'
     end
   end
