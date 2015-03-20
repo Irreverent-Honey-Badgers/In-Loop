@@ -107,23 +107,9 @@ $(".doctors.index").ready(function(){
     function refreshCalendar(){
       $("#calendar").fullCalendar( 'refetchEvents' );
     };
-
-<<<<<<< HEAD
     function errorHandler(error){
       console.log("error: ", error);
     };
-=======
-    events: {
-      googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-      type: 'POST',
-      data: '',
-      color: 'yellow',
-      textColor: 'black'
-    }
-  });
-});
->>>>>>> master
-
     function addEvent(event, refreshCalendar, errorHandler) {
       $.ajax({
         type: "POST",

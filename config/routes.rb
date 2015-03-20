@@ -1,12 +1,4 @@
 #                      Prefix Verb   URI Pattern                                     Controller#Action
-#                      events GET    /events(.:format)                               events#index
-#                             POST   /events(.:format)                               events#create
-#                   new_event GET    /events/new(.:format)                           events#new
-#                  edit_event GET    /events/:id/edit(.:format)                      events#edit
-#                       event GET    /events/:id(.:format)                           events#show
-#                             PATCH  /events/:id(.:format)                           events#update
-#                             PUT    /events/:id(.:format)                           events#update
-#                             DELETE /events/:id(.:format)                           events#destroy
 #          new_doctor_session GET    /doctors/sign_in(.:format)                      devise/sessions#new
 #              doctor_session POST   /doctors/sign_in(.:format)                      devise/sessions#create
 #      destroy_doctor_session DELETE /doctors/sign_out(.:format)                     devise/sessions#destroy
@@ -49,7 +41,7 @@
 #                     patient GET    /patients/:id(.:format)                         patients#show
 #          d_omniauth_doctors GET    /doctors/doctor(.:format)                       doctors#omniauth
 #          get_patient_doctor GET    /doctors/:id/get_patient(.:format)              doctors#get_patient
-#     send_appointment_doctor POST   /doctors/:id/send_appointment(.:format)         patient#appointment
+#     send_appointment_doctor POST   /doctors/:id/send_appointment(.:format)         doctors#send_appointment
 #         find_patient_doctor POST   /doctors/:id/find_patient/:patient_id(.:format) doctors#find_patient
 #                     doctors GET    /doctors(.:format)                              doctors#index
 #                      doctor GET    /doctors/:id(.:format)                          doctors#show
@@ -79,7 +71,7 @@ Rails.application.routes.draw do
     end
     member do
       get '/get_patient' => 'doctors#get_patient', as: 'get_patient'
-      post '/send_appointment' => 'patient#appointment',as: 'send_appointment'
+      post '/send_appointment' => 'doctors#send_appointment',as: 'send_appointment'
       post '/find_patient/:patient_id' => 'doctors#find_patient', as: 'find_patient'
     end
   end
