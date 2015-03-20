@@ -32,7 +32,7 @@ $(".doctors.index").ready(function(){
       // alert('Clicked on: ' + date.format());
       // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
       // alert('Current view: ' + view.name);
-debugger
+      debugger
       var myCalendar = $('#calendar');
       myCalendar.fullCalendar();
       var myEvent = {
@@ -43,7 +43,7 @@ debugger
       };
       myCalendar.fullCalendar( 'renderEvent', 'addEvent' );
 
-debugger
+      debugger
       // change the day's background color just for fun
       $(this).css('background-color', 'red');
 
@@ -62,7 +62,7 @@ debugger
           data: myEvent,
           dataType: "JSON",
           success: refreshCalendar,
-          error: errorHandler,
+          error: errorHandler
         });
       };
     },
@@ -88,20 +88,13 @@ debugger
 
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
+      type: 'POST',
+      data: '',
       color: 'yellow',
-      textColor: 'black',
-    },
+      textColor: 'black'
+    }
   });
 });
-
-
-// add link button
-//   $('#new-event').on('click', function(e){
-//     e.preventDefault();
-//     var displayName = $('#displayName').val();
-//     var patientName = $('#patientName').val();
-//   });
-// });
 
 $(".doctors.show").ready(function () {
   console.log("I can see you!!")
