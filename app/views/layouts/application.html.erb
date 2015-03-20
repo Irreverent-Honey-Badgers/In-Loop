@@ -8,16 +8,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!-- [if lt IE 9]> -->
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <!-- [endif] -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
   <!-- <link href='fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
 </head>
 
-<body class="<%= controller_name %> <%= action_name %>" data-current-patient="<%= current_patient.try(:id) %>" data-current-patient-email="<%= current_patient.try(:email) %>">
+<body class="<%= controller_name %> <%= action_name %>" data-current-patient="<%= current_patient.try(:id) %>" data-current-patient-email="<%= current_patient.try(:email) %>" data-current-doctor=" <%= current_doctor.try(:id) %>" data-current-doctor-email="<%= current_doctor.try(:email)%>">
 
 <main>
   <div class="header">
