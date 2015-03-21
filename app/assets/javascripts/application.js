@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery-readyselector
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal
-//= require jquery-readyselector
 //= require turbolinks
 //= require_tree .
 
