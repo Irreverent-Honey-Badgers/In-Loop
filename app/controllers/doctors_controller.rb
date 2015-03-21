@@ -17,7 +17,7 @@ class DoctorsController < ApplicationController
   end
 
   def find_patient
-    mypatient = Location.where(doctor_id: params[:id], patient_id: params[:patient_id])
+    mypatient = Appointment.where(doctor_id: params[:id], patient_id: params[:patient_id])
 
   end
 

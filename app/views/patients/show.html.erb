@@ -20,7 +20,12 @@ var template = Handlebars.compile(source);
 context;
 
 // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
-var html    = template(context);
+
+$.get('/doctors/' + 1 + '/send_appointment')
+
+<%= current_patient.appointments %>
+
+var html = template(context);
 debugger;
 $('body').append(html);
 
