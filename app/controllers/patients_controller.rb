@@ -26,6 +26,8 @@ class PatientsController < ApplicationController
   end
 
   def find_appointments
+    @appointments = Appointments.where(:patient_id => params[:id])
+    render json: @appointments
     binding.pry
   end
 
