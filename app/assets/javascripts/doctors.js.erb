@@ -11,88 +11,150 @@ $(".doctors.index").ready(function(){
       // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-    height: 'auto',
+    height: 650,
     defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
       agenda: {
         minTime: "08:00:00",
         maxTime: "17:00:00"
-        // timeFormat: 'h:mm'
-        // options apply to agendaWeek and agendaDay views
-      },
+      }
     },
-    dayClick: function(date) {
-
-      if (date) {
-        window.open("https://www.google.com/calendar/embed?src=n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York", "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
-        return false;
-      };
-
-      // alert('Clicked on: ' + date.format());
-      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      // alert('Current view: ' + view.name);
-      debugger
-      var myCalendar = $('#calendar');
-      myCalendar.fullCalendar();
-      var myEvent = {
-        title:"my new event",
-        allDay: false,
-        start: new Date(),
-        end: new Date()
-      };
-      myCalendar.fullCalendar( 'renderEvent', 'addEvent' );
-
-      debugger
-      // change the day's background color just for fun
-      $(this).css('background-color', 'red');
-
-      function refreshCalendar(){
-        $("#calendar").fullCalendar( 'refetchEvents' );
-      };
-
-      function errorHandler(error){
-        console.log("error: ", error);
-      };
-
-      function addEvent(event, refreshCalendar, errorHandler) {
-        $.ajax({
-          type: "POST",
-          url: event.url,
-          data: myEvent,
-          dataType: "JSON",
-          success: refreshCalendar,
-          error: errorHandler
-        });
-      };
-    },
-
-    eventClick: function(event) {
-
-      // $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
-      // $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
-      // $("#eventInfo").html(event.description);
-      // $("#eventLink").attr('href', event.url);
-      // $("#eventContent").dialog({ modal: true, title: event.title, width:350});
-
-      if (event.url) {
-        window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-        return false;
-      };
-    },
-
-    // eventMouseover: function( event, jsEvent, view ) {},
-
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-
     events: {
       googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-      type: 'POST',
-      data: '',
       color: 'yellow',
-      textColor: 'black'
+      textColor: 'black',
+      editable: true
+    },
+    dayClick: function(date, jsEvent, view) {
+      alert('Clicked on: ' + date.format());
+      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+      alert('Current view: ' + view.name);
+      // change the day's background color just for fun
+    },
+    eventClick: function (event) {
+      if (event.url) {
+        window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
+        return false;
+      };
     }
+  });
+
+  $(function() {
+    var dialog, form,
+ 
+      // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=start%29
+      startRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+      summary = $( "#summary" ),
+      start = $( "#start" ),
+      end = $( "#end" ),
+      allFields = $( [] ).add( summary ).add( start ).add( end ),
+      tips = $( ".validateTips" );
+ 
+    function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+ 
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "Length of " + n + " must be between " +
+          min + " and " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function checkRegexp( o, regexp, n ) {
+      if ( !( regexp.test( o.val() ) ) ) {
+        o.addClass( "ui-state-error" );
+        updateTips( n );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    // function addEvent() {
+    //   var valid = true;
+    //   allFields.removeClass( "ui-state-error" );
+ 
+    //   valid = valid && checkLength( summary, "eventsummary", 3, 16 );
+    //   valid = valid && checkLength( start, "start", 6, 80 );
+    //   valid = valid && checkLength( end, "end", 5, 16 );
+ 
+    //   valid = valid && checkRegexp( summary, /^[a-z]([0-9a-z_\s])+$/i, "Eventsummary may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+    //   valid = valid && checkRegexp( start, startRegex, "eg. ui@jquery.com" );
+    //   valid = valid && checkRegexp( end, /^([0-9a-zA-Z])+$/, "End field only allow : a-z 0-9" );
+ 
+    //   if ( valid ) {
+    //     $( "#events tbody" ).append( "<tr>" +
+    //       "<td>" + summary.val() + "</td>" +
+    //       "<td>" + start.val() + "</td>" +
+    //       "<td>" + end.val() + "</td>" +
+    //     "</tr>" );
+    //     dialog.dialog( "close" );
+    //   }
+    //   return valid;
+    // }
+
+    function refreshCalendar(){
+      $("#calendar").fullCalendar( 'refetchEvents' );
+    };
+    function errorHandler(error){
+      console.log("error: ", error);
+    };
+    function addEvent(event, refreshCalendar, errorHandler) {
+      $.ajax({
+        type: "POST",
+        url: "https://www.googleapis.com/calendar/v3/calendars/n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com/events?fields=summary%2Cstart%2Cend&key={<%= GOOGLE_CALENDAR_CLIENT_ID %>}",
+        data: {
+         start: {
+          dateTime: start.val()
+         },
+         summary: summary.val(),
+         end: {
+          dateTime: end.val()
+         }
+        },
+        dataType: "JSON",
+        success: refreshCalendar,
+        error: errorHandler,
+      });
+      dialog.dialog("close");
+    };
+
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Create an event": addEvent,
+        Cancel: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      addEvent();
+    });
+ 
+    $( "#create-event" ).button().on( "click", function() {
+      dialog.dialog( "open" );
+    });
   });
 });
 

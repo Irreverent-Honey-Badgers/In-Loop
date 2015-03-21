@@ -1,17 +1,15 @@
-<h1>Doctors#index</h1>
-<br><br><br>
+<head>
+  <meta charset="utf-8">
+  <!-- <title>jQuery UI Dialog - Modal form</title> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+</head>
 
-<%#= button_to "Add Event", root_path, method: :get %>
-<!-- <div id="calendar"></div> -->
-
-<style type="text/css">
-  .iframe {
-    width: 80%;
-    margin: 0 auto;
-  }
-</style>
-
-<div class="iframe">
-  <iframe src="https://www.google.com/calendar/embed?src=n825ka53ioka43rmf80b9pagn4%40group.calendar.google.com&ctz=America/New_York" align="middle" frameborder="0" scrolling="no" height="800" width="1200" seamless></iframe>
-</div>
- -->
+<body>
+  <div id="calendar"></div>
+  <%= render 'form' %>
+  <br>
+  <button id="create-event">Create new event</button>
+</body>

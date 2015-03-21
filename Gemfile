@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# gem 'jquery-ui-rails', '~> 5.0.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,7 +35,10 @@ gem 'rails-rename', '~> 1.0.0'
 
 # An asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
 gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
+# A rails engine for the awesome qTip2 jQuery plugin
+# gem 'qtip2-rails'
 
 gem 'bourbon'
 gem 'neat'
