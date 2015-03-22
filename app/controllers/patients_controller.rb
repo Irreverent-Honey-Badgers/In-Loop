@@ -7,8 +7,10 @@ class PatientsController < ApplicationController
 
   def show
     :authenticate_patient!
+    @patient = Patient.find(params[:id])
+    @appointment = @patient.appointments.where("appointment_time > ?", DateTime.now).limit(1)
   end
-
+  
   def omniauth
     ::OmniAuth.config.path_prefix = '/patient/auth'
     redirect_to google_oauth2_patient_path("google_oauth2")

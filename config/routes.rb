@@ -45,8 +45,18 @@
 #         find_patient_doctor POST   /doctors/:id/find_patient/:patient_id(.:format) doctors#find_patient
 #                     doctors GET    /doctors(.:format)                              doctors#index
 #                      doctor GET    /doctors/:id(.:format)                          doctors#show
+#                      events GET    /doctors/:id/events(.:format)                   events#index
+#                             POST   /doctors/:id/events(.:format)                   events#create
+#                   new_event GET    /doctors/:id/events/new(.:format)               events#new
+#                  edit_event GET    /doctors/:id/events/:id/edit(.:format)          events#edit
+#                       event GET    /doctors/:id/events/:id(.:format)               events#show
+#                             PATCH  /doctors/:id/events/:id(.:format)               events#update
+#                             PUT    /doctors/:id/events/:id(.:format)               events#update
+#                             DELETE /doctors/:id/events/:id(.:format)               events#destroy
+# BernzAir@BernzAir In-Loop (master)
 
 Rails.application.routes.draw do
+
 
   devise_for :doctors
   devise_for :patients
@@ -75,6 +85,7 @@ Rails.application.routes.draw do
       post '/find_patient/:patient_id' => 'doctors#find_patient', as: 'find_patient'
     end
   end
+  resources :events, path: 'doctors/:id/events'
   # The priority is based upon order of creatio first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

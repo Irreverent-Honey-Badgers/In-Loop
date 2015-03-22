@@ -1,6 +1,6 @@
  <%= javascript_include_tag "patient.js" %>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-<script id="patient-template" type="text/x-handlebars-template">
+<!-- <script id="patient-template" type="text/x-handlebars-template">
   <div class="entry">
   <h1>{{doctor_id}}</h1>
   <div class="body">
@@ -11,25 +11,34 @@
   </div>
 </script>
 <script>
-var context;
-// $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
-//   debugger;
-// }) TRY THIS
-var source   = $("#patient-template").html();
-var template = Handlebars.compile(source);
-context;
+  var context;
+  // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
+  //   debugger;
+  // }) TRY THIS
+  var source   = $("#patient-template").html();
+  var template = Handlebars.compile(source);
+  context;
 
-// NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
+  // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
 
-$.get('/doctors/' + 1 + '/send_appointment')
+  $.get('/doctors/' + 1 + '/send_appointment')
 
-<%= current_patient.appointments %>
+  <%= current_patient.appointments %>
 
-var html = template(context);
-debugger;
-$('body').append(html);
-
+  var html = template(context);
+  debugger;
+  $('body').append(html);
 </script>
+ -->
+<div class="entry">
+  <h1><%= @appointment.doctor_id %></h1>
+  <div class="body">
+    <p><%= "#{@appointment.address} #{@appointment.city} #{@appointment.state} #{@appointment.zip}" %> </p>
+    <p><%= "#{@appointment.eta} #{@appointment.purpose} #{@appointment.appointment_time}" %> </p>
+  <!-- <p> {{title}} </p> -->
+  </div>
+</div>
+
 
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>

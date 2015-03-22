@@ -1,0 +1,66 @@
+console.log('loaded bro');
+$(".events.index").ready(function(){
+  $('#calendar').fullCalendar({
+    googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
+    header: {
+    left: 'today prev,next',
+    center: 'title',
+    right: 'month, agendaWeek, agendaDay'
+    }, // buttons for switching between views
+    weekends: true,
+    height: 500,
+    defaultView: 'agendaWeek',
+    eventLimit: true, // allow "more" link when too many events
+    businessHours: {
+      start: '09:00',
+      end: '17:00',
+      dow: [ 1, 2, 3, 4, 5] // days of week. an array of zero-based day of week integers (0=Sunday)
+    },
+    views: {
+      agenda: {
+        minTime: "08:00:00",
+        maxTime: "18:00:00"
+      }
+    },
+    selectable: true,
+    selectHelper: true,
+    select: function(start, end) {
+      var title = prompt('Event Title:');
+      var eventData;
+      if (title) {
+        eventData = {
+          title: title,
+          start: start,
+          end: end,
+          color: 'yellow',
+          textColor: 'black'
+        };
+        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+        $.post("event/new", eventData);
+      }
+      $('#calendar').fullCalendar('unselect');
+    },
+    dayClick: function(date, jsEvent, view) {
+    },
+    eventClick: function (event) {
+      if (event.url) {
+        window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
+        return false;
+      };
+    },
+
+    eventSources: [
+      {
+        googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
+        className: 'gcal-event',
+        editable: true,
+        color: 'yellow',
+        textColor: 'black'
+      },
+      {
+        url: 'events.html',
+        editable: true
+      }
+    ]
+  });
+});
