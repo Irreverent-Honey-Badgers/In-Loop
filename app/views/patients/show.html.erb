@@ -1,4 +1,4 @@
-<%#= javascript_include_tag "patient.js" %>
+<%= javascript_include_tag "patient.js" %>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script> -->
 <!-- <script id="patient-template" type="text/x-handlebars-template">
   <div class="entry">
@@ -64,14 +64,14 @@
 <div id="travel">
   <p>How are you travelling there?</p>
   <select id="buttonDiv">
-<br>
-<br>
     <option value="driving">Driving</option>
     <option value="transit">Public transportation</option>
     <option value="walking">Walking</option>
   </select>
+  <br>
+  <br>
 <%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
-
+  <br>
 <%= button_to "Send Message", "/messages.html", method: :get %>
 </div>
 <div id="outputDiv"></div>
