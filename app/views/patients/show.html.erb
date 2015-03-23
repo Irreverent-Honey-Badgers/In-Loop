@@ -33,8 +33,8 @@
 
 
 <% @appointments.each do |appointment| %>
-      <p><%= appointment.address %>, <%= appointment.city %>, <%= appointment.state %>, <%= appointment.zip %></p>
-      <p><%= appointment.purpose %>, <%= appointment.appointment %></p>
+  <p><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
+  <p><%= appointment.title %> <%= appointment.start_datetime %> <%= appointment.end_datetime %></p>
 <% end %>
 
 <% if notice %>
