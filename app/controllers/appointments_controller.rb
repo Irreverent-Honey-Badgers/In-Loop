@@ -1,8 +1,12 @@
 class AppointmentController < ApplicationController
 
   def index
-    @appoins = Event.all
+    @appointments = Event.all
     @event = Event.new
+  end
+
+  def new
+    
   end
 
 end
