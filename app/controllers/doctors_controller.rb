@@ -3,7 +3,6 @@ class DoctorsController < ApplicationController
 
   def index
     @doctors = Doctor.all
-    # @event = Event.new
   end
 
   def show
@@ -24,6 +23,7 @@ class DoctorsController < ApplicationController
   def omniauth
     ::OmniAuth.config.path_prefix = '/doctor/auth'
     redirect_to google_oauth2_doctor_path("google_oauth2")
+    @appointments = Appointment.new
   end
 
 
