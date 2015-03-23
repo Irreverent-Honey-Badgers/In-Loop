@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+  <!-- <link href='fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
+</head>
+
+<body class="<%= controller_name %> <%= action_name %>" data-current-patient="<%= current_patient.try(:id) %>" data-current-patient-email="<%= current_patient.try(:email) %>" data-current-doctor=" <%= current_doctor.try(:id) %>" data-current-doctor-email="<%= current_doctor.try(:email)%>">
+
+<main>
+  <div class="header">
+    <header id="logo">IN LOOP</header>
+  </div>
+<%= yield %>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+ <%= javascript_include_tag "patient.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script id="patient-template" type="text/x-handlebars-template">
+  <div class="entry">
+  <h1>{{doctor_id}}</h1>
+  <div class="body">
+  <p> {{address}} {{city}} {{state}} {{zip}} </p>
+  <p> {{eta}} {{purpose}} {{appointment_time}} </p>
+  <p> {{title}} </p>
+  </div>
+  </div>
+</script>
+<script>
+  var context;
+  // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
+  //   debugger;
+  // }) TRY THIS
+  var source   = $("#patient-template").html();
+  var template = Handlebars.compile(source);
+  context;
+
+  // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
+
+  $.get('/doctors/' + 1 + '/send_appointment')
+
+  <%= current_patient.appointments %>
+
+  var html = template(context);
+  debugger;
+  $('body').append(html);
+</script>
+
+<div class="entry">
+  <h1><%#= @appointment.doctor_id %></h1>
+  <div class="body">
+    <p><%#= @appointments.address %></p>
+    <!-- <p><%= "#{@appointment.address} #{@appointment.city} #{@appointment.state} #{@appointment.zip}" %> </p> -->
+    <!-- <p><%= "#{@appointment.eta} #{@appointment.purpose} #{@appointment.appointment_time}" %> </p> -->
+  <!-- <p> {{title}} </p> -->
+  </div>
+</div>
+
+<% @appointments.each do |appointment| %>
+      <p><%= appointment.address %>, <%= appointment.city %>, <%= appointment.state %>, <%= appointment.zip %></p>
+      <p><%= appointment.purpose %>, <%= appointment.appointment %>
+      <tr>
+        <td><%= link_to 'Show', shoe %></td>
+        <td><%= link_to 'Edit', edit_shoe_path(shoe) %></td>
+        <td><%= link_to 'Destroy', shoe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+
+<p class="navbar-text pull-right">
+  <% if patient_signed_in? %>
+    Logged in as <strong><%= current_patient.email %></strong><br>
+    <%= link_to 'edit profile', edit_patient_registration_path, :class => 'navbar-link', id: "edit"%> |
+    <%= link_to "logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %>
+  <% else %>
+    <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+    <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+  <% end %>
+</p>
+
+<!-- <div id="calendar" height: "600" width: "800"></div> -->
+<div id="events"></div>
+
+
+<div id="travel">
+  <p>How are you travelling there?</p>
+  <select id="buttonDiv">
+    <option value="driving">Driving</option>
+    <option value="transit">Public transportation</option>
+    <option value="walking">Walking</option>
+  </select>
+<%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
+
+<%= button_to "Send Message", "/messages.html", method: :get %>
+</div>
+<div id="outputDiv"></div>
+
+  <p id="demo"></p>
