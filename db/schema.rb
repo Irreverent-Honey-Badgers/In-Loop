@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322221143) do
+ActiveRecord::Schema.define(version: 20150323005146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,14 @@ ActiveRecord::Schema.define(version: 20150322221143) do
     t.string   "city"
     t.string   "state"
     t.integer  "zip"
-    t.integer  "favorite"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "doctor_office"
     t.string   "eta"
-    t.text     "purpose"
-    t.datetime "appointment_time"
+    t.text     "title"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.text     "description"
   end
 
   add_index "appointments", ["doctor_id"], name: "index_appointments_on_doctor_id", using: :btree
@@ -56,15 +57,6 @@ ActiveRecord::Schema.define(version: 20150322221143) do
 
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true, using: :btree
   add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true, using: :btree
-
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "start_datetime"
-    t.datetime "end_datetime"
-    t.string   "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
 
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"

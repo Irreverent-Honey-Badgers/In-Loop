@@ -1,5 +1,5 @@
- <%= javascript_include_tag "patient.js" %>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<%#= javascript_include_tag "patient.js" %>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script id="patient-template" type="text/x-handlebars-template">
   <div class="entry">
   <h1>{{doctor_id}}</h1>
@@ -10,7 +10,7 @@
   </div>
   </div>
 </script>
-<script>
+ --><!-- <script>
   var context;
   // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
   //   debugger;
@@ -29,16 +29,8 @@
   debugger;
   $('body').append(html);
 </script>
+ -->
 
-<div class="entry">
-  <h1><%#= @appointment.doctor_id %></h1>
-  <div class="body">
-    <p><%#= @appointments.address %></p>
-    <!-- <p><%= "#{@appointment.address} #{@appointment.city} #{@appointment.state} #{@appointment.zip}" %> </p> -->
-    <!-- <p><%= "#{@appointment.eta} #{@appointment.purpose} #{@appointment.appointment_time}" %> </p> -->
-  <!-- <p> {{title}} </p> -->
-  </div>
-</div>
 
 <% @appointments.each do |appointment| %>
       <p><%= appointment.address %>, <%= appointment.city %>, <%= appointment.state %>, <%= appointment.zip %></p>
@@ -86,4 +78,16 @@
 </div>
 <div id="outputDiv"></div>
 
-  <p id="demo"></p>
+<p id="demo"></p>
+<div class="entry">
+  <h1><%#= appointment.doctor_id %></h1>
+    <% @appointments.each do |appointment| %>
+        <div class="appointment">
+          <label>Appointment Address</label>
+          <p id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
+          <label>Appointment Time</label>
+          <p id="appt_time"><%= appointment.start_datetime %></p>
+          <p id="doctor_id"><%= appointment.doctor_id %></p>
+        </div>
+    <% end %>
+</div>

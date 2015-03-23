@@ -28,10 +28,6 @@
   </tbody>
 </table>
  -->
-<br>
-
-
-<br>
 
 <head>
   <meta charset="utf-8">
@@ -44,6 +40,9 @@
 
 <body>
   <div id="calendar"></div>
+  <%#= render 'form', modal: true %>
   <br>
-<%= link_to 'New Event', new_event_path %>
+  <%= link_to 'Create Event', new_event_path, id: "create-event" %>
+  <br>
+  <!-- <button id="create-event">Create new event</button> -->
 </body>

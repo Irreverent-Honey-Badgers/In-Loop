@@ -1,5 +1,5 @@
 class DeleteEvent < ActiveRecord::Migration
   def change
-    drop_table :events
+    # drop_table :events
   end
 end

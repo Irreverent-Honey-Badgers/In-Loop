@@ -5,6 +5,8 @@ class Doctor < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :appointments
   has_many :patients, through: :appointments
+  has_many :events
+  has_many :patients, through: :events
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, did: auth.uid).first_or_create do |doctor|

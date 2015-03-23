@@ -9,8 +9,7 @@ class PatientsController < ApplicationController
     :authenticate_patient!
     @patient = Patient.find(params[:id])
     @appointments = @patient.appointments.where("start_datetime > ?", DateTime.now)
-    # @appointments = @patient.appointments[0]
-    # binding.pry
+
   end
   
   def omniauth
@@ -19,8 +18,9 @@ class PatientsController < ApplicationController
   end
 
   def eta
-    @patient = Patient.find(eta_params[:id])
-    @patient.update(eta: eta_params[:eta])
+    @appointment = Appointment.where(:patient_id => eta_params[:id], :doctor_id => eta_params[:doctor_id])
+    @appointment[0].update(eta: eta_params[:eta])
+    # binding.pry
     render nothing: true
 
     # respond_to do |format|
@@ -32,7 +32,7 @@ class PatientsController < ApplicationController
   def find_appointments
     @appointments = Appointments.where(:patient_id => params[:id])
     render json: @appointments
-    binding.pry
+    # binding.pry
   end
 
   private
@@ -42,7 +42,7 @@ class PatientsController < ApplicationController
   end
 
   def eta_params
-    params.permit(:eta, :id)
+    params.permit(:eta, :id, :doctor_id)
   end
 
 
