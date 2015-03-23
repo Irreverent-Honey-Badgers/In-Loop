@@ -1,3 +1,4 @@
+console.log('loaded bro!')
 var appointment = "";
 
 $(function() {
@@ -25,6 +26,7 @@ $(function() {
     // });
 });
 
+
 $("#chosenDoctor").on("click",function(){
   var x = $('select')[0].value;
   $("<p>").text("You Chose:" + x).attr('id','text').insertAfter('#chosenDoctor');
@@ -48,9 +50,9 @@ var doctor_id;
 
 function chosenAppt() {
   address = $(this).find("#appt_address").text()
-  console.log(address)
+  console.log(address);
   doctor_id = $(this).find("#doctor_id").text()
-  console.log(doctor_id)
+  console.log(doctor_id);
   // console.log()
   // $('body').data("chosen-doctor", $(this).find("#doctor_id").text())
   // console.log($(this).find("#doctor_id").text())
@@ -66,7 +68,6 @@ function getLocation() {
 }
 
 function showPositionInMap(position) {
-  console.log("look at me")
     // y.innerHTML = "Latitude: " + position.coords.latitude +
     // "<br>Longitude: " + position.coords.longitude;
   var geocoder = new google.maps.Geocoder();
@@ -74,13 +75,13 @@ function showPositionInMap(position) {
 
     if (status == google.maps.GeocoderStatus.OK) {
       var latitude = results[0].geometry.location.lat();
-  console.log(latitude)
+      console.log(latitude);
       var longitude = results[0].geometry.location.lng();
-  console.log(longitude)
+      console.log(longitude);
       var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  console.log(origin)
+      console.log(origin);
       var destination = new google.maps.LatLng(latitude,longitude);
-  console.log(destination)
+      console.log(destination);
       calculateDistances(origin, destination)
     } 
   }); 
