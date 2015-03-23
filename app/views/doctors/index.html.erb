@@ -12,5 +12,5 @@
   <%= render 'form' %>
   <br>
   <button id="create-event">Create new event</button>
+  <%= button_to 'En Route', @doctor, id: 'create-event', method: :get %>
 </body>
- <%= link_to 'Calendar', events_path %>
