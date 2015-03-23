@@ -10,14 +10,16 @@ class DoctorsController < ApplicationController
   end
 
   def get_patient
-    mypatients = Doctor.find(1).patients
-    @patient = mypatients.first
-    render :json => @patient
+    # binding.pry
+    @doctor = Doctor.find(params[:id])
+    @appointments = @doctor.appointments.where("start_datetime > ?", DateTime.now)
+    # mypatients = Doctor.find(params[:id]).patients
+    # @patient = mypatients
+    render :json => @appointments, include: :patient
   end
 
   def find_patient
     mypatient = Appointment.where(doctor_id: params[:id], patient_id: params[:patient_id])
-
   end
 
   def omniauth

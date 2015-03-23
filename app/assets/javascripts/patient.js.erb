@@ -32,16 +32,28 @@ $("#chosenDoctor").on("click",function(){
 });
 
 $('body').on("click","#tracking", buttonSelect)
+$('body').on("click",".appointment", chosenAppt)
 
 var transportation;
 function buttonSelect() {
   // $('#buttonDiv').attr('hidden',false);
   transportation = $('#buttonDiv').val();
   getLocation();
-
 }
 
 var y = $('#demo')[0];
+
+var address;
+var doctor_id;
+
+function chosenAppt() {
+  address = $(this).find("#appt_address").text()
+  doctor_id = $(this).find("#doctor_id").text()
+  // console.log()
+  // $('body').data("chosen-doctor", $(this).find("#doctor_id").text())
+  // console.log($(this).find("#doctor_id").text())
+}
+
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -52,11 +64,19 @@ function getLocation() {
 }
 
 function showPositionInMap(position) {
-  var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     // y.innerHTML = "Latitude: " + position.coords.latitude +
     // "<br>Longitude: " + position.coords.longitude;
-    var destination = new google.maps.LatLng(40.73941,-73.98957);
-    calculateDistances(origin, destination)
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode( { 'address': address}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      var latitude = results[0].geometry.location.lat();
+      var longitude = results[0].geometry.location.lng();
+      var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      var destination = new google.maps.LatLng(latitude,longitude);
+      calculateDistances(origin, destination)
+    } 
+  }); 
 }
 
 function determineTravelType(transportation){
@@ -94,6 +114,10 @@ function callback(response, status) {
     var outputDiv = $('#outputDiv')[0];
     outputDiv.innerHTML = '';
     outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
-    $.post('/patients/'+$('body').data("current-patient")+'/eta', {eta: results.duration.text} );
+    eventObject = { 
+      doctor_id: doctor_id,
+      eta: results.duration.text
+     }
+    $.post('/patients/'+$('body').data("current-patient")+'/eta', eventObject );
   }
 }

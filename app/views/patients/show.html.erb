@@ -30,14 +30,7 @@
   $('body').append(html);
 </script>
  -->
-<div class="entry">
-  <h1><%= @appointment.doctor_id %></h1>
-  <div class="body">
-    <p><%= "#{@appointment.address} #{@appointment.city} #{@appointment.state} #{@appointment.zip}" %> </p>
-    <p><%= "#{@appointment.eta} #{@appointment.purpose} #{@appointment.appointment_time}" %> </p>
-  <!-- <p> {{title}} </p> -->
-  </div>
-</div>
+
 
 
 <% if notice %>
@@ -76,4 +69,16 @@
 </div>
 <div id="outputDiv"></div>
 
-  <p id="demo"></p>
+<p id="demo"></p>
+<div class="entry">
+  <h1><%#= appointment.doctor_id %></h1>
+    <% @appointments.each do |appointment| %>
+        <div class="appointment">
+          <label>Appointment Address</label>
+          <p id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
+          <label>Appointment Time</label>
+          <p id="appt_time"><%= appointment.start_datetime %></p>
+          <p id="doctor_id"><%= appointment.doctor_id %></p>
+        </div>
+    <% end %>
+</div>
