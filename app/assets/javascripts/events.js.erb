@@ -24,22 +24,22 @@ $(".events.index").ready(function(){
     },
     selectable: true,
     selectHelper: true,
-    select: function(start, end) {
-      var title = prompt('Event Title:');
-      var eventData;
-      if (title) {
-        eventData = {
-          title: title,
-          start: start,
-          end: end,
-          color: 'yellow',
-          textColor: 'black'
-        };
-        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-        $.post("event/new", eventData);
-      }
-      $('#calendar').fullCalendar('unselect');
-    },
+    // select: function(start, end) {
+    //   var title = prompt('Event Title:');
+    //   var eventData;
+    //   if (title) {
+    //     eventData = {
+    //       title: title,
+    //       start: start,
+    //       end: end,
+    //       color: 'yellow',
+    //       textColor: 'black'
+    //     };
+    //     $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+    //     $.post("event/new", eventData);
+    //   }
+    //   $('#calendar').fullCalendar('unselect');
+    // },
     dayClick: function(date, jsEvent, view) {
     },
     eventClick: function (event) {
