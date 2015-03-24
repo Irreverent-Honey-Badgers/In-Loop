@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20150323005146) do
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true, using: :btree
   add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true, using: :btree
 
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.string   "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -81,4 +92,6 @@ ActiveRecord::Schema.define(version: 20150323005146) do
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree
   add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "events", "doctors"
+  add_foreign_key "events", "patients"
 end

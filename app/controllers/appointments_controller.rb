@@ -1,4 +1,4 @@
-class AppointmentController < ApplicationController
+class AppointmentsController < ApplicationController
 
   def index
     @appointments = Appointment.all
@@ -8,5 +8,10 @@ class AppointmentController < ApplicationController
   def new
     @event = Appointment.new
   end
+
+  def delete_successful_appointment
+    binding.pry
+  end
+
 
 end
