@@ -3,7 +3,7 @@ $(".doctors.index").ready(function(){
   $('#calendar').fullCalendar({
     googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
-    weekends: false,
+    // weekends: false,
     businessHours: {
       start: '09:00', // a start time (9am in this example)
       end: '17:30', // an end time (5pm in this example)
@@ -21,16 +21,18 @@ $(".doctors.index").ready(function(){
       }
     },
     eventSources: [
-    {
-      googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-      color: 'yellow',
-      textColor: 'black',
-      editable: true
-    },
-    {
-      url: 'events.json',
-      editable: true
-    }
+      {
+        googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
+        color: 'yellow',
+        textColor: 'black',
+        editable: true
+      },
+      {
+        url: '/appointments.json',
+        allDay: false,
+        editable: true,
+        color: 'red'
+      }
     ],
     dayClick: function(date, jsEvent, view) {
       alert('Clicked on: ' + date.format());

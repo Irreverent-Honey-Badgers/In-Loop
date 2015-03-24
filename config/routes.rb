@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post '/find_patient/:patient_id' => 'doctors#find_patient', as: 'find_patient'
     end
   end
+  resources :appointments
 
   # The priority is based upon order of creatio first created -> highest priority.
   # See how all your routes lay out with "rake routes".
