@@ -11,6 +11,7 @@
   </div>
 </script>
  -->
+<<<<<<< HEAD
 
 <!-- //   var context;
 //   // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
@@ -30,6 +31,28 @@
 //   debugger;
 //   $('body').append(html); -->
 
+=======
+<!-- <script>
+  var context;
+  // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
+  //   debugger;
+  // }) TRY THIS
+  var source   = $("#patient-template").html();
+  var template = Handlebars.compile(source);
+  context;
+
+  // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
+
+  $.get('/doctors/' + 1 + '/send_appointment')
+
+  <%= current_patient.appointments %>
+
+  var html = template(context);
+  debugger;
+  $('body').append(html);
+</script>
+ -->
+>>>>>>> 71d7cfb821b5c0dbfef6220c14bdf2781c68c07d
 
 
 <br>
@@ -55,6 +78,11 @@
   <% end %>
 </p>
 
+<<<<<<< HEAD
+=======
+<div id="calendar" height: "600" width: "800"></div>
+<br>
+>>>>>>> 71d7cfb821b5c0dbfef6220c14bdf2781c68c07d
 <br>
 <div id="events"></div>
 
