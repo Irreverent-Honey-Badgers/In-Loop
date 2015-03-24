@@ -63,6 +63,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def delete_successful_appointment
+    binding.pry
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment
@@ -73,4 +77,5 @@ class AppointmentsController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:title, :start_datetime, :end_datetime, :description)
     end
+>>>>>>> 71d7cfb821b5c0dbfef6220c14bdf2781c68c07d
 end

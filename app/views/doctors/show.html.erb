@@ -19,46 +19,31 @@
   <% end %>
 </p>
 
-<table class="tg">
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
+<h1> Checked In </h1>
+<table class="checkedIn">
 </table>
 
 <h1> En Route </h1>
 <table class="enRoute">
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
 </table>
 
 <h1> Later Appointments </h1>
 <table class="laterAppt">
 </table>
 
+<h1> Completed </h1>
+<table class="Completed">
+</table>
+
 <%= link_to 'Calendar', doctors_path %>
 
 <script>
 $(function(){
+
   var m = function(){
+    $('.enRoute').on('click','#arrived_checkbox',changeToCheckedIn)
+
+
     $.get('/doctors/' + '<%= current_doctor.id %>' + '/get_patient').done(function(data){
       console.log("mooo");
     var descripRow = $('<tr>').attr('id', 'descripRow');
@@ -76,7 +61,7 @@ $(function(){
       $('.enRoute').append(enRouteObject);
       $('.laterAppt').append(descripObject);
       data.forEach(function(element, index, array){
-        var patientAppt = $('<tr>').attr('id', 'patientAppt');
+        var patientAppt = $('<tr>').attr('id', 'patientAppt').data('patient-id', element.patient.id);
           var start_datetime = $('<td>').attr('id', 'start_datetime').text(element.start_datetime);
           var name = $('<td>').attr('id', 'name').text(element.patient.first_name + ' ' + element.patient.last_name);
           var title = $('<td>').attr('id', 'purpose').text(element.title);
@@ -85,7 +70,7 @@ $(function(){
           if (element.eta != null) {
             $('.enRoute').append(patientObject);
             var eta = $('<td>').attr('id', 'eta').text(element.eta);
-            var checkbox = $('<input>').attr("id","checkbox").attr("type","checkbox");
+            var checkbox = $('<input>').attr("id","arrived_checkbox").attr("type","checkbox");
             patientObject.append(eta).append(checkbox).append(checkbox);
           }
           else {
@@ -96,7 +81,23 @@ $(function(){
   $('.enRoute').empty();
   $('.laterAppt').empty();
   };
-  setInterval(m,2500);
+
+  function changeToCheckedIn(){
+    var patientObject = $(this).parent();
+    $('.checkedIn').append(patientObject);
+    $.ajax({
+      url: '/doctors/' + <%= current_doctor.id %> + '/appointments/patient/' + $(this).parent().data().patientId,
+      type: 'DELETE',
+      success: function() {
+        $(this).remove();
+      }
+    });
+
+  }
+
+
+
+  setInterval(m,5000);
 });
 
 
