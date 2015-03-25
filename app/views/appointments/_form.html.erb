@@ -1,19 +1,19 @@
-<% modal ||= false %>
-<% remote = modal ? true : false %>
-<%= form_for(@appointment, remote: remote, html: {role: :form, 'data-model' => 'appointment'}) do |f| %>
-  <% if @appointment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+<%# modal ||= false %>
+<%# remote = modal ? true : false %>
+<%= form_for(@appointment) do |f| %>
 
-      <ul>
-      <% @appointment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<br>
+<br>
+<br>
   <div id="dialog-form" title="Create new appointment">
+    <div class="field">
+      <%= f.label :doctor_id %><br>
+      <%= f.text_field :doctor_id, class: "text ui-widget-content ui-corner-all" %>
+    </div>
+    <div class="field">
+      <%= f.label :doctor_office %><br>
+      <%= f.text_field :doctor_office, class: "text ui-widget-content ui-corner-all" %>
+    </div>
     <div class="field">
       <%= f.label :title %><br>
       <%= f.text_field :title, class: "text ui-widget-content ui-corner-all" %>
@@ -26,6 +26,7 @@
       <%= f.label :end %><br>
       <%= f.datetime_select :end, class: "text ui-widget-content ui-corner-all" %>
     </div>
+  
     <div class="field">
       <%= f.label :description %><br>
       <%= f.text_field :description, class: "text ui-widget-content ui-corner-all" %>
@@ -35,3 +36,4 @@
     </div>
   </div>
 <% end %>
+

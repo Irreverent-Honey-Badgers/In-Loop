@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-readyselector
+//= require materialize
+//= require init
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal

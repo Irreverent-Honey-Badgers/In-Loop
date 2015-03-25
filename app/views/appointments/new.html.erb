@@ -1,5 +1,3 @@
 <h1>New Appointment</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', appointments_path %>
+<%= render partial: "form", locals: {appointment: @appointment} %>

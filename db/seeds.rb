@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Event.create(title: 'test 1', start_datetime: '2015-03-23 12:30:00', end_datetime: '2015-03-23 13:30:00', description: 'this should show up on the calendar')
+# Event.create(title: 'test 1', start: '2015-03-23 12:30:00', end_datetime: '2015-03-23 13:30:00', description: 'this should show up on the calendar')
 
 # Appointment.create(patient_id: 1, doctor_id: 1, address: '61 West 23rd Street', city: 'New York', state: 'New York', zip: 10011, title: 'Sore Tooth', start: '2015-03-29 10:00:00', end: '2015-03-29 11:00:00')
 # Appointment.create(patient_id: 1, doctor_id: 2, address: '625 Avenue of the Americas', city: 'New York', state: 'New York', zip: 10010, title: 'Stomach Ache', start: '2015-03-29 10:00:00', end: '2015-03-29 11:00:00')

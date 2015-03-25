@@ -31,9 +31,13 @@ Rails.application.routes.draw do
       get '/get_patient' => 'doctors#get_patient', as: 'get_patient'
       post '/send_appointment' => 'doctors#send_appointment',as: 'send_appointment'
       post '/find_patient/:patient_id' => 'doctors#find_patient', as: 'find_patient'
+      get '/appointments' => 'appointments#index', as: 'appointments'
+      post '/create_appointment' => 'appointments#create', as: 'create_appointment'
+      get '/new_appointment' => 'appointments#new', as: 'new_appointment'
     end
   end
-  resources :appointments
+  # resources :appointments, only: [:index, :new, :create], path: '/doctors/appointments'
+  # resources :appointments, path: '/doctors/:id/appointments'
 
   # The priority is based upon order of creatio first created -> highest priority.
   # See how all your routes lay out with "rake routes".

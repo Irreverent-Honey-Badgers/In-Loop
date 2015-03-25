@@ -13,6 +13,9 @@
   <br>
   <%#= render 'form', modal: true %>
   <br>
-  <button id="create-event">Create new event</button>
-  <%#= button_to 'En Route', @doctor, id: 'create-event', method: :get %>
+  <!-- <button id="create-event">Create new appointment</button> -->
+  <br>
+  <%= button_to 'Create Appointment', create_appointment_doctor_path(current_doctor[:id]), id: 'create-event', method: :get %>
+  <br>
+  <%= button_to 'En Route', doctors_path, id: 'create-event', method: :get %>
 </body>
