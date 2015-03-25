@@ -220,14 +220,14 @@
     function changeToCheckedIn(){
       var patientObject = $(this).parent();
       $('.checkedIn').append(patientObject);
-      $(this).remove();
-      // $.ajax({
-      //   url: '/doctors/' + <%= current_doctor.id %> + '/appointments/patient/' + $(this).parent().data().patientId,
-      //   type: 'DELETE',
-      //   success: function() {
-      //     $(this).remove();
-      //   }
-      // });
+      // $(this).remove();
+      $.ajax({
+        url: '/doctors/' + <%= current_doctor.id %> + '/appointments/patient/' + $(this).parent().data().patientId,
+        type: 'DELETE',
+        success: function() {
+          $(this).remove();
+        }
+      });
     }
     setInterval(m,5000);
 
