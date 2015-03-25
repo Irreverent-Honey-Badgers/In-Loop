@@ -63,6 +63,12 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def delete_successful_appointment
+    @appointment = Appointment.where(:patient_id => params[:patient_id], :doctor_id => params[:doctor_id])
+    @appointment[0].destroy
+    redirect_to doctor_path(params[:doctor_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_appointment

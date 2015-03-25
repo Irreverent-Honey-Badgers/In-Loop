@@ -10,7 +10,6 @@ class DoctorsController < ApplicationController
   end
 
   def get_patient
-    # binding.pry
     @doctor = Doctor.find(params[:id])
     @appointments = @doctor.appointments.where("start > ?", DateTime.now)
     # mypatients = Doctor.find(params[:id]).patients

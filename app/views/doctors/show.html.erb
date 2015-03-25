@@ -19,49 +19,29 @@
   <% end %>
 </p>
 
-<table class="tg">
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
+<h1> Checked In </h1>
+<table class="checkedIn">
 </table>
 
 <h1> En Route </h1>
 <table class="enRoute">
-  <tr>
-    <td class="tg-031e">Appt.</td>
-    <td class="tg-031e">Time In.</td>
-    <td class="tg-031e">Patient Name</td>
-    <td class="tg-031e">Doctor</td>
-    <td class="tg-031e">Purpose</td>
-    <td class="tg-031e">Seen?</td>
-  </tr>
 </table>
 
 <h1> Later Appointments </h1>
 <table class="laterAppt">
 </table>
 
-<%#= button_to 'Calendar', doctors_path, method: :get %>
+<h1> Completed </h1>
+<table class="Completed">
+</table>
 
+<%#= link_to 'Calendar', doctors_path %>
 
 
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/> -->
   <title></title>
 
   <!-- CSS  -->
@@ -69,11 +49,10 @@
   <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 </head>
 <body>
-  <nav class="red accent-3" role="navigation">
+<!--   <nav class="red accent-3" role="navigation">
     <div class="container">
       <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo">
       IN-LOOP</a>
-      <!-- <img src="in loop logo.png"> -->
         <ul class="right">
           <li><a href="#">View</a></li>
           <li><a href="#">Calendar</a></li>
@@ -89,26 +68,12 @@
       </div>
     </div>
   </nav>
-<!--   <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center red-text">Blah Blah Stuff</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Whatever</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light red">Click this</a>
-      </div>
-      <br><br>
-
-    </div>
-  </div>
  -->
 
-  <div class="container">
+<!--   <div class="container">
     <div class="row">
       <div class="col s8">
-        <table class="hoverable">
+        <table class="hoverable checkedIn">
           <h5 class="header center red-text">Current Waiting List</h5>
           <thead>
             <tr>
@@ -138,7 +103,7 @@
         </table>
       </div>
       <div class="col s4">
-        <table class="hoverable">
+        <table class="hoverable Completed">
           <h5 class="header left red-text">Seen Today</h5>
           <thead>
             <tr>
@@ -171,7 +136,7 @@
     <br>
     <div class="row">
       <div class="col s8">
-        <table class="hoverable">
+        <table class="hoverable enRoute">
           <h5 class="header center red-text">Currently Arriving List with ETA</h5>
           <thead>
             <tr>
@@ -232,7 +197,7 @@
       </div>
     </div>
   </div>
-  <footer class="page-footer red">
+ --><!--   <footer class="page-footer red">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -268,19 +233,80 @@
       </div>
     </div>
   </footer>
-
+ -->
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   <!-- <script src="js/materialize.js"></script> -->
   <!-- <script src="js/init.js"></script> -->
 </body>
 
 
-
-
-
 <script>
+  $(function(){
+
+    var m = function(){
+      $('.enRoute').on('click','#arrived_checkbox',changeToCheckedIn)
+
+
+      $.get('/doctors/' + '<%= current_doctor.id %>' + '/get_patient').done(function(data){
+        console.log("mooo");
+      var descripRow = $('<tr>').attr('id', 'descripRow');
+        var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
+        var appt = $('<td>').attr('id', 'appt').text("Appt");
+        var patientName = $('<td>').attr('id', 'name').text("Name");
+        var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
+        var appt2 = $('<td>').attr('id', 'appt').text("Appt");
+        var patientName2 = $('<td>').attr('id', 'name').text("Name");
+        var purpose2 = $('<td>').attr('id', 'purpose').text("Purpose");
+        var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
+        var descripObject = descripRow.append(appt).append(patientName).append(purpose);
+        var eta = $('<td>').attr('id', 'eta').text("ETA");
+        var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
+        $('.enRoute').append(enRouteObject);
+        $('.laterAppt').append(descripObject);
+        data.forEach(function(element, index, array){
+          var patientAppt = $('<tr>').attr('id', 'patientAppt').data('patient-id', element.patient.id);
+            var start = $('<td>').attr('id', 'start').text(element.start);
+            var name = $('<td>').attr('id', 'name').text(element.patient.first_name + ' ' + element.patient.last_name);
+            var title = $('<td>').attr('id', 'purpose').text(element.title);
+            var patientObject = patientAppt.append(start).append(name).append(title);
+        // debugger;
+            if (element.eta != null) {
+              $('.enRoute').append(patientObject);
+              var eta = $('<td>').attr('id', 'eta').text(element.eta);
+              var checkbox = $('<input>').attr("id","arrived_checkbox").attr("type","checkbox");
+              patientObject.append(eta).append(checkbox).append(checkbox);
+            }
+            else {
+              $('.laterAppt').append(patientObject);
+            }
+          });
+      });
+    $('.enRoute').empty();
+    $('.laterAppt').empty();
+    };
+
+    function changeToCheckedIn(){
+      var patientObject = $(this).parent();
+      $('.checkedIn').append(patientObject);
+      $.ajax({
+        url: '/doctors/' + <%= current_doctor.id %> + '/appointments/patient/' + $(this).parent().data().patientId,
+        type: 'DELETE',
+        success: function() {
+          $(this).remove();
+        }
+      });
+
+    }
+
+
+
+    setInterval(m,5000);
+  });
+</script>
+
+<!-- <script>
   $(function(){
     var m = function(){
       $.get('/doctors/' + '<%= current_doctor.id %>' + '/get_patient').done(function(data){
@@ -323,3 +349,4 @@
     setInterval(m,2500);
   });
 </script>
+ -->

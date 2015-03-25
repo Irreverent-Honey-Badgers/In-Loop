@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     end
   end
   resources :doctors, only: [:index, :show] do
+    resources :appointments do
+      collection do
+        delete '/patient/:patient_id' => 'appointments#delete_successful_appointment', as: :'delete_successful_appointment'
+      end
+    end
     collection do
       get 'doctor' => 'doctors#omniauth', as: 'd_omniauth'
     end

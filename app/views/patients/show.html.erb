@@ -11,28 +11,29 @@
   </div>
 </script>
  -->
-<!-- <script>
-  var context;
-  // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
-  //   debugger;
-  // }) TRY THIS
-  var source   = $("#patient-template").html();
-  var template = Handlebars.compile(source);
-  context;
 
-  // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
-
-  $.get('/doctors/' + 1 + '/send_appointment')
-
-  <%= current_patient.appointments %>
-
-  var html = template(context);
-  debugger;
-  $('body').append(html);
-</script>
- -->
+<!-- //   var context;
+//   // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
+//   //   debugger;
+//   // }) TRY THIS
+//   var source   = $("#patient-template").html();
+//   var template = Handlebars.compile(source);
+//   context;
+//
+//   // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
+//
+//   $.get('/doctors/' + 1 + '/send_appointment')
+//
+//   <%= current_patient.appointments %>
+//
+//   var html = template(context);
+//   debugger;
+//   $('body').append(html); -->
 
 
+<br>
+<br>
+<br>
 
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -53,16 +54,26 @@
   <% end %>
 </p>
 
-<div id="calendar" height: "600" width: "800"></div>
-<br>
 <br>
 <div id="events"></div>
-<br>
-<br>
-<br>
+
+<div class="entry">
+  <% @appointments.each do |appointment| %>
+  <div class="appointment" data-doctor-id = "<%= appointment.doctor_id %>">
+    <label>Doctor Name</label>
+    <p id="appt_name"><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></p>
+    <label>Appointment Address</label>
+    <p id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
+    <label>Appointment Time</label>
+    <p id="appt_time"><%= appointment.start %></p>
+    <label>Purpse</label>
+    <p id="appt_purpose"><%= appointment.title %></p>
+  </div>
+  <% end %>
+</div>
 <br>
 <div id="travel">
-  <p>How are you travelling there?</p>
+  <p id="p_travel">How are you travelling there?</p>
   <select id="buttonDiv">
     <option value="driving">Driving</option>
     <option value="transit">Public transportation</option>
@@ -70,13 +81,14 @@
   </select>
   <br>
   <br>
-<%= button_to "Start my paperwork, I'm leaving now", '#', method: :get, id: "tracking" %>
+<%= button_to "  On My Way  ", '#', method: :get, id: "tracking" %>
   <br>
-<%= button_to "Send Message", "/messages.html", method: :get %>
+<%= button_to "  Send Message  ", "/messages.html", method: :get, id: "send_message" %>
 </div>
 <div id="outputDiv"></div>
 
 <p id="demo"></p>
+<<<<<<< HEAD
 <div class="entry">
   <h1><%#= appointment.doctor_id %></h1>
     <% @appointments.each do |appointment| %>
@@ -89,3 +101,5 @@
         </div>
     <% end %>
 </div>
+=======
+>>>>>>> 9f8344a886e6d6336ca5561964cefe723d1721a0
