@@ -13,14 +13,11 @@
       <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#">View</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><%= link_to "Logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
         </ul>
 
         <ul id="mobile-demo" class="side-nav">
           <li><a href="#">View</a></li>
-          <li><a href="#">Calendar</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
       </div>
@@ -40,75 +37,70 @@
   <%# end %>
 <!-- </p> -->
 
-<br>
 <div id="events"></div>
 
-  <div class="container">
-    <div class="row">
-      <div class="entry col s12">
-        <table class="hoverable">
-          <h5 class="header center white-text">Appointments</h5>
-          <thead>
-            <tr>
-              <th data-field="Doctor Name">Doctor Name</th>
-              <th data-field="Appointment Address">Appointment Address</th>
-              <th data-field="Appointment Time">Appointment Time</th>
-              <th data-field="Purpose">Purpose</th>
-            </tr>
-          </thead>
+<div class="container">
+  <div class="row">
+    <div class="entry col s12">
+      <table class="hoverable">
+        <h5 class="header center black-text">Appointments</h5>
+        <thead>
+          <tr>
+            <th data-field="Doctor Name">Doctor Name</th>
+            <th data-field="Appointment Address">Appointment Address</th>
+            <th data-field="Appointment Time">Appointment Time</th>
+            <th data-field="Purpose">Purpose</th>
+          </tr>
+        </thead>
 
-          <tbody>
-          <% @appointments.each do |appointment| %>
-            <tr class="appointment" data-doctor-id = "<%= appointment.doctor_id %>">
+        <tbody>
+        <% @appointments.each do |appointment| %>
+          <tr class="appointment" data-doctor-id = "<%= appointment.doctor_id %>">
 
-                  <td id="appt_name"><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></td>
-                  <td id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></td>
-                  <td id="appt_time"><%= appointment.start %></td>
-                  <td id="appt_purpose"><%= appointment.title %></td>
+                <td id="appt_name"><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></td>
+                <td id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></td>
+                <td id="appt_time"><%= appointment.start %></td>
+                <td id="appt_purpose"><%= appointment.title %></td>
 
-            </tr>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
+          </tr>
+            <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-<%= link_to "  On My Way  ", '#', id: "tracking", class: "btn-large waves-effect waves-light red" %>
-  <br>
-<%= link_to "  Send Message  ", "/messages.html", id: "send_message", class: "btn-large waves-effect waves-light red" %>
 </div>
-<br><br><br>
-<table>
-  <thead>
-    <tr>
-      <th>Current Location & ETA</th>
-    </tr>
-    <tbody>
-      <tr>
-        <td id="outputDiv"></td>
-      </tr>
-    </tbody>
-  </thead>
-</table>
-<tr ></tr>
 
+<div class="container">
+  <div class="row">
+    <div class="col s3 offset-s3">
+    <%= link_to "  On My Way  ", '#', id: "tracking", class: "btn-large waves-effect waves-light red" %>
+    </div>
+    <div class="col s3">
+    <%= link_to "  Send Message  ", "/messages.html", id: "send_message", class: "btn-large waves-effect waves-light red" %>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="entry col s12">
+      <table class="hoverable">
+        <thead>
+          <tr>
+            <th>Current Location & ETA</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td id="outputDiv"></td>
+            </tr>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
 <p id="demo"></p>
 
-
-
-<!-- <div class="entry">
-  <table>
-    <tr>
-      <td>Doctor Name</td>
-      <td>Appointment Address</td>
-      <td>Appointment Time</td>
-      <td>Purpose</td>
-      <td>Doctor Name</td>
-    </tr>
-  </table>
-</div>
- -->
-<br>
 
 <div id="travel">
   <select id="buttonDiv">
@@ -117,5 +109,20 @@
     <option value="walking">Walking</option>
   </select>
 </div>
-
+<br><br>
+<footer class="page-footer blue darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l12 s12">
+        <h5 class="white-text">In-Loop Bio</h5>
+        <p class="grey-text text-lighten-4">An appointment based application for healthcare providers that allows them to anticipate the estimated time of arrival of individual patients with same day appointments. It allows patients to display their ETA prior to their appointment , hence confirming their visit, which allows healthcare providers to improve patient experience and operational efficiency with better clinical workflow and help reduce check-in time and waiting time drastically.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+    </div>
+  </div>
+</footer>
 
