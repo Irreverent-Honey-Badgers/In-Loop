@@ -7,12 +7,12 @@ $(".doctors.index").ready(function(){
     weekends: false,
     businessHours: {
       start: '09:00', // a start time (9am in this example)
-      end: '17:30', // an end time (5pm in this example)
+      end: '17:00', // an end time (5pm in this example)
       dow: [ 1, 2, 3, 4, 5]
       // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-    height: 650,
+    height: 400,
     defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
@@ -25,12 +25,14 @@ $(".doctors.index").ready(function(){
       {
         googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
         color: 'blue',
+        textFont: 20,
         textColor: 'white',
         editable: true
       },
       {
         url: '/doctors/:id/appointments',
         allDay: false,
+        textFont: 20,
         // timezone: false,
         editable: true,
         color: 'red'

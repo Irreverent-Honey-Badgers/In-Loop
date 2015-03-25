@@ -94,8 +94,8 @@ function callback(response, status) {
     var destinations = response.destinationAddresses;
     var results = response.rows[0].elements[0];
     console.log("cat")
+    debugger;
     var outputDiv = $('#outputDiv')[0];
-    outputDiv.innerHTML = '';
     outputDiv.innerHTML = origins + ' to ' + destinations + ': ' + results.distance.text + ' in ' + results.duration.text + '<br>';
     eventObject = {
       doctor_id: doctor_id,

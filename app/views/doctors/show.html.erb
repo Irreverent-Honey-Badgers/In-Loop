@@ -55,7 +55,7 @@
 </table>
 
 
-  <div class="container">
+<!--   <div class="container">
     <div class="row">
       <div class="col s8">
         <table class="hoverable checkedIn">
@@ -69,16 +69,6 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
             <tr>
               <td>Input</td>
               <td>Input</td>
@@ -104,16 +94,6 @@
               <td>Input</td>
               <td>Input</td>
             </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -132,17 +112,7 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-            <tr>
+            <tr id="">
               <td>Input</td>
               <td>Input</td>
               <td>Input</td>
@@ -167,22 +137,13 @@
               <td>Input</td>
               <td>Input</td>
             </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <footer class="page-footer red">
+ -->
+  <footer class="page-footer blue darken-3">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -214,7 +175,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="red-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
   </footer>
@@ -275,56 +236,9 @@
           $(this).remove();
         }
       });
-
     }
-
-
-
     setInterval(m,5000);
-  });
-</script>
 
-<script>
-  $(function(){
-    var m = function(){
-      $.get('/doctors/' + '<%= current_doctor.id %>' + '/get_patient').done(function(data){
-        console.log("mooo");
-      var descripRow = $('<tr>').attr('id', 'descripRow');
-        var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
-        var appt = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName = $('<td>').attr('id', 'name').text("Name");
-        var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
-        var appt2 = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName2 = $('<td>').attr('id', 'name').text("Name");
-        var purpose2 = $('<td>').attr('id', 'purpose').text("Purpose");
-        var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
-        var descripObject = descripRow.append(appt).append(patientName).append(purpose);
-        var eta = $('<td>').attr('id', 'eta').text("ETA");
-        var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
-        $('.enRoute').append(enRouteObject);
-        $('.laterAppt').append(descripObject);
-        data.forEach(function(element, index, array){
-          var patientAppt = $('<tr>').attr('id', 'patientAppt');
-            var start = $('<td>').attr('id', 'start').text(element.start);
-            var name = $('<td>').attr('id', 'name').text(element.patient.first_name + ' ' + element.patient.last_name);
-            var title = $('<td>').attr('id', 'purpose').text(element.title);
-            var patientObject = patientAppt.append(start).append(name).append(title);
-        // debugger;
-            if (element.eta != null) {
-              $('.enRoute').append(patientObject);
-              var eta = $('<td>').attr('id', 'eta').text(element.eta);
-              var checkbox = $('<input>').attr("id","checkbox").attr("type","checkbox");
-              patientObject.append(eta).append(checkbox).append(checkbox);
-            }
-            else {
-              $('.laterAppt').append(patientObject);
-            }
-          });
-      });
-    $('.enRoute').empty();
-    $('.laterAppt').empty();
-    };
-    setInterval(m,2500);
   });
 </script>
 
