@@ -49,10 +49,10 @@ body, nav, div, span, article, p, ul, li, a {
   border: 1px solid #D30006;
 }
 
-.application  {
+.responsive-img  {
   // background-image: url("http://i1.wp.com/www.qasimnaqvi.me/wp-content/uploads/2015/03/Screen-Shot-2015-03-24-at-7.00.34-PM.png");
   // background-size: cover;
-  background: radial-gradient(#bbdefb , #2196f3 , #0d47a1 );
+  // background: radial-gradient(#bbdefb , #2196f3 , #0d47a1 );
 }
 
 body {
@@ -60,6 +60,9 @@ body {
   background-size: cover;
 }
 
+.application {
+  background: radial-gradient(#bbdefb , #2196f3 , #0d47a1 )
+}
 #p_travel {
   color: white;
   text-align: center;
@@ -74,50 +77,6 @@ body {
   // position: absolute;
   // left: 100px;
   // top: 150px;
-}
-
-.patient_button {
-  position: fixed;
-  top: 37rem;
-  left: 15rem;
-  -moz-box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  -webkit-box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  background-color:#eceeec ;
-  -moz-border-radius:4px;
-  -webkit-border-radius:4px;
-  border-radius:4px;
-  border:1px solid #ffffff ;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff ;
-  font-family:arial;
-  font-size: 5rem;
-  padding:7px 20px;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #b23e35 ;
-}
-
-.doctor_button {
-  position: fixed;
-  top: 37rem;
-  right: 15rem;
-  -moz-box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  -webkit-box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  box-shadow:inset 0px 39px 0px -24px #eceeec ;
-  background-color:#eceeec ;
-  -moz-border-radius:4px;
-  -webkit-border-radius:4px;
-  border-radius:4px;
-  border:1px solid #ffffff ;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff ;
-  font-family:arial;
-  font-size:15px;
-  padding:7px 20px;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #b23e35 ;
 }
 
 #travel{
