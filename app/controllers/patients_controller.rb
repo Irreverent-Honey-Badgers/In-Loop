@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
   def show
     :authenticate_patient!
     @patient = Patient.find(params[:id])
-    @appointments = @patient.appointments.where("start_datetime > ?", DateTime.now)
+    @appointments = @patient.appointments.where("start > ?", DateTime.now)
   end
 
   def omniauth

@@ -62,10 +62,10 @@ $(function(){
       $('.laterAppt').append(descripObject);
       data.forEach(function(element, index, array){
         var patientAppt = $('<tr>').attr('id', 'patientAppt').data('patient-id', element.patient.id);
-          var start_datetime = $('<td>').attr('id', 'start_datetime').text(element.start_datetime);
+          var start = $('<td>').attr('id', 'start').text(element.start);
           var name = $('<td>').attr('id', 'name').text(element.patient.first_name + ' ' + element.patient.last_name);
           var title = $('<td>').attr('id', 'purpose').text(element.title);
-          var patientObject = patientAppt.append(start_datetime).append(name).append(title);
+          var patientObject = patientAppt.append(start).append(name).append(title);
       // debugger;
           if (element.eta != null) {
             $('.enRoute').append(patientObject);

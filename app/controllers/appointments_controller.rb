@@ -64,7 +64,9 @@ class AppointmentsController < ApplicationController
   end
 
   def delete_successful_appointment
-    binding.pry
+    @appointment = Appointment.where(:patient_id => params[:patient_id], :doctor_id => params[:doctor_id])
+    @appointment[0].destroy
+    redirect_to doctor_path(params[:doctor_id])
   end
 
   private
@@ -77,5 +79,4 @@ class AppointmentsController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:title, :start_datetime, :end_datetime, :description)
     end
->>>>>>> 71d7cfb821b5c0dbfef6220c14bdf2781c68c07d
 end
