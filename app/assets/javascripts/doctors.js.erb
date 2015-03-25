@@ -23,13 +23,14 @@ $(".doctors.index").ready(function(){
     eventSources: [
       {
         googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
-        color: 'yellow',
-        textColor: 'black',
+        color: 'blue',
+        textColor: 'white',
         editable: true
       },
       {
-        url: '/appointments.json',
+        url: '/doctors/:id/appointments',
         allDay: false,
+        // timezone: false,
         editable: true,
         color: 'red'
       }
