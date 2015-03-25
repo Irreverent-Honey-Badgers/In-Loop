@@ -10,9 +10,8 @@ class DoctorsController < ApplicationController
   end
 
   def get_patient
-    # binding.pry
     @doctor = Doctor.find(params[:id])
-    @appointments = @doctor.appointments.where("start_datetime > ?", DateTime.now)
+    @appointments = @doctor.appointments.where("start > ?", DateTime.now)
     # mypatients = Doctor.find(params[:id]).patients
     # @patient = mypatients
     render :json => @appointments, include: :patient

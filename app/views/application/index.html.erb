@@ -1,4 +1,2 @@
-<h1> </h1><br><br><br><br>
-<%= button_to "Patient", p_omniauth_patients_path, method: :get %>
-<br>
-<%= button_to "Doctor", d_omniauth_doctors_path, method: :get %>
+<%= button_to " I'm a Patient ", p_omniauth_patients_path, method: :get, form_class: "patient_button"%>
+<%= button_to " I'm a Provider ", d_omniauth_doctors_path, method: :get, form_class: "doctor_button" %>
