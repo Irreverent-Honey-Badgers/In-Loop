@@ -1,23 +1,24 @@
-<div class="navbar-fixed">
-  <nav class="blue darken-3" role="navigation">
-    <div class="container">
-      <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#">View</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
+  <div class="navbar-fixed">
+    <nav class="blue darken-3" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
+            <li><%= link_to 'Calendar', doctors_path %></li>
+            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+          </ul>
 
-        <ul id="mobile-demo" class="side-nav">
-          <li><a href="#">View</a></li>
-          <li><a href="#">Calendar</a></li>
-          <li><a href="#">Logout</a></li>
-        </ul>
+          <ul id="nav-mobile" class="side-nav">
+            <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
+            <li><%= link_to 'Calendar', doctors_path %></li>
+            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-</div>
+    </nav>
+  </div>
+
 <br><br><br>
 <div id="calendar"></div>
 <br><br>
