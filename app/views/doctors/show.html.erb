@@ -173,6 +173,8 @@
         console.log("mooo");
       var descripRow = $('<tr>').attr('id', 'descripRow');
         var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
+        var checkedInRow = $('<tr>').attr('id', 'checkedInRow');
+        var completedRow = $('<tr>').attr('id', 'completedRow');
         var appt = $('<td>').attr('id', 'appt').text("Appt");
         var patientName = $('<td>').attr('id', 'name').text("Name");
         var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
@@ -182,9 +184,20 @@
         var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
         var descripObject = descripRow.append(appt).append(patientName).append(purpose);
         var eta = $('<td>').attr('id', 'eta').text("ETA");
+        var appt3 = $('<td>').attr('id', 'appt3').text("Appt");
+        var patientName3 = $('<td>').attr('id', 'name3').text("Name");
+        var purpose3 = $('<td>').attr('id', 'purpose3').text("Purpose");
+        var checkbox3 = $('<td>').attr('id', 'checkbox3').text("Checkbox");
+        var appt4 = $('<td>').attr('id', 'appt4').text("Appt");
+        var patientName4 = $('<td>').attr('id', 'name4').text("Name");
+        var purpose4 = $('<td>').attr('id', 'purpose4').text("Purpose");
         var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
+        var checkedIn= checkedInRow.append(appt3).append(patientName3).append(purpose3).append(checkbox3);
+        var completed= completedRow.append(appt4).append(patientName4).append(purpose4);
         $('.enRoute').append(enRouteObject);
         $('.laterAppt').append(descripObject);
+        $('.checkedIn').append(checkedIn);
+        $('.Completed').append(completed);
         data.forEach(function(element, index, array){
           var patientAppt = $('<tr>').attr('id', 'patientAppt').data('patient-id', element.patient.id);
             var start = $('<td>').attr('id', 'start').text(element.start);
@@ -196,7 +209,8 @@
               $('.enRoute').append(patientObject);
               var eta = $('<td>').attr('id', 'eta').text(element.eta);
               var checkbox = $('<input>').attr("id","arrived_checkbox").attr("type","checkbox");
-              patientObject.append(eta).append(checkbox).append(checkbox);
+              patientObject.append(eta).append(checkbox);
+              debugger;
             }
             else {
               $('.laterAppt').append(patientObject);
@@ -205,6 +219,8 @@
       });
     $('.enRoute').empty();
     $('.laterAppt').empty();
+    $('.checkedIn').empty();
+    $('.Completed').empty();
     };
 
     function changeToCheckedIn(){
@@ -222,4 +238,3 @@
 
   });
 </script>
-
