@@ -38,7 +38,22 @@ div#users-contain table td, div#users-contain table th {
   font-size: 12px;
 }
 
+#arrived_checkbox{
+  width: 3rem;
+  background-color: green;
+}
 #arrived_checkbox {
   width: 1rem;
-
+}
+.checkedIn {
+  font-size: 14px;
+}
+.enRoute {
+  font-size: 14px;
+}
+.laterAppt {
+  font-size: 14px;
+}
+.Completed {
+  font-size: 14px;
 }
