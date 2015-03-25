@@ -1,39 +1,4 @@
 <%= javascript_include_tag "patient.js" %>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script> -->
-<!-- <script id="patient-template" type="text/x-handlebars-template">
-  <div class="entry">
-  <h1>{{doctor_id}}</h1>
-  <div class="body">
-  <p> {{address}} {{city}} {{state}} {{zip}} </p>
-  <p> {{eta}} {{purpose}} {{appointment_time}} </p>
-  <p> {{title}} </p>
-  </div>
-  </div>
-</script>
- -->
-
-<!-- //   var context;
-//   // $.get('/patients/'+$('body').data("current-patient")+'/find_appointments').done(function(data){
-//   //   debugger;
-//   // }) TRY THIS
-//   var source   = $("#patient-template").html();
-//   var template = Handlebars.compile(source);
-//   context;
-//
-//   // NOEL, this script parses take a Javascript object and render it on the DOM. on this page there is <%= current_patient.appointments %>, or you can do an ajax call. I set up a route for you it is called get '/find_appointments' => 'patients#find_appointments',as: :'find_appointments'
-//
-//   $.get('/doctors/' + 1 + '/send_appointment')
-//
-//   <%= current_patient.appointments %>
-//
-//   var html = template(context);
-//   debugger;
-//   $('body').append(html); -->
-
-
-<br>
-<br>
-<br>
 
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
@@ -42,62 +7,115 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
+<div class="navbar-fixed">
+  <nav class="blue darken-3" role="navigation">
+    <div class="container">
+      <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">View</a></li>
+          <li><a href="#">Calendar</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
 
-<p class="navbar-text pull-right">
-  <% if patient_signed_in? %>
-    Logged in as <strong><%= current_patient.email %></strong><br>
-    <%= link_to 'edit profile', edit_patient_registration_path, :class => 'navbar-link', id: "edit"%> |
-    <%= link_to "logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %>
-  <% else %>
-    <%= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
-    <%= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
-  <% end %>
-</p>
+        <ul id="mobile-demo" class="side-nav">
+          <li><a href="#">View</a></li>
+          <li><a href="#">Calendar</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<!-- <p class="navbar-text pull-right"> -->
+  <%# if patient_signed_in? %>
+    <!-- Logged in as <strong><%#= current_patient.email %></strong><br> -->
+    <%#= link_to 'edit profile', edit_patient_registration_path, :class => 'navbar-link', id: "edit"%> |
+    <%#= link_to "logout", destroy_patient_session_path, method: :delete, :class => 'navbar-link', id: "logout" %>
+  <%# else %>
+    <%#= link_to "Sign up", new_patient_registration_path, :class => 'navbar-link'  %> |
+    <%#= link_to "Login", new_patient_session_path, :class => 'navbar-link'  %>
+  <%# end %>
+<!-- </p> -->
 
 <br>
 <div id="events"></div>
 
-<div class="entry">
-  <% @appointments.each do |appointment| %>
-  <div class="appointment" data-doctor-id = "<%= appointment.doctor_id %>">
-    <label>Doctor Name</label>
-    <p id="appt_name"><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></p>
-    <label>Appointment Address</label>
-    <p id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
-    <label>Appointment Time</label>
-    <p id="appt_time"><%= appointment.start %></p>
-    <label>Purpse</label>
-    <p id="appt_purpose"><%= appointment.title %></p>
+  <div class="container">
+    <div class="row">
+      <div class="entry col s12">
+        <table class="hoverable">
+          <h5 class="header center white-text">Appointments</h5>
+          <thead>
+            <tr>
+              <th data-field="Doctor Name">Doctor Name</th>
+              <th data-field="Appointment Address">Appointment Address</th>
+              <th data-field="Appointment Time">Appointment Time</th>
+              <th data-field="Purpose">Purpose</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @appointments.each do |appointment| %>
+            <tr class="appointment" data-doctor-id = "<%= appointment.doctor_id %>">
+
+                  <td id="appt_name"><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></td>
+                  <td id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></td>
+                  <td id="appt_time"><%= appointment.start %></td>
+                  <td id="appt_purpose"><%= appointment.title %></td>
+
+            </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <% end %>
+<%= link_to "  On My Way  ", '#', id: "tracking", class: "btn-large waves-effect waves-light red" %>
+  <br>
+<%= link_to "  Send Message  ", "/messages.html", id: "send_message", class: "btn-large waves-effect waves-light red" %>
 </div>
+<br><br><br>
+<table>
+  <thead>
+    <tr>
+      <th>Current Location & ETA</th>
+    </tr>
+    <tbody>
+      <tr>
+        <td id="outputDiv"></td>
+      </tr>
+    </tbody>
+  </thead>
+</table>
+<tr ></tr>
+
+<p id="demo"></p>
+
+
+
+<!-- <div class="entry">
+  <table>
+    <tr>
+      <td>Doctor Name</td>
+      <td>Appointment Address</td>
+      <td>Appointment Time</td>
+      <td>Purpose</td>
+      <td>Doctor Name</td>
+    </tr>
+  </table>
+</div>
+ -->
 <br>
+
 <div id="travel">
-  <p id="p_travel">How are you travelling there?</p>
   <select id="buttonDiv">
     <option value="driving">Driving</option>
     <option value="transit">Public transportation</option>
     <option value="walking">Walking</option>
   </select>
-  <br>
-  <br>
-<%= button_to "  On My Way  ", '#', method: :get, id: "tracking" %>
-  <br>
-<%= button_to "  Send Message  ", "/messages.html", method: :get, id: "send_message" %>
 </div>
-<div id="outputDiv"></div>
 
-<p id="demo"></p>
 
-<div class="entry">
-  <h1><%#= appointment.doctor_id %></h1>
-    <% @appointments.each do |appointment| %>
-        <div class="appointment">
-          <label>Appointment Address</label>
-          <p id="appt_address"><%= appointment.address %> <%= appointment.city %> <%= appointment.state %> <%= appointment.zip %></p>
-          <label>Appointment Time</label>
-          <p id="appt_time"><%= appointment.start %></p>
-          <p id="doctor_id"><%= appointment.doctor_id %></p>
-        </div>
-    <% end %>
-</div>

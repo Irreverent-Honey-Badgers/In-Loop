@@ -1,6 +1,20 @@
-<div class="row left">
-  <%= link_to " I'm a Patient ", p_omniauth_patients_path, method: :get, id: "download-button", class: "btn-large waves-effect waves-light red" %>
-</div>
-<div class="row right">
-<%= link_to " I'm a Provider ", d_omniauth_doctors_path, method: :get, id: "download-button", class: "btn-large waves-effect waves-light red" %>
-</div>
+<div class="section no-pad-bot" id="index-banner" style="background: radial-gradient(#bbdefb, #2196f3, #0d47a1);">
+    <div class="container">
+      <br><br>
+      <!-- <h1 class="header center red-text">WELCOME TO IN-LOOP</h1> -->
+      <div class="row center">
+      <%= image_tag("landingImage.png", class: "responsive-img bgimage" ) %>
+      </div>
+      <div class="row center">
+        <h5 class="header col s12 light">Let your doctor know you're on your way</h5>
+      </div>
+      <div class="row">
+        <div class="left">
+          <%= link_to " I'm a Patient ", p_omniauth_patients_path, id: "download-button", class: "btn-large waves-effect waves-light red" %>
+        </div>
+        <div class="right">
+          <%= link_to "I'M A PROVIDER", d_omniauth_doctors_path, id: "download-button", class: "btn-large waves-effect waves-light red" %>
+        </div>
+    </div>
+    </div>
+  </div>

@@ -1,11 +1,30 @@
-<h1> Waiting Roomm </h1>
-
 <% if notice %>
 <p class="alert alert-success"><%= notice %></p>
 <% end %>
 <% if alert %>
 <p class="alert alert-danger"><%= alert %></p>
 <% end %>
+
+  <div class="navbar-fixed">
+    <nav class="blue darken-3" role="navigation">
+      <div class="container">
+        <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#">View</a></li>
+            <li><%= link_to 'Calendar', doctors_path %></li>
+            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">View</a></li>
+            <li><%= link_to 'Calendar', doctors_path %></li>
+            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 
 
 <p class="navbar-text pull-right">
@@ -35,7 +54,132 @@
 <table class="Completed">
 </table>
 
-<%= link_to 'Calendar', doctors_path %>
+
+<!--   <div class="container">
+    <div class="row">
+      <div class="col s8">
+        <table class="hoverable checkedIn">
+          <h5 class="header center red-text">Current Waiting List</h5>
+          <thead>
+            <tr>
+                <th data-field="id">Input</th>
+                <th data-field="name">Input</th>
+                <th data-field="price">Input</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Input</td>
+              <td>Input</td>
+              <td>Input</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col s4">
+        <table class="hoverable Completed">
+          <h5 class="header left red-text">Seen Today</h5>
+          <thead>
+            <tr>
+                <th data-field="id">Input</th>
+                <th data-field="name">Input</th>
+                <th data-field="price">Input</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Input</td>
+              <td>Input</td>
+              <td>Input</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s8">
+        <table class="hoverable enRoute">
+          <h5 class="header center red-text">Currently Arriving List with ETA</h5>
+          <thead>
+            <tr>
+                <th data-field="id">Input</th>
+                <th data-field="name">Input</th>
+                <th data-field="price">Input</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr id="">
+              <td>Input</td>
+              <td>Input</td>
+              <td>Input</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col s4">
+        <table class="hoverable laterAppt">
+          <h5 class="header left red-text">Upcoming Appointments</h5>
+          <thead>
+            <tr>
+                <th data-field="id">Input</th>
+                <th data-field="name">Input</th>
+                <th data-field="price">Input</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Input</td>
+              <td>Input</td>
+              <td>Input</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ -->
+  <footer class="page-footer blue darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Irreverent Honey Badgers Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Qasim</a></li>
+            <li><a class="white-text" href="#!">Katie</a></li>
+            <li><a class="white-text" href="#!">Jackson</a></li>
+            <li><a class="white-text" href="#!">Noel</a></li>
+            <li><a class="white-text" href="#!">Anya</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
 
 <script>
   $(function(){
@@ -48,6 +192,8 @@
         console.log("mooo");
       var descripRow = $('<tr>').attr('id', 'descripRow');
         var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
+        var checkedInRow = $('<tr>').attr('id', 'checkedInRow');
+        var completedRow = $('<tr>').attr('id', 'completedRow');
         var appt = $('<td>').attr('id', 'appt').text("Appt");
         var patientName = $('<td>').attr('id', 'name').text("Name");
         var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
@@ -57,9 +203,20 @@
         var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
         var descripObject = descripRow.append(appt).append(patientName).append(purpose);
         var eta = $('<td>').attr('id', 'eta').text("ETA");
+        var appt3 = $('<td>').attr('id', 'appt3').text("Appt");
+        var patientName3 = $('<td>').attr('id', 'name3').text("Name");
+        var purpose3 = $('<td>').attr('id', 'purpose3').text("Purpose");
+        var checkbox3 = $('<td>').attr('id', 'checkbox3').text("Checkbox");
+        var appt4 = $('<td>').attr('id', 'appt4').text("Appt");
+        var patientName4 = $('<td>').attr('id', 'name4').text("Name");
+        var purpose4 = $('<td>').attr('id', 'purpose4').text("Purpose");
         var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
+        var checkedIn= checkedInRow.append(appt3).append(patientName3).append(purpose3).append(checkbox3);
+        var completed= completedRow.append(appt4).append(patientName4).append(purpose4);
         $('.enRoute').append(enRouteObject);
         $('.laterAppt').append(descripObject);
+        $('.checkedIn').append(checkedIn);
+        $('.Completed').append(completed);
         data.forEach(function(element, index, array){
           var patientAppt = $('<tr>').attr('id', 'patientAppt').data('patient-id', element.patient.id);
             var start = $('<td>').attr('id', 'start').text(element.start);
@@ -71,7 +228,8 @@
               $('.enRoute').append(patientObject);
               var eta = $('<td>').attr('id', 'eta').text(element.eta);
               var checkbox = $('<input>').attr("id","arrived_checkbox").attr("type","checkbox");
-              patientObject.append(eta).append(checkbox).append(checkbox);
+              patientObject.append(eta).append(checkbox);
+              debugger;
             }
             else {
               $('.laterAppt').append(patientObject);
@@ -80,6 +238,8 @@
       });
     $('.enRoute').empty();
     $('.laterAppt').empty();
+    $('.checkedIn').empty();
+    $('.Completed').empty();
     };
 
     function changeToCheckedIn(){
@@ -92,56 +252,8 @@
           $(this).remove();
         }
       });
-
     }
-
-
-
     setInterval(m,5000);
+
   });
 </script>
-
-<script>
-  $(function(){
-    var m = function(){
-      $.get('/doctors/' + '<%= current_doctor.id %>' + '/get_patient').done(function(data){
-        console.log("mooo");
-      var descripRow = $('<tr>').attr('id', 'descripRow');
-        var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
-        var appt = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName = $('<td>').attr('id', 'name').text("Name");
-        var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
-        var appt2 = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName2 = $('<td>').attr('id', 'name').text("Name");
-        var purpose2 = $('<td>').attr('id', 'purpose').text("Purpose");
-        var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
-        var descripObject = descripRow.append(appt).append(patientName).append(purpose);
-        var eta = $('<td>').attr('id', 'eta').text("ETA");
-        var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
-        $('.enRoute').append(enRouteObject);
-        $('.laterAppt').append(descripObject);
-        data.forEach(function(element, index, array){
-          var patientAppt = $('<tr>').attr('id', 'patientAppt');
-            var start = $('<td>').attr('id', 'start').text(element.start);
-            var name = $('<td>').attr('id', 'name').text(element.patient.first_name + ' ' + element.patient.last_name);
-            var title = $('<td>').attr('id', 'purpose').text(element.title);
-            var patientObject = patientAppt.append(start).append(name).append(title);
-        // debugger;
-            if (element.eta != null) {
-              $('.enRoute').append(patientObject);
-              var eta = $('<td>').attr('id', 'eta').text(element.eta);
-              var checkbox = $('<input>').attr("id","checkbox").attr("type","checkbox");
-              patientObject.append(eta).append(checkbox).append(checkbox);
-            }
-            else {
-              $('.laterAppt').append(patientObject);
-            }
-          });
-      });
-    $('.enRoute').empty();
-    $('.laterAppt').empty();
-    };
-    setInterval(m,2500);
-  });
-</script>
-

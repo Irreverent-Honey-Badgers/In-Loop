@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
+  background: radial-gradient(#fafafa, #bdbdbd, #616161); // doctor show page
   font-size: 62.5%;
 }
 label, input {
@@ -31,4 +32,13 @@ div#users-contain table td, div#users-contain table th {
 }
 .validateTips {
   border: 1px solid transparent; padding: 0.3em;
+}
+
+#calendar{
+  font-size: 12px;
+}
+
+#arrived_checkbox {
+  width: 1rem;
+
 }
