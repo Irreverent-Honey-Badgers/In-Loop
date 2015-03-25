@@ -9,10 +9,6 @@ class PatientsController < ApplicationController
     :authenticate_patient!
     @patient = Patient.find(params[:id])
     @appointments = @patient.appointments.where("start > ?", DateTime.now)
-<<<<<<< HEAD
-
-=======
->>>>>>> 9f8344a886e6d6336ca5561964cefe723d1721a0
   end
 
   def omniauth

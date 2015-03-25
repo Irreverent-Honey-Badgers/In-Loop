@@ -1,102 +1,62 @@
-<head>
-  <meta charset="utf-8">
-  <!-- <title>jQuery UI Dialog - Modal form</title> -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-</head>
-
-<body>
-  <br><br><br><br><br>
-  <!-- <div id="calendar"></div> -->
-  <br>
-  <%#= render 'form', modal: true %>
-  <br>
-  <!-- <button id="create-event">Create new appointment</button> -->
-  <br>
-  <%#= button_to 'Create Appointment', create_appointment_doctor_path(current_doctor[:id]), id: 'create-event', method: :get %>
-  <br>
-  <%#= button_to 'En Route', doctors_path, id: 'create-event', method: :get %>
-</body>
-
-
-<body>
+<div class="navbar-fixed">
   <nav class="blue darken-3" role="navigation">
     <div class="container">
-      <div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo"><img src="in loop logo.png"> </a>
-      
-        <ul class="right">
+      <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
           <li><a href="#">View</a></li>
           <li><a href="#">Calendar</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
 
-        <ul id="nav-mobile" class="side-nav">
+        <ul id="mobile-demo" class="side-nav">
           <li><a href="#">View</a></li>
           <li><a href="#">Calendar</a></li>
           <li><a href="#">Logout</a></li>
         </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       </div>
     </div>
   </nav>
-<!--   <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center black-text">Blah Blah Stuff</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Whatever</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light red">Click this</a>
-      </div>
-      <br><br>
+</div>
+<br><br><br>
+<div id="calendar"></div>
+<br><br><br>
+<footer class="page-footer blue darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Irreverent Honey Badgers Bio</h5>
+        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
 
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Settings</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Qasim</a></li>
+          <li><a class="white-text" href="#!">Katie</a></li>
+          <li><a class="white-text" href="#!">Jackson</a></li>
+          <li><a class="white-text" href="#!">Noel</a></li>
+          <li><a class="white-text" href="#!">Anya</a></li>
+        </ul>
+      </div>
     </div>
   </div>
- -->
-  <div id="calendar"></div>
-  <footer class="page-footer blue darken-3">
+  <div class="footer-copyright">
     <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Irreverent Honey Badgers Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Qasim</a></li>
-            <li><a class="white-text" href="#!">Katie</a></li>
-            <li><a class="white-text" href="#!">Jackson</a></li>
-            <li><a class="white-text" href="#!">Noel</a></li>
-            <li><a class="white-text" href="#!">Anya</a></li>
-          </ul>
-        </div>
-      </div>
+    Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
     </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+  </div>
+</footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <!-- <script src="js/init.js"></script> -->
-</body>
+

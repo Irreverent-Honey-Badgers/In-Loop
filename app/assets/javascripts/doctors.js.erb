@@ -1,17 +1,18 @@
-console.log('loaded bro');
+console.log('loaded doctor');
 $(".doctors.index").ready(function(){
+
   $('#calendar').fullCalendar({
     googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
-    // weekends: false,
+    weekends: false,
     businessHours: {
       start: '09:00', // a start time (9am in this example)
-      end: '17:30', // an end time (5pm in this example)
+      end: '17:00', // an end time (5pm in this example)
       dow: [ 1, 2, 3, 4, 5]
       // days of week. an array of zero-based day of week integers (0=Sunday)
       // (Monday-Thursday in this example)
     },
-    height: 500,
+    height: 400,
     defaultView: 'agendaWeek',
     eventLimit: true, // allow "more" link when too many events
     views: {
@@ -24,12 +25,14 @@ $(".doctors.index").ready(function(){
       {
         googleCalendarId: 'n825ka53ioka43rmf80b9pagn4@group.calendar.google.com',
         color: 'blue',
+        textFont: 20,
         textColor: 'white',
         editable: true
       },
       {
         url: '/doctors/:id/appointments',
         allDay: false,
+        textFont: 20,
         // timezone: false,
         editable: true,
         color: 'red'
@@ -49,117 +52,4 @@ $(".doctors.index").ready(function(){
     }
   });
 
-  $(function() {
-    var dialog, form,
-
-      // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=start%29
-      startRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-      purpose = $( "#purpose" ),
-      appointment = $( "#appointment" ),
-      email = $( "#email" ),
-      allFields = $( [] ).add( purpose ).add( appointment ).add( email ),
-      tips = $( ".validateTips" );
- 
-    function updateTips( t ) {
-      tips
-        .text( t )
-        .addClass( "ui-state-highlight" );
-      setTimeout(function() {
-        tips.removeClass( "ui-state-highlight", 1500 );
-      }, 500 );
-    }
- 
-    function checkLength( o, n, min, max ) {
-      if ( o.val().length > max || o.val().length < min ) {
-        o.addClass( "ui-state-error" );
-        updateTips( "Length of " + n + " must be between " +
-          min + " and " + max + "." );
-        return false;
-      } else {
-        return true;
-      }
-    }
- 
-    function checkRegexp( o, regexp, n ) {
-      if ( !( regexp.test( o.val() ) ) ) {
-        o.addClass( "ui-state-error" );
-        updateTips( n );
-        return false;
-      } else {
-        return true;
-      }
-    }
- 
-    // function addEvent() {
-    //   var valid = true;
-    //   allFields.removeClass( "ui-state-error" );
- 
-    //   valid = valid && checkLength( purpose, "eventpurpose", 3, 16 );
-    //   valid = valid && checkLength( appointment, "appointment", 6, 80 );
-    //   valid = valid && checkLength( email, "email", 5, 16 );
- 
-    //   valid = valid && checkRegexp( purpose, /^[a-z]([0-9a-z_\s])+$/i, "Eventpurpose may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-    //   valid = valid && checkRegexp( appointment, startRegex, "eg. ui@jquery.com" );
-    //   valid = valid && checkRegexp( email, /^([0-9a-zA-Z])+$/, "Email field only allow : a-z 0-9" );
- 
-    //   if ( valid ) {
-    //     $( "#events tbody" ).append( "<tr>" +
-    //       "<td>" + purpose.val() + "</td>" +
-    //       "<td>" + appointment.val() + "</td>" +
-    //       "<td>" + email.val() + "</td>" +
-    //     "</tr>" );
-    //     dialog.dialog( "close" );
-    //   }
-    //   return valid;
-    // }
-
-    function refreshCalendar(){
-      $("#calendar").fullCalendar( 'refetchEvents' );
-    };
-    function errorHandler(error){
-      console.log("error: ", error);
-    };
-    function addEvent(event, refreshCalendar, errorHandler) {
-      // $.post('/doctors/' + 1 + '/send_appointment'){
-      //   data: ""
-      // }
-      $.ajax({
-        type: "POST",
-        url: "/doctors/" + 1 + "/send_appointment",
-        data: {
-        },
-        dataType: "JSON",
-        success: refreshCalendar,
-        error: errorHandler,
-      });
-      console.log("Jim, we have a problem");
-      dialog.dialog("close");
-    };
-
-    dialog = $( "#dialog-form" ).dialog({
-      autoOpen: false,
-      height: 300,
-      width: 350,
-      modal: true,
-      buttons: {
-        "Create an event": addEvent,
-        Cancel: function() {
-          dialog.dialog( "close" );
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-    });
- 
-    form = dialog.find( "form" ).on( "submit", function( event ) {
-      event.preventDefault();
-      addEvent();
-    });
- 
-    $( "#create-event" ).button().on( "click", function() {
-      dialog.dialog( "open" );
-    });
-  });
 });
