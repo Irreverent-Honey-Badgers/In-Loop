@@ -1,26 +1,39 @@
-  <div class="navbar-fixed">
-    <nav class="blue darken-3" role="navigation">
-      <div class="container">
-        <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
-            <li><%= link_to 'Calendar', doctors_path %></li>
-            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
-          </ul>
+<div class="navbar-fixed">
+  <nav class="blue darken-3" role="navigation">
+    <div class="container">
+      <div class="nav-wrapper"><a id="logo-container" href="#!" class="brand-logo"><%= image_tag("in loop logo.png") %></a>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
+          <li><%= link_to 'Calendar', doctors_path %></li>
+          <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+        </ul>
 
-          <ul id="nav-mobile" class="side-nav">
-            <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
-            <li><%= link_to 'Calendar', doctors_path %></li>
-            <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
-          </ul>
-        </div>
+        <ul id="nav-mobile" class="side-nav">
+          <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
+          <li><%= link_to 'Calendar', doctors_path %></li>
+          <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+        </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>
 
 <br><br><br>
 <div id="calendar"></div>
+<br>
+<!-- Modal Trigger -->
+<a class="modal-trigger waves-effect waves-light red btn" href="#modal1">Create Appointment</a>
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>
+</div>
 <br><br>
 <footer class="page-footer blue darken-3">
   <div class="container">
