@@ -40,7 +40,7 @@
         <%= f.label :end %><br>
         <%= f.text_field :end , id: 'date-end' %>
       </div>
-    
+
       <div class="field">
         <%= f.label :description %><br>
         <%= f.text_field :description %>
@@ -71,6 +71,10 @@
   </div>
 </footer>
 
+<script charset="utf-8">
+  $('.modal-trigger').on('click',showModal);
 
-
-
+  function showModal() {
+    $('#modal1').css('display',"inline");
+  }
+</script>
