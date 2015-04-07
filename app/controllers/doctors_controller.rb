@@ -3,6 +3,7 @@ class DoctorsController < ApplicationController
 
   def index
     @doctors = Doctor.all
+    @appointment = Appointment.new
   end
 
   def show

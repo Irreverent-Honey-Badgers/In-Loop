@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get '/new_appointment' => 'appointments#new', as: 'new_appointment'
     end
   end
+  resources :appointments
   # resources :appointments, only: [:index, :new, :create], path: '/doctors/appointments'
   # resources :appointments, path: '/doctors/:id/appointments'
 

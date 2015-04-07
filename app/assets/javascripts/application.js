@@ -13,11 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-readyselector
-//= require materialize
-//= require init
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal
+//= require materialize
+//= require bootstrap
+//= require bootstrap-material-design
+//= require bootstrap-material-datepicker
 //= require turbolinks
 //= require_tree .
 

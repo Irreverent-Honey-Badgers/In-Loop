@@ -40,6 +40,8 @@ gem 'momentjs-rails'
 # A rails engine for the awesome qTip2 jQuery plugin
 # gem 'qtip2-rails'
 
+gem 'bootstrap-material-design'
+
 gem 'bourbon'
 gem 'neat'
 

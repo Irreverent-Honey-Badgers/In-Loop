@@ -30,7 +30,7 @@ $(".doctors.index").ready(function(){
         editable: true
       },
       {
-        url: '/doctors/:id/appointments',
+        url: '/appointments',
         allDay: false,
         textFont: 20,
         // timezone: false,
@@ -50,6 +50,22 @@ $(".doctors.index").ready(function(){
         return false;
       };
     }
+  });
+
+$(document).ready(function(){
+    $('.modal-trigger').leanModal({
+      dismissible: true
+    });
+    $('#date-end').bootstrapMaterialDatePicker({ 
+      weekStart : 0,
+      format: 'YYYY-MM-DD HH:mm:00'
+     });
+    $('#date-start').bootstrapMaterialDatePicker({ 
+      weekStart : 0,
+      format: 'YYYY-MM-DD HH:mm:00'
+    }).on('change', function(e, date){
+      $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+      });
   });
 
 });
