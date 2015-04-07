@@ -11,6 +11,9 @@
  * file per style scope.
  *
  *= require materialize
+ *= require bootstrap
+ *= require bootstrap-material-datepicker
+ *= require bootstrap-material-design
  *= require fullcalendar
  *= require_tree .
  *= require_self

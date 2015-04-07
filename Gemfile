@@ -35,10 +35,13 @@ gem 'rails-rename', '~> 1.0.0'
 
 # An asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
 gem 'fullcalendar-rails'
+
 gem 'momentjs-rails'
 
 # A rails engine for the awesome qTip2 jQuery plugin
 # gem 'qtip2-rails'
+
+gem 'bootstrap-material-design'
 
 gem 'bourbon'
 gem 'neat'

@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require jquery-readyselector
 //= require materialize
-//= require init
+//= require bootstrap
+//= require bootstrap-material-datepicker
+//= require bootstrap-material-design
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal

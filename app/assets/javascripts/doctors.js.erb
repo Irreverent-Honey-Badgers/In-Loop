@@ -1,6 +1,5 @@
 console.log('loaded doctor');
 $(".doctors.index").ready(function(){
-
   $('#calendar').fullCalendar({
     googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
@@ -53,9 +52,10 @@ $(".doctors.index").ready(function(){
   });
 
   $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal('#modal1');
+    // $('.date-end').bootstrapMaterialDatePicker({weekStart: 0});
+    // $('.date-start').bootstrapMaterialDatePicker({weekStart: 0}).on('change', function(e, date) {
+    //   $('.date-end').bootstrapMaterialDatePicker('setMinDate', date);
+    // });
   });
-
 });
-
