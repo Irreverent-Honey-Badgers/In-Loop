@@ -2,13 +2,13 @@
 .dtp .modal-dialog { width: 400px; }
 .dtp .modal-body { padding: 0!important; }
 
-.dtp header.dtp-header { background: #689F38; color: #fff; text-align: center; padding: 10px; }
+.dtp header.dtp-header { background: #F44336; color: #fff; text-align: center; padding: 10px; }
 
-.dtp div.dtp-date { background: #8BC34A; text-align: center; color: #fff; padding: 10px; }
+.dtp div.dtp-date { background: #EF5350; text-align: center; color: #fff; padding: 10px; }
 .dtp div.dtp-date > div { padding: 0; margin: 0; }
 .dtp div.dtp-actual-month { font-size: 2.2em; }
 .dtp div.dtp-actual-num { font-size: 5em; line-height: 0.9; }
-.dtp div.dtp-actual-year { font-size: 2.2em; color: #DCEDC8; }
+.dtp div.dtp-actual-year { font-size: 2.2em; color: #E57373; }
 .dtp div.dtp-picker { padding: 10px; text-align: center; }
 .dtp div.dtp-picker-month, .dtp div.dtp-actual-time { font-weight: 500; text-align: center; font-size: 1.2em; padding-bottom: 10px; }
 .dtp table.dtp-picker-days { margin: 0; }
@@ -16,7 +16,7 @@
 .dtp table.dtp-picker-days tr > td { font-weight: 500; text-align: center; }
 .dtp table.dtp-picker-days tr > td > span.dtp-select-day { color: #BDBDBD!important; }
 .dtp table.dtp-picker-days tr > td > a, .dtp .dtp-picker-time > a { color: #212121; text-decoration: none; padding: 4px 5px; border-radius: 50%!important; }
-.dtp table.dtp-picker-days tr > td > a.selected{ background: #8BC34A; color: #fff; }
+.dtp table.dtp-picker-days tr > td > a.selected{ background: #EF5350; color: #fff; }
 .dtp table.dtp-picker-days tr > th { color: #757575; text-align: center; font-weight: 700; }
 .dtp div.dtp-picker-clock { margin: 0 20px; border-radius: 50%!important; background: #eee; }
 .dtp-picker-time > a { display: block; width: 29px; height: 29px; }
@@ -24,15 +24,15 @@
 
 span[class^=mdi-], [class*=" mdi-"] { position: relative; top: 7px; }
 
-.dtp .dtp-picker-time > a.dtp-select-hour.selected { background: #689F38; color: #fff; }
+.dtp .dtp-picker-time > a.dtp-select-hour.selected { background: #F44336; color: #fff; }
 
 .dtp .dtp-picker-time > a.dtp-select-hour.disabled, .dtp .dtp-picker-time > a.dtp-select-minute.disabled { color: #757575; }
-.dtp .dtp-picker-time > a.dtp-select-minute.selected { background: #8BC34A; color: #fff; }
+.dtp .dtp-picker-time > a.dtp-select-minute.selected { background: #EF5350; color: #fff; }
 
 .dtp .col-sm-2 { text-align: center; font-size: 2.2em; }
-.dtp .col-sm-2 > a { color: #689F38; text-decoration: none; }
+.dtp .col-sm-2 > a { color: #F44336; text-decoration: none; }
 
-.dtp .dtp-actual-meridien a.selected { background: #689F38; color: #fff; }
+.dtp .dtp-actual-meridien a.selected { background: #F44336; color: #fff; }
 .dtp a.dtp-meridien-am, .dtp a.dtp-meridien-pm { color: #212121; font-weight: 500; padding: 12px 10px; border-radius: 50%!important;text-decoration: none; background: #eee; }
 
 .dtp .dtp-picker-time {
@@ -70,5 +70,5 @@ span[class^=mdi-], [class*=" mdi-"] { position: relative; top: 7px; }
 }
 .dtp .dtp-hand.on
 {
-  background: #8BC34A;
+  background: #EF5350;
 }

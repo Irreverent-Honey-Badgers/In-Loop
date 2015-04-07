@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :doctors, only: [:index, :show] do
-    resources :appointments do
+    resources :appointments, only: [:index, :new, :create] do
       collection do
         delete '/patient/:patient_id' => 'appointments#delete_successful_appointment', as: :'delete_successful_appointment'
       end
@@ -36,8 +36,8 @@ Rails.application.routes.draw do
       # get '/new_appointment' => 'appointments#new', as: 'new_appointment'
     end
   end
-  resources :appointments
-  # resources :appointments, only: [:index, :new, :create], path: '/doctors/appointments'
+  # resources :appointments
+  # resources :appointments, only: [:index, :new, :create], path: '/appointments'
   # resources :appointments, path: '/doctors/:id/appointments'
 
   # The priority is based upon order of creatio first created -> highest priority.

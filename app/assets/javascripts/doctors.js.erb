@@ -29,7 +29,7 @@ $(".doctors.index").ready(function(){
         editable: true
       },
       {
-        url: '/doctors/:id/appointments',
+        url: 'doctor_appointments',
         allDay: false,
         textFont: 20,
         // timezone: false,
@@ -53,9 +53,15 @@ $(".doctors.index").ready(function(){
 
   $(document).ready(function(){
     $('.modal-trigger').leanModal('#modal1');
-    // $('.date-end').bootstrapMaterialDatePicker({weekStart: 0});
-    // $('.date-start').bootstrapMaterialDatePicker({weekStart: 0}).on('change', function(e, date) {
-    //   $('.date-end').bootstrapMaterialDatePicker('setMinDate', date);
-    // });
+    $('.date-end').bootstrapMaterialDatePicker({
+      weekStart: 0,
+      format: 'YYYY-MM-DD hh:mm:00'
+    });
+    $('.date-start').bootstrapMaterialDatePicker({
+      weekStart: 0,
+      format: 'YYYY-MM-DD hh:mm:00 a'
+    }).on('change', function(e, date) {
+      $('.date-end').bootstrapMaterialDatePicker('setMinDate', date);
+    });
   });
 });

@@ -12,6 +12,11 @@ label, input {
 input.text {
   margin-bottom:12px; width:95%; padding: .4em;
 }
+/* label underline focus color */
+.field input[type=text]:focus {
+ border-bottom: 1px solid #f44336;
+ box-shadow: 0 1px 0 0 #f44336;
+}
 fieldset {
   padding:0; border:0; margin-top:25px;
 }

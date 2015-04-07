@@ -24,44 +24,7 @@
 <!-- Modal Trigger -->
 <a class="modal-trigger waves-effect waves-light red btn" href="#modal1">Create Appointment</a>
 <!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer">
-  <%= form_for(@appointment) do |f| %>
-    <div class="modal-content">
-      <div>
-        <div class="field">
-          <%= f.label :doctor_id %><br>
-          <%= f.text_field :doctor_id %>
-        </div>
-        <div class="field">
-          <%= f.label :doctor_office %><br>
-          <%= f.text_field :doctor_office %>
-        </div>
-        <div class="field">
-          <%= f.label :title %><br>
-          <%= f.text_field :title %>
-        </div>
-        <div class="field">
-          <%= f.label :start %><br>
-          <%= f.text_field :start, class: 'date-start' %>
-        </div>
-        <div class="field">
-          <%= f.label :end %><br>
-          <%= f.text_field :end, class: 'date-end' %>
-        </div>
-      
-        <div class="field">
-          <%= f.label :description %><br>
-          <%= f.text_field :description %>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <div class="actions">
-        <%= f.submit %>
-      </div>
-      <!-- <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a> -->
-    </div>
-  <% end %>
+<div id="modal1" class="modal modal-fixed-footer red">
 </div>
 <br><br>
 <footer class="page-footer blue darken-3">
