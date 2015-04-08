@@ -81,4 +81,4 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:address, :city, :state, :zip, :title, :start, :end, :description)
     end
   end
-end
+
