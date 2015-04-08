@@ -9,6 +9,7 @@
 .dtp div.dtp-actual-month { font-size: 2.2em; }
 .dtp div.dtp-actual-num { font-size: 5em; line-height: 0.9; }
 .dtp div.dtp-actual-year { font-size: 2.2em; color: #E57373; }
+
 .dtp div.dtp-picker { padding: 10px; text-align: center; }
 .dtp div.dtp-picker-month, .dtp div.dtp-actual-time { font-weight: 500; text-align: center; font-size: 1.2em; padding-bottom: 10px; }
 .dtp table.dtp-picker-days { margin: 0; }

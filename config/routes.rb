@@ -36,8 +36,8 @@ Rails.application.routes.draw do
       # get '/new_appointment' => 'appointments#new', as: 'new_appointment'
     end
   end
-  # resources :appointments
-  # resources :appointments, only: [:index, :new, :create], path: '/appointments'
+  resources :appointments
+  # resources :appointments, only: [:index, :new, :create], path: '/doctors/appointments'
   # resources :appointments, path: '/doctors/:id/appointments'
 
   # The priority is based upon order of creatio first created -> highest priority.
