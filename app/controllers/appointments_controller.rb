@@ -80,8 +80,5 @@ class AppointmentsController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:address, :city, :state, :zip, :title, :start, :end, :description)
     end
-    # def patient_params
-    #   params.require(:patient).permit(:email)
-    # end
   end
 end
