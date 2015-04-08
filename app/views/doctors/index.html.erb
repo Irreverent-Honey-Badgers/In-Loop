@@ -9,8 +9,18 @@
           <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
         </ul>
 
-<br><br>
-<div id="calendar"></div>
+        <ul id="nav-mobile" class="side-nav">
+          <li><%= link_to 'View', doctor_path(current_doctor.id) %></li>
+          <li><%= link_to 'Calendar', doctors_path(current_doctor.id) %></li>
+          <li><%= link_to "logout", destroy_doctor_session_path, method: :delete, :class => 'navbar-link', id: "logout" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="container">
+
+  <div id="calendar"></div>
 
   <!-- Modal Trigger -->
   <a class="modal-trigger waves-effect waves-light red btn" href="#modal1">Create Appointment</a>
