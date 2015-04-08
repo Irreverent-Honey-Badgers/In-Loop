@@ -18,58 +18,40 @@
     </div>
   </nav>
 </div>
-<br><br><br>
-<div id="calendar"></div>
-<br>
-<!-- Modal Trigger -->
-<a class="modal-trigger waves-effect waves-light red btn" href="#modal1">Create Appointment</a>
-<!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer">
-  <%= form_for(@appointment) do |f| %>
-    <div class="modal-content">
-      <div class="field">
-        <%= f.label :title %><br>
-        <%= f.text_field :title %>
+<div class="container">
+
+  <div id="calendar"></div>
+
+  <!-- Modal Trigger -->
+  <a class="modal-trigger waves-effect waves-light red btn" href="#modal1">Create Appointment</a>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <%= form_for(@appointment) do |f| %>
+      <div class="modal-content">
+        <div class="field">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :start %><br>
+          <%= f.text_field :start, id: 'date-start' %>
+        </div>
+        <div class="field">
+          <%= f.label :end %><br>
+          <%= f.text_field :end , id: 'date-end' %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_field :description %>
+        </div>
       </div>
-      <div class="field">
-        <%= f.label :start %><br>
-        <%= f.text_field :start, id: 'date-start' %>
+      <div class="modal-footer">
+        <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
+        <div class="actions">
+          <%= f.submit 'Create' %>
+        </div>
       </div>
-      <div class="field">
-        <%= f.label :end %><br>
-        <%= f.text_field :end , id: 'date-end' %>
-      </div>
-    
-      <div class="field">
-        <%= f.label :description %><br>
-        <%= f.text_field :description %>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
-      <div class="actions">
-        <%= f.submit 'Create' %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-<br><br>
-<!-- <footer class="page-footer blue darken-3">
-  <div class="container">
-    <div class="row">
-      <div class="col l12 s12">
-        <h5 class="white-text">In-Loop Bio</h5>
-        <p class="grey-text text-lighten-4">An appointment based application for healthcare providers that allows them to anticipate the estimated time of arrival of individual patients with same day appointments. It allows patients to display their ETA prior to their appointment , hence confirming their visit, which allows healthcare providers to improve patient experience and operational efficiency with better clinical workflow and help reduce check-in time and waiting time drastically.</p>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-    </div>
-  </div>
-</footer>
- -->
-
-
-
