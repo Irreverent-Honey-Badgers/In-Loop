@@ -84,5 +84,4 @@ class AppointmentsController < ApplicationController
     #   params.require(:patient).permit(:email)
     # end
   end
-
 end
