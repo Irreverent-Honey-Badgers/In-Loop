@@ -37,12 +37,12 @@ $(".doctors.index").ready(function(){
         color: 'red'
       }
     ],
-    dayClick: function(date, jsEvent, view) {
-      alert('Clicked on: ' + date.format());
-      // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-      alert('Current view: ' + view.name);
-      // change the day's background color just for fun
-    },
+    // dayClick: function(date, jsEvent, view) {
+    //   alert('Clicked on: ' + date.format());
+    //   // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+    //   alert('Current view: ' + view.name);
+    //   // change the day's background color just for fun
+    // },
     eventClick: function (event) {
       if (event.url) {
         window.open(event.url, "_blank", "toolbar=yes, scrollbars=yes, resizable=yes, top=250, left=500, width=400, height=400");
