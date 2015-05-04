@@ -5,6 +5,9 @@
 body {
   background: radial-gradient(#fafafa, #bdbdbd, #616161); // doctor show page
   font-size: 62.5%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 label, input {
   display:block;
