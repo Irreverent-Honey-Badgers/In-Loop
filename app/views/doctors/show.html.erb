@@ -38,7 +38,7 @@
   <% end %>
 </p>
 
-<h1> Checked In </h1>
+<!-- <h1> Checked In </h1>
 <table class="checkedIn">
   <tr id="checkedInRow"> 
     <td id="appt3"> Appointment</td>
@@ -64,97 +64,98 @@
     <td id="name4"> Name</td>
     <td id="purpose4"> Purpose</td>
   </tr>
-</table>
+</table> -->
 
 
-<!--   <div class="container">
-    <div class="row">
-      <div class="col s8">
-        <table class="hoverable checkedIn">
-          <h5 class="header center red-text">Current Waiting List</h5>
-          <thead>
-            <tr>
-                <th data-field="id">Input</th>
-                <th data-field="name">Input</th>
-                <th data-field="price">Input</th>
-            </tr>
-          </thead>
+  <div class="container">
 
-          <tbody>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-          </tbody>
-        </table>
+    <section>
+      <div class="row">
+        <div class="col s7">
+          <table class="hoverable checkedIn">
+            <h5 class="header center red-text">Current Waiting List</h5>
+            <thead>
+              <tr>
+                  <th>Apointment</th>
+                  <th>Name</th>
+                  <th>Purpose</th>
+                  <th>Seen?</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr id="checkedInRow">
+                <td id="appt3"></td>
+                <td id="name3"></td>
+                <td id="purpose3"></td>
+                <td id="checkbox3"></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col s4">
+          <table class="hoverable Completed">
+            <h5 class="header left red-text">Seen Today</h5>
+            <thead>
+              <tr>
+                  <th>Appointment</th>
+                  <th>Name</th>
+                  <th data-field="Purpose">Purpose</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr id="completeRow">
+                <td id="appt4"></td>
+                <td id="name4"></td>
+                <td id="purpose4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="col s4">
-        <table class="hoverable Completed">
-          <h5 class="header left red-text">Seen Today</h5>
-          <thead>
-            <tr>
-                <th data-field="id">Input</th>
-                <th data-field="name">Input</th>
-                <th data-field="price">Input</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </section>
     <br>
-    <div class="row">
-      <div class="col s8">
-        <table class="hoverable enRoute">
-          <h5 class="header center red-text">Currently Arriving List with ETA</h5>
-          <thead>
-            <tr>
-                <th data-field="id">Input</th>
-                <th data-field="name">Input</th>
-                <th data-field="price">Input</th>
-            </tr>
-          </thead>
+    <section>
+      <div class="row">
+        <div class="col s7">
+          <table class="hoverable">
+            <h5 class="header center red-text">Currently Arriving List with ETA</h5>
+            <thead>
+              <tr>
+                  <th>Apointment</th>
+                  <th>Name</th>
+                  <th>Purpose</th>
+                  <th>ETA</th>
+                  <th>Checkbox</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr id="">
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col s4">
-        <table class="hoverable laterAppt">
-          <h5 class="header left red-text">Upcoming Appointments</h5>
-          <thead>
-            <tr>
-                <th data-field="id">Input</th>
-                <th data-field="name">Input</th>
-                <th data-field="price">Input</th>
-            </tr>
-          </thead>
+            <tbody class="enRoute">
+            </tbody>
+          </table>
+        </div>
+        <div class="col s4">
+          <table class="hoverable">
+            <h5 class="header left red-text">Upcoming Appointments</h5>
+            <thead>
+              <tr>
+                  <th>Appointment</th>
+                  <th>Name</th>
+                  <th>purpose</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <td>Input</td>
-              <td>Input</td>
-              <td>Input</td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody class="laterAppt">
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </section>
+
   </div>
- -->
+
 
 <script>
   $(function(){
@@ -167,13 +168,13 @@
         console.log("mooo");
       var descripRow = $('<tr>').attr('id', 'descripRow');
         var enRouteRow = $('<tr>').attr('id', 'enRouteRow');
-        var appt = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName = $('<td>').attr('id', 'name').text("Name");
-        var purpose = $('<td>').attr('id', 'purpose').text("Purpose");
-        var appt2 = $('<td>').attr('id', 'appt').text("Appt");
-        var patientName2 = $('<td>').attr('id', 'name').text("Name");
-        var purpose2 = $('<td>').attr('id', 'purpose').text("Purpose");
-        var checkbox = $('<td>').attr('id', 'checkbox').text("Checkbox");
+        var appt = $('<td>').attr('id', 'appt');
+        var patientName = $('<td>').attr('id', 'name');
+        var purpose = $('<td>').attr('id', 'purpose');
+        var appt2 = $('<td>').attr('id', 'appt');
+        var patientName2 = $('<td>').attr('id', 'name');
+        var purpose2 = $('<td>').attr('id', 'purpose');
+        var checkbox = $('<td>').attr('id', 'checkbox');
         var descripObject = descripRow.append(appt).append(patientName).append(purpose);
         var eta = $('<td>').attr('id', 'eta').text("ETA");  
         var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
@@ -217,3 +218,4 @@
 
   });
 </script>
+

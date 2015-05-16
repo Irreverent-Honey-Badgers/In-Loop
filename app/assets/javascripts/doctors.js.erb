@@ -1,5 +1,6 @@
 console.log('loaded doctor');
 $(".doctors.index").ready(function(){
+
   $('#calendar').fullCalendar({
     googleCalendarApiKey: '<%= GOOGLE_CALENDAR_CLIENT_ID %>',
     header: {left: 'today prev,next', center: 'title', right: 'month, agendaWeek, agendaDay' }, // buttons for switching between views
