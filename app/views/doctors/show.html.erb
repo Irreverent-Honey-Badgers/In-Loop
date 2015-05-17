@@ -101,7 +101,7 @@
               <tr>
                   <th>Appointment</th>
                   <th>Name</th>
-                  <th data-field="Purpose">Purpose</th>
+                  <th>Purpose</th>
               </tr>
             </thead>
 
@@ -120,7 +120,7 @@
     <section>
       <div class="row">
         <div class="col s7">
-          <table class="hoverable">
+          <table class="hoverable enrte">
             <h5 class="header center red-text">Currently Arriving List with ETA</h5>
             <thead>
               <tr>
@@ -137,7 +137,7 @@
           </table>
         </div>
         <div class="col s4">
-          <table class="hoverable">
+          <table class="hoverable later">
             <h5 class="header left red-text">Upcoming Appointments</h5>
             <thead>
               <tr>
@@ -174,9 +174,10 @@
         var appt2 = $('<td>').attr('id', 'appt');
         var patientName2 = $('<td>').attr('id', 'name');
         var purpose2 = $('<td>').attr('id', 'purpose');
-        var checkbox = $('<td>').attr('id', 'checkbox');
+        var eta = $('<td>').attr('id', 'eta').text("ETA");
+        var check = $('<input>').attr('type', 'checkbox').attr('class', 'filled-in').attr('id', 'filled-in-box');
+        var checkbox = $('<td>').attr('id', 'checkbox').text('Check').append(check);
         var descripObject = descripRow.append(appt).append(patientName).append(purpose);
-        var eta = $('<td>').attr('id', 'eta').text("ETA");  
         var enRouteObject= enRouteRow.append(appt2).append(patientName2).append(purpose2).append(eta).append(checkbox);
         $('.enRoute').append(enRouteObject);
         $('.laterAppt').append(descripObject);
